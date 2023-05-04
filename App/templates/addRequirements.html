@@ -1,0 +1,47 @@
+{% extends "lecturerBase.html" %}
+{% block title %}Add Requirements{% endblock %}
+{% block page %}Cap Advisor{% endblock %}
+
+{% block menuItems %}
+    <li class="no-padding">
+        <ul>
+            <li class="active" style="margin-top: 62px"><a href="/proposal">Add New Requirement</a></li>
+            <li><a href="#!" style="margin-bottom: 70vh">View All Requirements</a></li>
+            <li ><a href="/">Log Out</a></li>
+        </ul>
+    </li>
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="row equal-height-grid" style="margin-bottom:5rem;">
+        <div class="col s12">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title"> Select Course </span>
+                    <!-- Dropdown Trigger -->
+                    <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
+
+                    <!-- Dropdown Structure -->
+                    <ul id='dropdown1' class='dropdown-content'>
+                        <li><a href="#!">one</a></li>
+                        <li><a href="#!">two</a></li>
+                        <li class="divider" tabindex="-1"></li>
+                        <li><a href="#!">three</a></li>
+                        <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+                        <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+                    </ul>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="card-content" style="min-height: 530px;">
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

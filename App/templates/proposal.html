@@ -1,0 +1,89 @@
+{% extends "studentBase.html" %}
+{% block title %}Capstone Proposal{% endblock %}
+{% block page %}Submit Proposal{% endblock %}
+
+
+{% block menuItems %}
+    <li class="active" style="margin-top: 62px"><a href="/proposal">Submit New Proposal</a></li>
+    <li><a href="#!">Ask a Question</a></li>
+    <li><a href="#!">Conversation History</a></li>
+    <li><a href="#!" style="margin-bottom: 60vh">Contact Lecturer</a></li>
+    <li><a href="/">Log Out</a></li>
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="row">
+        <form class="col s12 ">
+            <div class="row">
+
+            </div>
+
+            <div class="row">
+                <div class="input-field col s4 ">
+                    <input id="name" type="text">
+                    <label for="name" class="">Proposal Name</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s7">
+                    <!--<input id="problem" type="text">-->
+                    <textarea id="problem" class="materialize-textarea"></textarea>
+                    <label for="problem">Problem Statement</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s7">
+                    <textarea id="solution" class="materialize-textarea"></textarea>
+                    <label for="solution">Solution Goal</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6 l4">
+                    <input id="date" type="date">
+                    <label for="date">Project Deadline</label>
+                </div>
+
+                <div class="input-field col s6 l4 offset-l4">
+                    <div class="input-field col s12">
+                        <select>
+                            <option value="" disabled selected>Select range</option>
+                            <option value="1">1-3</option>
+                            <option value="2">4-7</option>
+                            <option value="3">8-10</option>
+                        </select>
+                        <label># of Group Members</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="additional-Info" type="text">
+                    <label for="additional-Info" >Additional Info</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 l5 offset-l3">
+                    <p class="range-field center">
+                        <label for="additional-Info" >Novelty Slider</label>
+                        <input type="range" id="novelty-slider" min="1" max="10" />
+
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field center">
+                    <button class="btn indigo darken-4 z-depth-1 rounded-corners cyan-text rounded">Submit</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>
+{% endblock %}

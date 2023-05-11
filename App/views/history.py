@@ -4,8 +4,8 @@ from flask_login import current_user, login_required
 
 from.index import index_views
 
-registration_views = Blueprint('registration_views', __name__, template_folder='../templates')
+history_views = Blueprint('history_views', __name__, template_folder='../templates')
 
-@registration_views.route('/login', methods=['GET'])
-def get_registration_page():
-    return render_template('registration.html')
+@history_views.route('/history', methods=['GET'])
+def get_history_page():
+    return render_template('history.html')

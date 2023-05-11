@@ -6,6 +6,6 @@ from.index import index_views
 
 addRequirement_views = Blueprint('addRequirement_views', __name__, template_folder='../templates')
 
-@addRequirement_views.route('/Add_Requirement', methods=['GET'])
+@addRequirement_views.route('/add-rubric', methods=['GET'])
 def get_addRequirement_page():
     return render_template('addRequirements.html')

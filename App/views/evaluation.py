@@ -6,6 +6,6 @@ from.index import index_views
 
 evaluation_views = Blueprint('evaluation_views', __name__, template_folder='../templates')
 
-@evaluation_views.route('/evaluation', methods=['GET'])
+@evaluation_views.route('/proposal-evaluation', methods=['GET'])
 def get_evaluation_page():
     return render_template('evaluation.html')

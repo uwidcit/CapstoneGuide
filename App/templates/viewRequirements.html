@@ -4,10 +4,13 @@
 
 
 {% block menuItems %}
-<li><a href="#!">Add Requirement</a></li>
-<li class="active"><a href="#!">View all Requirements</a></li>
-<li><a href="#!">View Student Proposals</a></li>
-<li><a href="#!">Log Out</a></li>
+<li class="no-padding">
+    <ul>
+        <li  style="margin-top: 62px"><a href="/add-rubric">Add New Requirement</a></li>
+        <li class="active"><a href="view-rubric" style="margin-bottom: 70vh">View All Requirements</a></li>
+        <li ><a href="/">Log Out</a></li>
+    </ul>
+</li>
 {% endblock %}
 
 {% block content %}

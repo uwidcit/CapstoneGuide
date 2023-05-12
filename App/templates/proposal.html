@@ -2,6 +2,9 @@
 {% block title %}Capstone Proposal{% endblock %}
 {% block page %}Submit Proposal{% endblock %}
 
+<style>
+
+</style>
 
 {% block menuItems %}
     <li class="active" style="margin-top: 62px"><a href="/proposal">Submit New Proposal</a></li>
@@ -12,79 +15,102 @@
 {% endblock %}
 
 {% block content %}
-<section>
-    <div class="row">
-        <form class="col s12 ">
-            <div class="row">
+<div class="row">
+    <div class="col s12">
 
-            </div>
+        <h3> <span class="section-title"> Project Proposal</span> </h3>
 
-            <div class="row">
-                <div class="input-field col s4 ">
-                    <input id="name" type="text">
-                    <label for="name" class="">Proposal Name</label>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="input-field col s12 l7">
-                    <!--<input id="problem" type="text">-->
-                    <textarea id="problem" class="materialize-textarea"></textarea>
-                    <label for="problem">Problem Statement</label>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="input-field col s12 l7">
-                    <textarea id="solution" class="materialize-textarea"></textarea>
-                    <label for="solution">Solution Goal</label>
-                </div>
-            </div>
-
-            <div class="row">
-               <!--<div class="input-field col s6 l4">
-                    <input id="date" type="date">
-                    <label for="date">Project Deadline</label>
-                </div>-->
+        <div class="card">
+            <form class="col s12">
 
                 <div class="row">
-                    <div class="input-field col s6 l4">
-                        <input id="groupNum" type="number" min="0" max="5">
-                        <label># of Group Members</label>
+
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s4">
+                        <input id="name" type="text">
+                        <label for="name" class="">Proposal Name
+                            <i class="material-icons right tooltipped"
+                               data-tooltip="What is the proposed name of the project" data-position="right">info_outline</i>
+                        </label>
                     </div>
-
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="input-field col s12 l7">
-                    <input id="requirements" type="text">
-                    <label for="requirements" >Proposal Requirements</label>
+                <div class="row">
+                    <div class="input-field col s12 l7" >
+                        <!--<input id="problem" type="text">-->
+                        <textarea id="problem" class="materialize-textarea"></textarea>
+                        <label for="problem">Problem Statement
+                            <i class="material-icons right tooltipped"
+                               data-tooltip="What is the problem identified?" data-position="right">info_outline</i>
+                        </label>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="input-field col s12 l7">
-                    <input id="tools" type="text">
-                    <label for="tools" >Proposed tools</label>
+                <div class="row">
+                    <div class="input-field col s12 l7">
+                        <textarea id="solution" class="materialize-textarea"></textarea>
+                        <label for="solution">Solution Goal
+                            <i class="material-icons right tooltipped"
+                               data-tooltip="How is the project meant to solve the problem?" data-position="right">info_outline</i>
+                        </label>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="additional-Info" type="text">
-                    <label for="additional-Info" >Additional Info</label>
+                <div class="row">
+                    <div class="row">
+                        <div class="input-field col s6 l4">
+                            <input id="groupNum" type="number" min="0" max="5">
+                            <label># of Group Members
+                                <i class="material-icons right tooltipped"
+                                   data-tooltip="How many members are working on the project?" data-position="right">info_outline</i>
+                            </label>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="input-field center " style="margin-bottom: 10vh">
-                    <a href="/proposal-evaluation" class="btn indigo darken-4 z-depth-1
+                <div class="row">
+                    <div class="input-field col s12 l7">
+                        <input id="requirements" type="text">
+                        <label for="requirements" >Proposal Requirements
+                            <i class="material-icons right tooltipped"
+                               data-tooltip="List the Functional Requirements of the project" data-position="right">info_outline</i>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12 l7">
+                        <input id="tools" type="text">
+                        <label for="tools" >Proposed tools
+                            <i class="material-icons right tooltipped"
+                               data-tooltip="What tools do you think may be needed?" data-position="right">info_outline</i>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="additional-Info" type="text">
+                        <label for="additional-Info">Additional Info
+                            <i class="material-icons right tooltipped"
+                               data-tooltip="Please add any additional info you think may be necessary." data-position="right">info_outline</i>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field center " style="margin-bottom: 10vh">
+                        <a href="/proposal-evaluation" class="btn indigo darken-4 z-depth-1
                     rounded-corners cyan-text rounded">Submit</a>
+                    </div>
                 </div>
-            </div>
 
-        </form>
+            </form>
+        </div>
     </div>
-</section>
+
+</div>
 {% endblock %}

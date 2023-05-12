@@ -4,8 +4,8 @@ from flask_login import current_user, login_required
 
 from.index import index_views
 
-registration_views = Blueprint('registration_views', __name__, template_folder='../templates')
+stuQuery_views = Blueprint('stuQuery_views', __name__, template_folder='../templates')
 
-@registration_views.route('/login', methods=['GET'])
-def get_registration_page():
-    return render_template('registration.html')
+@stuQuery_views.route('/ask-query', methods=['GET'])
+def get_stuQuery_page():
+    return render_template('stuQuery.html')

@@ -11,8 +11,10 @@
     <li><a href="/">Log Out</a></li>
 {% endblock %}
 
+
+
 {% block content %}
-    <div class="row equal-height-grid" style="margin-bottom:5rem; margin-top:1.2rem;">
+    <div class="row " style="margin-bottom:5rem; margin-top:1.2rem;">
         <div class="col s12">
 
             <!--Evaluation History-->
@@ -23,14 +25,27 @@
 
                 <div class="card-content" style="min-height: 600px;">
                     <div class="row">
-                    <table class="centered highlight">
+                    <table class="centered highlight striped">
+                        <!--Review In-Progress, Completed, Under Manual Review-->
                         <thead><tr>
                             <th>Date Submitted</th>
                             <th>Proposal Name</th>
+                            <th>Evaluation Status</th>
                             <th>Proposal Score</th>
                         </tr></thead>
                         <tbody>
-
+                        <tr>
+                            <td>13-May-2023</td>
+                            <td>Cap Advisor</td>
+                            <td>Completed</td>
+                            <td>4/5</td>
+                        </tr>
+                        <tr>
+                            <td>13-May-2023</td>
+                            <td>Guessing Game</td>
+                            <td>In-Progress</td>
+                            <td>-</td>
+                        </tr>
                         </tbody>
                     </table>
                     </div>
@@ -38,25 +53,34 @@
             </div>
 
             <!--Proposal History-->
-            <h3 style="margin-top: 5rem;"> <span class="section-title"> Proposal History </span> </h3>
+            <h3 style="margin-top: 5rem;"> <span class="section-title"> Proposal Submissions </span> </h3>
 
             <div class="card">
                 <div class="divider"></div>
 
                 <div class="card-content" style="min-height: 600px;">
                     <div class="row">
-                        <table class="centered highlight">
+                        <table class="centered highlight striped">
                             <thead><tr>
                                 <th>Date Submitted</th>
                                 <th>Proposal Name</th>
                             </tr></thead>
                             <tbody>
-
+                            <tr>
+                                <td>13-May-2023</td>
+                                <td>Cap Advisor</td>
+                            </tr>
+                            <tr>
+                                <td>13-May-2023</td>
+                                <td>Guessing Game</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+
+            <!--to edit-->
 
         </div>
     </div>

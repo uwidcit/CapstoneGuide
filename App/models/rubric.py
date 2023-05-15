@@ -1,31 +1,25 @@
 from App.database import db
-from datetime import datetime
 
-
-class Proposal(db.Model):
-    proposalId = db.Column(db.Integer, primary_key=True)
-    studentId = db.Column(db.Integer, db.ForeignKey('student.id'))
-    rubricId = db.Column(db.Integer, db.ForeignKey('rubric.id'))
-    problem_desc = db.Column(db.String)
-    solution_desc = db.Column(db.String)
+class Rubric(db.Model):
+    supervisorId = db.Column(db.Integer, db.ForeignKey('supervisor.id'))
+    rubricId = db.Column(db.Integer, db.ForeignKey('rubric.id'))  # to be used for options(CS, SE, all, etc.)
+    novelty = db.Column(db.String)
+    relevance = db.Column(db.String)
+    feasibility = db.Column(db.String)
     notes = db.Column(db.String)
-    functionalities = db.Column(db.String)
+    impact = db.Column(db.String)
+    sustainability = db.Column(db.String)
     technologies = db.Column(db.String)
-    num_members = db.Column(db.Integer)
-    created = db.Column(db.DateTime, default=datetime.utcnow)
 
-
-    def __init__(self, studentId, rubricId, problem_desc, solution_desc,
-                 num_members, notes, functionalities, technologies, created):
-        self.studentId = studentId
+    def __init__(self, novelty, feasibility, notes, impact, sustainability, technologies, supervisorId, rubricId):
+        self.supervisorId = supervisorId
         self.rubricId = rubricId
-        self.problem_desc = problem_desc
-        self.solution_desc = solution_desc
-        self.num_members = num_members
+        self.novelty = novelty
+        self.feasibility = feasibility
         self.notes = notes
-        self.functionalities = functionalities
+        self.impact = impact
         self.technologies = technologies
-        self.created = created
+        self.sustainability = sustainability
 
 # Sample Code
     """
@@ -53,3 +47,4 @@ class Proposal(db.Model):
             'status': self.status
         }
     """
+

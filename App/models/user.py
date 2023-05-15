@@ -7,7 +7,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String(120), nullable=False)
-    user_role = db.Column(db.Boolean(False))
+    user_role = db.Column(db.Boolean(False));
 
     def __init__(self, username, password, user_role):
         self.username = username

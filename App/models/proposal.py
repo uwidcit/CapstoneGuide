@@ -8,7 +8,7 @@ class Proposal(db.Model):
     problem_desc = db.Column(db.String)
     solution_desc = db.Column(db.String)
     notes = db.Column(db.String)
-    functionalities = db.Column(db.String)
+    functionalities = db.Column(db.String);
     technologies = db.Column(db.String)
     num_members = db.Column(db.Integer)
     created = db.Column(db.DateTime, default=datetime.utcnow)

@@ -12,13 +12,18 @@
   <title>{% block title %}{% endblock %}</title>
   <style>
 
-  /* label focus color */
-   .input-field input[type]:focus + label,.input-field input[textarea]:focus + label {
+   /* label color */
+   .input-field label {
+     color: #000;
+   }
+   /* label focus color */
+   .input-field input[type]:focus + label, .materialize-textarea:focus + label {
      color: #1a237e !important;
-    }
+   }
+
   /* label underline focus color */
-   .input-field input[type]:focus,.input-field input[textarea]:focus {
-     border-bottom: 1px solid #1a237e !important;
+   .input-field input[type]:focus, .materialize-textarea:focus{
+     border-bottom: 2px solid #1a237e !important;
      box-shadow: 0 1px 0 0 #1a237e !important;
    }
     .rounded-corners {
@@ -42,12 +47,22 @@
       margin-left: 70px;
     }
   }
+.sidenav .logo-container {
+    padding: 0 17px;
+    height: 64px;
+    line-height: 60px;
+    font-size: 24px;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+    box-sizing: border-box;
+
+}
+
   </style>
 
 </head>
 <body>
   <header>
-    <ul id="slide-out" class="sidenav z-depth-2">
+    <ul id="slide-out" class="sidenav z-depth-2" >
       <li><a class="logo-container" style="height:62px; padding:5px;">
           <span style="margin-left:25px">
               Dashboard
@@ -55,6 +70,9 @@
       </a></li>
       {% block menuItems %}
       {% endblock %}
+      <li><a class="sidenav-close" href="#!">Collapse</a></li>
+      <li><a href="/login">Log Out</a></li>
+
     </ul>
 
     <nav class="navbar-fixed z-depth-1 indigo darken-4">

@@ -26,6 +26,20 @@
             background-color: transparent;
             outline: none
         }
+        /* label color */
+   .input-field label {
+     color: #000;
+   }
+   /* label focus color */
+   .input-field input[type]:focus + label{
+     color: #1a237e !important;
+   }
+
+  /* label underline focus color */
+   .input-field input[type]:focus{
+     border-bottom: 2px solid #1a237e !important;
+     box-shadow: 0 1px 0 0 #1a237e !important;
+   }
     </style>
 </head>
 <body>
@@ -41,8 +55,7 @@
         <div class="container" style="height:100px;">
             <!--separator-->
         </div>
-        <section>
-            <div class="container">
+            <div class="container" >
                 <div class="row">
                     <div class="col hide-on-med-and-down l5 left-align " style="background-color:blue; height:500px;">
 
@@ -59,13 +72,15 @@
                                 <form class="col s12 ">
                                     <div class="row" style="height:30px"></div>
                                     <div class="row">
-                                        <div class="input-field col s12">
+                                        <div class="col s1"><i class="material-icons medium cyan-text">person_outline</i></div>
+                                        <div class="input-field col s8 offset-s1">
                                             <input id="user-name" type="text">
                                             <label for="first-name" class="">User Name</label>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="input-field col s12">
+                                        <div class="col s1"><i class="material-icons medium cyan-text">lock_outline</i></div>
+                                        <div class="input-field col s8 offset-s1">
                                             <input id="user-password" type="password">
                                             <label for="user-password" class="">Password</label>
                                         </div>
@@ -97,7 +112,7 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="input-field col s12">
+                                            <div class="input-field col s9">
                                                 <input id="email" type="email">
                                                 <label for="email">Email</label>
                                             </div>
@@ -115,7 +130,6 @@
                                             </div>
                                         </div>
 
-
                                         <div class="row">
                                             <div class="input-field col s6">
                                                 <p>
@@ -126,14 +140,14 @@
                                                 </p>
                                                 <p>
                                                     <label>
-                                                        <input name="group1" type="radio">
+                                                        <input name="group1" type="radio" checked>
                                                         <span>Student</span>
                                                     </label>
                                                 </p>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="input-field center">
+                                            <div class="input-field center pull-2">
                                                 <a href="/add-rubric" class="btn z-depth-3
                             waves-effect waves-light indigo darken-4 z-depth-1 cyan-text rounded-corners">Sign-Up</a>
                                             </div>
@@ -145,9 +159,7 @@
                     </div>
                 </div>
             </div>
-        </section>
-
-        </main>
+    </main>
     <footer class="page-footer indigo darken-4">
         <div class="container">
             <div class="row">

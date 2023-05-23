@@ -4,8 +4,8 @@ from flask_login import current_user, login_required
 
 from.index import index_views
 
-addRequirement_views = Blueprint('addRequirement_views', __name__, template_folder='../templates')
+addRubric_views = Blueprint('addRubric_views', __name__, template_folder='../templates')
 
-@addRequirement_views.route('/add-rubric', methods=['GET'])
-def get_addRequirement_page():
-    return render_template('addRequirements.html')
+@addRubric_views.route('/add-rubric', methods=['GET'])
+def get_addRubric_page():
+    return render_template('addRubric.html')

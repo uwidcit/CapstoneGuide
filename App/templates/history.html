@@ -2,16 +2,15 @@
 {% block title %}Capstone Proposal{% endblock %}
 {% block page %}Capstone Proposal Evaluation{% endblock %}
 
-
+<!--Side nav items-->
 {% block menuItems %}
     <li style="margin-top: 62px"><a href="/proposal">Submit New Proposal</a></li>
     <li><a href="/ask-query">Ask a Question</a></li>
     <li class="active" ><a href="/history">History</a></li>
-    <li><a href="#!" style="margin-bottom: 60vh">Contact Lecturer</a></li>
+    <li><a href="#!">Contact Lecturer</a></li>
 {% endblock %}
 
-
-
+<!--Screen content-->
 {% block content %}
     <div class="row " style="margin-bottom:5rem; margin-top:1.2rem;">
         <div class="col s12">
@@ -25,7 +24,7 @@
                 <div class="card-content" style="min-height: 600px;">
                     <div class="row">
                     <table class="centered highlight striped">
-                        <!--Review In-Progress, Completed, Under Manual Review-->
+                        <!--Status can be either Review In-Progress, Completed, or Under Manual Review-->
                         <thead><tr>
                             <th>Date Submitted</th>
                             <th>Proposal Name</th>

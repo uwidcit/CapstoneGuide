@@ -13,9 +13,8 @@ class Evaluation(db.Model):
     sustainability = db.Column(db.Integer)
     technologies = db.Column(db.Integer)
 
-    def __init__(self, novelty, feasibility, score, impact, sustainability, technologies, proposal_id, id):
+    def __init__(self, novelty, feasibility, score, impact, sustainability, technologies, proposal_id):
         self.proposalId = proposal_id
-        self.id = id
         self.novelty = novelty
         self.feasibility = feasibility
         self.score = score

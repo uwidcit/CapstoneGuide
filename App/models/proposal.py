@@ -16,7 +16,7 @@ class Proposal(db.Model):
 
 
     def __init__(self, studentId, rubricId, problem_desc, solution_desc,
-                 num_members, notes, functionalities, technologies, created):
+                 num_members, notes, functionalities, technologies):
         self.studentId = studentId
         self.rubricId = rubricId
         self.problem_desc = problem_desc
@@ -25,7 +25,6 @@ class Proposal(db.Model):
         self.notes = notes
         self.functionalities = functionalities
         self.technologies = technologies
-        self.created = created
 
 # Sample Code
     """

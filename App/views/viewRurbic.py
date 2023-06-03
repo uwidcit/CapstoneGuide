@@ -8,4 +8,4 @@ viewRubric_views = Blueprint('viewRubric_views', __name__, template_folder='../t
 
 @viewRubric_views.route('/view-rubric', methods=['GET'])
 def get_viewRubric_page():
-    return render_template('viewRequirements.html')
+    return render_template('viewRubric.html')

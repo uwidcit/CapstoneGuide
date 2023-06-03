@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Ubuntu&display=swap" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!--Let browser know website is optimized for mobile-->
@@ -16,83 +17,111 @@
         .rounded-corners {
             border-radius: 30px;
             width: 250px;
+            color: #00e5ff;
         }
-        #brandText {
+        /*Change font Style*/
+        *{
+            font-family: 'Libre Baskerville', serif;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+        }
+        /* Change Brand font style*/
+        .brand-logo {
             margin-left:30px;
+            font-family: 'Libre Baskerville', serif;
+            font-family: 'Ubuntu', sans-serif;
         }
+        #main-text{
+            font-size: x-large;
+        }
+        /*Add Background Image*/
         main{
-           background-image:url("static/backgroundStatic.jpg");
-           background-size: cover;
+            background-image:url("static/images/background-1.jpg");
+            background-size: cover;
+            height: 80vh;
+        }
+        /*Media Queries to adjust screen items*/
+        @media (min-width : 601px) {
+            #separator{
+                margin-top: 10rem;
+            }
+        }
+        @media (max-width : 600px) {
+            #separator{
+                margin-top: 7rem;
+            }
+        }
+        @media (min-width : 601px) {
+            #btn-separator{
+                margin-top: 6rem;
+            }
+        }
+        @media (max-width : 600px) {
+            #btn-separator{
+                margin-top: 3rem;
+            }
         }
     </style>
 
 </head>
-<body>
-    <!--top navigation bar-->
-    <header>
-        <nav class="indigo darken-4 z-depth-1 transparent">
-            <div class="nav-wrapper">
-                <a href="/" class="brand-logo white-text" id="brandText">Cap Advisor</a>
-            </div>
-        </nav>
-    </header>
-    <!--screen content-->
-    <main>
-        <div class="container" style="height:150px;">
-            <!--separator-->
-        </div>
+    <body>
+        <!--top navigation bar-->
+        <header>
+            <nav class="indigo darken-4 z-depth-1 transparent">
+                <div class="nav-wrapper"><a href="/" class="brand-logo white-text">Cap Advisor</a></div>
+            </nav>
+        </header>
 
-        <div class="container center-align white-text" style="padding-bottom:10rem">
-            <div class="row">
-                <div class="col s12">
-                    <h2>Provide your project idea to get feedback and advice from your Capstone Advisor</h2>
+        <!--screen content-->
+        <main>
+            <div class="container center-align white-text" style="padding-bottom:10rem">
+                <div class="flex-content">
+                    <div class="row" >
+                        <div class="col s12" id="separator">
+                            <h2>Provide your project idea to get advice from your Capstone Advisor!</h2>
+                        </div>
+                    </div>
+    
+                    <div class="row">
+                        <div class="col s12 white-text">
+                        <p id="main-text">"Sign In to Access the portal!"</p>
+                        </div>
+                    </div>
+    
+                    <div class="row">
+                        <div class="col s12">
+                            <a href="/login" class="z-depth-3 waves-effect waves-light indigo darken-4 btn-large rounded-corners" id="btn-separator">
+                            <i class="material-icons right">arrow_forward</i>Cet Started</a>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </main>
 
-            <div class="row">
-                <div class="col s12 white-text">
-                    <h5>"Sign In to Access the portal!"</h5>
-                </div>
-            </div>
-
-        <div class="container" style="height:100px;">
-            <!--separator-->
-        </div>
-
-        <div class="row">
-            <div class="col s12">
-                <a href="/login" class="z-depth-3 waves-effect waves-light indigo darken-4 btn-large rounded-corners cyan-text">
-                    <i class="material-icons right">arrow_forward</i>Cet Started</a>
-            </div>
-        </div>
-        </div>
-    </main>
-
-    <!--footer-->
-    <footer class="page-footer indigo darken-4">
-        <div class="container">
-            <div class="row">
-                <div class="col l6 s12">
-                    <h5 class="white-text">About Floodtech</h5>
-                    <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-                </div>
-                <div class="col l4 offset-l2 s12">
-                    <h5 class="white-text">Contact</h5>
-                    <ul>
-                        <li><a class="grey-text text-lighten-3" href="#!">floodtechbdos@gmail.com</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">floodtech.bdos</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-copyright">
+        <!--footer-->
+        <footer class="page-footer indigo darken-4">
             <div class="container">
-                © 2023 Copyright
-                <!--<a class="grey-text text-lighten-4 right" href="#!">More Links</a>-->
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">About Floodtech</h5>
+                        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">Contact Us</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3" href="#!">floodtechbdos@gmail.com</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">https://floodtech.bdos.com</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
-    </footer>
+            <div class="footer-copyright">
+                <div class="container">
+                    © 2023 Copyright
+                </div>
+            </div>
+        </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </body>
 </html>

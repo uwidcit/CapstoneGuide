@@ -2,7 +2,7 @@ from App.database import db
 
 class Rubric(db.Model):
     supervisorId = db.Column(db.Integer, db.ForeignKey('supervisor.id'))
-    rubricId = db.Column(db.Integer, db.ForeignKey('rubric.id'))  # to be used for options(CS, SE, all, etc.)
+    id = db.Column(db.Integer, primary_key=True)  # to be used for options(CS, SE, all, etc.)
     novelty = db.Column(db.String)
     relevance = db.Column(db.String)
     feasibility = db.Column(db.String)
@@ -11,9 +11,8 @@ class Rubric(db.Model):
     sustainability = db.Column(db.String)
     technologies = db.Column(db.String)
 
-    def __init__(self, novelty, feasibility, notes, impact, sustainability, technologies, supervisorId, rubricId):
+    def __init__(self, novelty, feasibility, notes, impact, sustainability, technologies, supervisorId):
         self.supervisorId = supervisorId
-        self.rubricId = rubricId
         self.novelty = novelty
         self.feasibility = feasibility
         self.notes = notes

@@ -1,3 +1,4 @@
+<!--Student View Base file-->
 <!doctype html>
 <html>
 <head>
@@ -5,89 +6,109 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Ubuntu&display=swap" rel="stylesheet">
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>{% block title %}{% endblock %}</title>
   <style>
-
-   /* label color */
-   .input-field label {
-     color: #000;
-   }
-   /* label focus color */
-   .input-field input[type]:focus + label, .materialize-textarea:focus + label {
-     color: #1a237e !important;
-   }
-
-  /* label underline focus color */
-   .input-field input[type]:focus, .materialize-textarea:focus{
-     border-bottom: 2px solid #1a237e !important;
-     box-shadow: 0 1px 0 0 #1a237e !important;
-   }
-    .rounded-corners {
-            border-radius: 30px;
-            width: 200px;
-        }
-     @media only screen and (min-width : 993px){
-        .brand-logo{
-            margin-left: 20px;
-        }
+    body{
+      background-color: #e3f2fd;
+    }
+    main{
+      min-height: 80vh;
+    }
+    /* label color */
+    .input-field label {
+      color: #000;
+    }
+    /* label focus color */
+    .input-field input[type]:focus + label, .materialize-textarea:focus + label {
+      color: #1a237e !important;
     }
 
-    @media only screen and (min-width: 993px) {
-    nav a.sidenav-trigger {
+    /* label underline focus color */
+    .input-field input[type]:focus, .materialize-textarea:focus{
+      border-bottom: 2px solid #1a237e !important;
+      box-shadow: 0 1px 0 0 #1a237e !important;
+    }
+    /*Change font style*/
+    *{
+      font-family: 'Libre Baskerville', serif;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+    }
+    .brand-logo {
+      margin-left:30px;
+      font-family: 'Libre Baskerville', serif;
+      font-family: 'Ubuntu', sans-serif;
+    }
+    a.btn {
+      border-radius: 30px;
+      width: 200px;
+      color: #00e5ff;
+    }
+    @media (min-width : 993px){
+      .brand-logo{
+        margin-left: 70px;
+      }
+      nav a.sidenav-trigger {
         display:block;
+      }
     }
-  }
-
-  @media only screen and (min-width: 993px) {
-    #brandtext{
-      margin-left: 70px;
+    @media (min-width : 2300px) {
+      .page-footer{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+      }
     }
-  }
-.sidenav .logo-container {
-    padding: 0 17px;
-    height: 64px;
-    line-height: 60px;
-    font-size: 24px;
-    border-bottom: 1px solid rgba(0,0,0,0.3);
-    box-sizing: border-box;
 
-}
+    .sidenav .logo-container {
+      padding: 0 17px;
+      height: 64px;
+      line-height: 60px;
+      font-size: 24px;
+      border-bottom: 1px solid rgba(0,0,0,0.3);
+      box-sizing: border-box;
+    }
 
+    #bottom-div{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      margin-bottom: 80px;
+      width: 100%;
+    }
   </style>
-
 </head>
+
 <body>
   <header>
     <ul id="slide-out" class="sidenav z-depth-2" >
-      <li><a class="logo-container" style="height:62px; padding:5px;">
-          <span style="margin-left:25px">
-              Dashboard
-          </span>
-      </a></li>
+      <li>
+        <a class="logo-container" style="height:62px; padding:5px;"><span style="margin-left:25px">Dashboard</span></a>
+      </li>
       {% block menuItems %}
       {% endblock %}
-      <li><a class="sidenav-close" href="#!">Collapse</a></li>
-      <li><a href="/login">Log Out</a></li>
-
+      <li id="bottom-div">
+        <a href="/login"><span>Log Out</span></a>
+      </li>
     </ul>
 
     <nav class="navbar-fixed z-depth-1 indigo darken-4">
       <div class="nav-wrapper">
-        <a href="/" class="brand-logo" id="brandtext">Cap Advisor</a>
+        <a href="/" class="brand-logo">Cap Advisor</a>
         <ul class="right">
           <li class="hide-on-med-and-down"><a href="#!" data-target="dropdown1" class="dropdown-trigger waves-effect">
-            <i class="material-icons">notifications</i>
-          </a><div id="dropdown1" class="dropdown-content notifications" tabindex="0" style="">
-          </div></li>
-          <li>
-            <a href="#!" class=" waves-effect">
-              <i class="material-icons">settings</i>
-            </a>
+            <i class="material-icons">notifications</i></a>
+            <div id="dropdown1" class="dropdown-content notifications" tabindex="0"></div>
           </li>
+        <li>
+          <a href="#!" class=" waves-effect"><i class="material-icons">settings</i></a>
+        </li>
         </ul>
         <div class="nav-wrapper">
           <ul class="left">
@@ -98,47 +119,33 @@
     </nav>
   </header>
 
-  <!--{% with messages = get_flashed_messages() %}
-  {% if messages %}
-  <nav class="white black-text" style="padding: 10px">
-    <div class="nav-wrapper">
-      <ul class="flashes">
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-  </nav>
-  {% endif %}
-  {% endwith %}-->
-
   <main>
     <div class="container">{% block content %}{% endblock %}</div>
   </main>
 
 
   <footer class="page-footer indigo darken-4">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">About Floodtech</h5>
-          <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-        </div>
-        <div class="col l4 offset-l2 s12">
-          <h5 class="white-text">Contact</h5>
-          <ul>
-            <li><a class="grey-text text-lighten-3" href="#!">floodtechbdos@gmail.com</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">floodtech.bdos</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-        © 2023 Copyright
-        <!--<a class="grey-text text-lighten-4 right" href="#!">More Links</a>-->
-      </div>
-    </div>
+  <div class="container">
+  <div class="row">
+  <div class="col l6 s12">
+  <h5 class="white-text">About Floodtech</h5>
+  <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+  </div>
+  <div class="col l4 offset-l2 s12">
+  <h5 class="white-text">Contact Us</h5>
+  <ul>
+  <li><a class="grey-text text-lighten-3" href="#!">floodtechbdos@gmail.com</a></li>
+  <li><a class="grey-text text-lighten-3" href="#!">https://floodtech.bdos.com</a></li>
+  </ul>
+  </div>
+  </div>
+  </div>
+  <div class="footer-copyright">
+  <div class="container">
+  © 2023 Copyright
+  <!--<a class="grey-text text-lighten-4 right" href="#!">More Links</a>-->
+  </div>
+  </div>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

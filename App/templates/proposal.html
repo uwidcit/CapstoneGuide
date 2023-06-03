@@ -2,20 +2,18 @@
 {% block title %}Capstone Proposal{% endblock %}
 {% block page %}Submit Proposal{% endblock %}
 
-<style>
-
-</style>
-
+<!--Side Nav items-->
 {% block menuItems %}
     <li class="active" style="margin-top: 62px"><a href="/proposal">Submit New Proposal</a></li>
     <li><a href="/ask-query">Ask a Question</a></li>
     <li><a href="/history">History</a></li>
-    <li><a href="#!" style="margin-bottom: 60vh">Contact Lecturer</a></li>
+    <li><a href="#!">Contact Lecturer</a></li>
 {% endblock %}
 
+<!--Screen content-->
 {% block content %}
 <div class="row">
-    <div class="col s12 offset-m1">
+    <div class="col s12">
 
         <h3> <span class="section-title"> Project Proposal</span> </h3>
 
@@ -34,7 +32,6 @@
 
                 <div class="row">
                     <div class="input-field col s12 l7" >
-                        <!--<input id="problem" type="text">-->
                         <textarea id="problem" class="materialize-textarea" required></textarea>
                         <label for="problem">Problem Statement
                             <i class="material-icons tiny right red-text">*</i></label>
@@ -92,14 +89,12 @@
 
                 <div class="row">
                     <div class="input-field center " style="margin-bottom: 10vh">
-                        <a href="#" class="btn indigo darken-4 z-depth-1
-                    rounded-corners cyan-text rounded">Submit</a>
+                        <a href="#" class="btn indigo darken-4 z-depth-1">Submit</a>
                     </div>
                 </div>
 
             </form>
         </div>
     </div>
-
 </div>
 {% endblock %}

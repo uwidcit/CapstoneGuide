@@ -25,30 +25,3 @@ class Proposal(db.Model):
         self.notes = notes
         self.functionalities = functionalities
         self.technologies = technologies
-
-# Sample Code
-    """
-    def __repr__(self):
-        return f'<listing {self.listingId} for ${self.price}>'
-
-    def toJSON_with_game(self):
-        return{
-            'listingId': self.listingId,
-            'ownerId': self.ownerId,
-            'condition': self.condition,
-            'price': self.price,
-            'status': self.status,
-            'created': self.created.strftime("%Y/%m/%d, %H:%M:%S"),
-            'game': self.game.toJSON(),
-        }
-
-    def toJSON(self):
-        return{
-            'title': self.game.title,
-            'owner': self.ownerId,
-            'condition': self.condition,
-            'price': self.price,
-            'created': self.created.strftime("%Y/%m/%d, %H:%M:%S"),
-            'status': self.status
-        }
-    """

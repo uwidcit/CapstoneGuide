@@ -1,6 +1,5 @@
 from flask_login import login_user, current_user
 from App.models import db, User, Student, Lecturer
-from .user import create_student, create_lecturer
 from functools import wraps
 
 def login(username, password):

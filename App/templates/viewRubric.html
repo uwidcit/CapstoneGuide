@@ -1,5 +1,5 @@
 {% extends "lecturerBase.html" %}
-{% block title %}Add Requirements{% endblock %}
+{% block title %}Manage Rubric{% endblock %}
 {% block page %}Cap Advisor{% endblock %}
 
 <!--Side Nav items-->
@@ -22,13 +22,26 @@
 
         <div class="card">
             <div class="card-content">
-                <span class="card-title"> Select Option</span>
+                <span class="card-title"> See All Your Rubrics</span>
                 <div class="divider"></div>
             </div>
 
-            <div class="card-content" style="min-height: 530px;">
-
-            </div>
+            
+                {% for rubric in rubics %}
+                    <div class="card col s4">
+                        <div class="card-content">
+                            <p>fields</p>
+                            <p>Novelty = {{rubric.novelty}}</p>
+                            <p>Feasibility = {{rubric.feasibility}}</p>
+                            <p>Notes = {{rubric.notes}}</p>
+                            <p>Impact = {{rubric.impact}}</p>
+                            <p>Technologies = {{rubric.technologies}}</p>
+                            <p>Sustainability = {{rubric.sustainability}}</p>
+                        </div>
+                    </div>
+                    
+                {% endfor %}
+            
         </div>
     </div>
 </div>

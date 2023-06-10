@@ -1,0 +1,121 @@
+{% extends "lecturerBase.html" %}
+{% block title %}Add Requirements{% endblock %}
+{% block page %}Cap Advisor{% endblock %}
+
+{% block menuItems %}
+    <li class="no-padding">
+        <ul>
+            <li class="active" style="margin-top: 62px"><a href="/rubric">Add New Rubric</a></li>
+            <li><a href="/rubric">Student Proposals</a></li>
+            <li><a href="view-rubric" style="margin-bottom: 70vh">View All Rubric</a></li>
+        </ul>
+    </li>
+{% endblock %}
+
+{% block content %}
+    <div class="row equal-height-grid" style="margin-bottom:5rem; margin-top:1.2rem;">
+        <h1>Your Rubrics</h1>
+        <div class="col s12">
+            {% for rubric in rubrics %}
+                <div class="card col m4">
+                    <div class="card-content">
+                        <span class="card-title">{{rubric.name}}</span>
+                        <p>{{rubric.notes}}</p>
+                        <p>Relevance = {{rubric.relevance}}</p>
+                        <p>Feasibility = {{rubric.feasibility}}</p>
+                        <p>Notes : {{rubric.notes}}</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="/delete-rubric/{{rubric.id}}">Delete Rubric</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <!-- Modal Trigger -->
+        <a style="position:absolute; bottom:10%; right:5%" class="btn-floating btn-large waves-effect waves-light blue modal-trigger" href="#createRuricModal"><i class="material-icons">add</i></a>
+    </div>
+
+
+
+<!-- Modal Structure -->
+
+<div id="createRuricModal" class="modal modal-fixed-footer">
+    <form method="POST" action="/rubric">
+
+        <div class="modal-content">
+            <h1>Create Rubric</h1>
+
+            <div class="row">
+                <div class="input-field col s12">
+                <input name="name" type="text" autofocus class="validate">
+                <label for="name">Name</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                <p class="range-field">
+                    <input type="range" name="novelty" min="1" max="10" />
+                </p>
+                <label for="novelty">Novelty</label>
+                </div>
+                <div class="input-field col s6">
+                <p class="range-field">
+                    <input type="range" name="relevance" min="1" max="10" />
+                </p>
+                <label for="relevance">Relevance</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                <p class="range-field">
+                    <input type="range" name="feasibility" min="1" max="10" />
+                </p>
+                <label for="feasibility">Feasibility</label>
+                </div>
+                <div class="input-field col s6">
+                <p class="range-field">
+                    <input type="range" name="impact" min="1" max="10" />
+                </p>
+                <label for="impact">Impact</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                <p class="range-field">
+                    <input type="range" name="sustainability" min="1" max="10" />
+                </p>
+                <label for="sustainability">Sustainability</label>
+                </div>
+                <div class="input-field col s6">
+                <p class="range-field">
+                    <input type="range" name="technology" min="1" max="10" />
+                </p>
+                <label for="technology">Technology</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                <textarea name="notes" class="materialize-textarea"></textarea>
+                <label for="notes">Notes</label>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn indigo darken-4 z-depth-1 waves-effect waves-light" type="submit">
+                Submit
+            </button>
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    
+    </form>
+
+</div>
+
+
+{% endblock %}

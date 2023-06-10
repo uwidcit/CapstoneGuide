@@ -4,19 +4,41 @@ from flask.cli import with_appcontext, AppGroup
 
 from App.database import db, get_migrate
 from App.main import create_app
-from App.controllers import ( create_student)
-
+from App.controllers import ( create_lecturer, add_rubric, remove_rubric, get_all_rubrics, get_all_lecturers )
+# from App.controllers import ( create_student)
 # This commands file allow you to create convenient CLI commands for testing controllers
 
 app = create_app()
 migrate = get_migrate(app)
+
+
+# This command creates and initializes the database
+# @app.cli.command("init", help="Creates and initializes the database")
+# def initialize():
+#     db.drop_all()
+#     db.create_all()
+#     create_student('bob', 'bob', 'pass', 'bobpass', 'bobpass@uwi.cavehill.edu')
+#     print('database intialized')
+
+# Then define the command and any parameters and annotate it with the group (@)
+# @user_cli.command("create", help="Creates a user")
+# @click.argument("username", default="robby")
+# @click.argument("first", default="rob")
+# @click.argument("last", default="pass")
+# @click.argument("password", default="robpass")
+# @click.argument("email", default="robpass@uwi")
+# def create_student_command(username, first, last, password, email):
+#     create_student(username, first, last, password, email)
+#     print(f'{username} created!')
+
+# app.cli.add_command(user_cli)
 
 # This command creates and initializes the database
 @app.cli.command("init", help="Creates and initializes the database")
 def initialize():
     db.drop_all()
     db.create_all()
-    create_student('bob', 'bob', 'pass', 'bobpass', 'bobpass@uwi.cavehill.edu')
+    create_lecturer('bob', 'bobpass', 'bob@mail.com', 'bob', 'smith', 1232)
     print('database intialized')
 
 '''
@@ -27,33 +49,42 @@ User Commands
 
 # create a group, it would be the first argument of the comand
 # eg : flask user <command>
-user_cli = AppGroup('user', help='User object commands')
+lecturer_cli = AppGroup('lecturer', help='Lecturer object commands') 
 
 # Then define the command and any parameters and annotate it with the group (@)
-@user_cli.command("create", help="Creates a user")
-@click.argument("username", default="robby")
-@click.argument("first", default="rob")
-@click.argument("last", default="pass")
+@lecturer_cli.command("create", help="Creates a user")
+@click.argument("username", default="rob")
 @click.argument("password", default="robpass")
-@click.argument("email", default="robpass@uwi")
-def create_student_command(username, first, last, password, email):
-    create_student(username, first, last, password, email)
+@click.argument("email", default="rob@mail.com")
+def create_lecturer_command(username, password, email):
+    create_lecturer(username, password, "bob", "smith", email, 1232)
     print(f'{username} created!')
-
-app.cli.add_command(user_cli)
-""""
 
 # this command will be : flask user create bob bobpass
 
-@user_cli.command("list", help="Lists users in the database")
+@lecturer_cli.command("list", help="Lists users in the database")
 @click.argument("format", default="string")
-def list_user_command(format):
+def list_lecturers_command(format):
     if format == 'string':
-        print(get_all_users())
-    else:
-        print(get_all_users_json())
+        print(get_all_lecturers())
 
-app.cli.add_command(user_cli) # add the group to the cli
+app.cli.add_command(lecturer_cli) # add the group to the cli
+
+
+rubric = AppGroup('rubric', help='Rubric object commands') 
+
+# Then define the command and any parameters and annotate it with the group (@)
+@rubric.command("create", help="Creates a dummy rubric")
+@click.argument("notes", default="notes")
+def create_rubric_command(notes):
+    add_rubric(notes=notes, lecturerId=1, novelty=5, relevance=5, feasibility=5, impact=5, sustainability=5, technology=5)
+    print(f'rubric created!')
+
+@rubric.command("list", help="Lists all rubrics in the database")
+def list_rubric_command():
+    print(get_all_rubrics())
+
+app.cli.add_command(rubric)  
 
 '''
 Test Commands
@@ -72,4 +103,4 @@ def user_tests_command(type):
         sys.exit(pytest.main(["-k", "App"]))
     
 
-app.cli.add_command(test)"""
+app.cli.add_command(test)

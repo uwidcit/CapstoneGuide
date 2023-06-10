@@ -10,8 +10,8 @@ def create_student(username, first_name, last_name, password, email):
     except:
         return None
 
-def create_lecturer(username, first_name, last_name, password, email):
-    newuser = Lecturer(username=username, first_name=first_name, last_name=last_name, password=password, email=email)
+def create_lecturer(username, password, email, first_name, last_name, lecturerId):
+    newuser = Lecturer(username=username, first_name=first_name, last_name=last_name, password=password, email=email, lecturerId=lecturerId)
     try:
         db.session.add(newuser)
         db.session.commit()

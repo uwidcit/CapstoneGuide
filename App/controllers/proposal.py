@@ -1,10 +1,10 @@
 from App.models import Proposal
 from App.database import db
 
-def add_proposal(studentId, rubricId, problem_desc, solution_desc,
+def add_proposal(studentId, proposal_nm, problem_desc, solution_desc,
                  num_members, notes, functionalities, technologies):
-    proposal = Proposal(studentId=studentId, rubricId=rubricId, problem_desc=problem_desc, solution_desc=solution_desc,
-                 num_members=num_members, notes=notes, functionalities=functionalities, technologies=technologies)
+    proposal = Proposal(studentId=studentId,proposal_nm=proposal_nm, problem_desc=problem_desc, solution_desc=solution_desc,
+                 num_members=num_members, requirements=functionalities, tools=technologies, notes=notes,)
     db.session.add(proposal)
     db.session.commit()
     return proposal

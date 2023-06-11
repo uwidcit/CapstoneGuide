@@ -18,11 +18,11 @@
         <h3> <span class="section-title"> Project Proposal</span> </h3>
 
         <div class="card">
-            <form class="col s12">
+            <form class="col s12" method="POST" action="/proposal">
 
                 <div class="row">
                     <div class="input-field col s4">
-                        <input  id="name" type="text" required>
+                        <input  name="name" type="text" required>
                         <label for="name" class="">Proposal Name
                             <i class="material-icons tiny right red-text">*</i></label>
                         <span class="helper-text" data-error="wrong" data-success="right">
@@ -32,7 +32,7 @@
 
                 <div class="row">
                     <div class="input-field col s12 l7" >
-                        <textarea id="problem" class="materialize-textarea" required></textarea>
+                        <textarea name="problem" class="materialize-textarea" required></textarea>
                         <label for="problem">Problem Statement
                             <i class="material-icons tiny right red-text">*</i></label>
                         <span class="helper-text" data-error="wrong" data-success="right">
@@ -42,7 +42,7 @@
 
                 <div class="row">
                     <div class="input-field col s12 l7">
-                        <textarea id="solution" class="materialize-textarea" required></textarea>
+                        <textarea name="solution" class="materialize-textarea" required></textarea>
                         <label for="solution">Solution Goal
                             <i class="material-icons tiny right red-text">*</i></label>
                         <span class="helper-text" data-error="wrong" data-success="right">
@@ -52,7 +52,7 @@
 
                 <div class="row">
                     <div class="input-field col s5 l3">
-                        <input id="groupNum" type="number" min="1" max="5" required>
+                        <input name="group_num" type="number" min="1" max="5" required>
                         <label>No. of Group Members
                             <i class="material-icons tiny right red-text">*</i></label>
                         <span class="helper-text" data-error="wrong" data-success="right">
@@ -62,7 +62,7 @@
 
                 <div class="row">
                     <div class="input-field col s12 l7">
-                        <input id="requirements" type="text">
+                        <input name="requirements" type="text">
                         <label for="requirements" >Proposal Requirements</label>
                         <span class="helper-text" data-error="wrong" data-success="right">
                             What requirements have you identified for the Project?</span>
@@ -71,7 +71,7 @@
 
                 <div class="row">
                     <div class="input-field col s12 l7">
-                        <input id="tools" type="text">
+                        <input name="tools" type="text">
                         <label for="tools" >Proposed tools</label>
                         <span class="helper-text" data-error="wrong" data-success="right">
                             What are possible tools you may need to develop the Project?</span>
@@ -80,8 +80,8 @@
 
                 <div class="row">
                     <div class="input-field col s8">
-                        <textarea id="additional-Info" class="materialize-textarea"></textarea>
-                        <label for="additional-Info">Additional Info</label>
+                        <textarea name="additional_info" class="materialize-textarea"></textarea>
+                        <label for="additional_info">Additional Info</label>
                         <span class="helper-text" data-error="wrong" data-success="right">
                             Include any additional info you think may help the evaluation</span>
                     </div>
@@ -89,7 +89,10 @@
 
                 <div class="row">
                     <div class="input-field center " style="margin-bottom: 10vh">
-                        <a href="#" class="btn indigo darken-4 z-depth-1">Submit</a>
+                        <button class="btn indigo darken-4 z-depth-1 waves-effect waves-light" type="submit">  
+                            Submit
+                        </button>
+    
                     </div>
                 </div>
 

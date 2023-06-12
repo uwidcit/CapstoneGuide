@@ -15,6 +15,23 @@ def remove_rubric(lecturerId, rubricId):
         return res
     return None
 
+
+def update_rubric(rubricId, name, notes, novelty, relevance, feasibility, impact, sustainability, technology, lecturerId):
+    rubric = Rubric.query.filter_by(lecturerId=lecturerId, id=rubricId).first()
+    if rubric:
+        rubric.name = name
+        rubric.notes = notes
+        rubric.novelty = novelty
+        rubric.relevance = relevance
+        rubric.feasibility = feasibility
+        rubric.impact = impact
+        rubric.sustainability = sustainability
+        rubric.technology = technology
+        db.session.add(rubric)
+        res = db.session.commit()
+        return res
+    return None
+
 def get_user_rubric(lecturerId, evaluationId):
     rubric = Rubric.query.filter_by(lecturerId=lecturerId, evaluationId = evaluationId).all() 
     return rubric

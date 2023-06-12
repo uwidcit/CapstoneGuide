@@ -34,22 +34,24 @@
                         <p>Notes : {{rubric.notes}}</p>
                     </div>
                     <div class="card-action">
-                        <a href="/delete-rubric/{{rubric.id}}" style="color: red;">Delete</a>
+                        <a href="#update_rubric_modal" class="indigo-text modal-trigger">Edit</a>
+                        <a href="/delete-rubric/{{rubric.id}}" class="right red-text">Delete</a>
                     </div>
+                        
                 </div>
             {% endfor %}
         </div>
     </div>
      <!-- Modal Trigger -->
     <div class="fixed-action-button">
-        <a class="btn-floating btn-large waves-effect waves-light z-depth-1 modal-trigger pulse " href="#createRuricModal"><i class="material-icons">add</i></a>
+        <a class="btn-floating btn-large waves-effect waves-light z-depth-1 modal-trigger pulse " href="#create_rubric_modal"><i class="material-icons">add</i></a>
     </div>
    
 
 
-<!-- Modal Structure -->
+<!-- Modal Structure: Add new Rubric -->
 
-<div id="createRuricModal" class="modal modal-fixed-footer">
+<div id="create_rubric_modal" class="modal modal-fixed-footer">
     <form method="POST" action="/rubric">
 
         <div class="modal-content">
@@ -57,7 +59,7 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                <input name="name" type="text" autofocus class="validate" required>
+                <input name="name" type="text" autofocus required>
                 <label for="name">Name
                     <i class="material-icons tiny red-text">*</i>
                 </label>
@@ -132,10 +134,97 @@
             </button>
             <a href="#!" class="modal-close waves-effect waves-grey btn-flat" style="background-color: whitesmoke;">Cancel</a>
         </div>
+    </form>
+</div>
+
+<!-- Modal Structure: Update Rubric -->
+
+<!--<div id="update_rubric_modal" class="modal modal-fixed-footer">
+    <form method="POST" action="/update-rubric">
+
+        <div class="modal-content">
+            <h1>Update Rubric</h1>
+
+            <div class="row">
+                <div class="input-field col s12">
+                <input name="name" type="text" autofocus class="validate" required>
+                <label for="name">Name
+                    <i class="material-icons tiny red-text">*</i>
+                </label>
+                <span class="helper-text" data-error="wrong" data-success="right">
+                    What is the type of rurbic?</span>
+                </div>
+            </div>
+
+            <div class="row slide-label">
+                <div class="input-field col s6">
+                    <label for="novelty">Novelty</label>
+                <p class="range-field">
+                    <input type="range" name="novelty" min="1" max="10" />
+                </p>
+                </div>
+
+                <div class="input-field col s6">
+                    <label for="relevance">Relevance</label>
+                <p class="range-field">
+                    <input type="range" name="relevance" min="1" max="10" />
+                </p>
+                
+                </div>
+            </div>
+
+            <div class="row slide-label">
+                <div class="input-field col s6">
+                    <label for="feasibility">Feasibility</label>
+                <p class="range-field">
+                    <input type="range" name="feasibility" min="1" max="10"  />
+                </p>
+                
+                </div>
+                <div class="input-field col s6">
+                    <label for="impact">Impact</label>
+                <p class="range-field">
+                    <input type="range" name="impact" min="1" max="10" />
+                </p>
+                
+                </div>
+            </div>
+
+            <div class="row slide-label">
+                <div class="input-field col s6">
+                    <label for="sustainability">Sustainability</label>
+                <p class="range-field">
+                    <input type="range" name="sustainability" min="1" max="10" />
+                </p>
+                
+                </div>
+                <div class="input-field col s6">
+                    <label for="technology">Technology</label>
+                <p class="range-field">
+                    <input type="range" name="technology" min="1" max="10" />
+                </p>
+               
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                <textarea name="notes" class="materialize-textarea"></textarea>
+                <label for="notes">Notes</label>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn indigo darken-4 z-depth-1 waves-effect waves-light" type="submit">
+                Update
+            </button>
+            <a href="#!" class="modal-close waves-effect waves-grey btn-flat" style="background-color: whitesmoke;">Cancel</a>
+        </div>
     
     </form>
 
-</div>
-
+</div>-->
 
 {% endblock %}

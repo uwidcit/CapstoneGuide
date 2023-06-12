@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, jsonify, request, send_from_directory, flash, redirect, url_for
 from flask_login import current_user, login_required
-from App.controllers import ( create_lecturer, add_rubric, remove_rubric, get_all_rubrics, get_all_lecturers, get_user_rubrics )
+from App.controllers import (add_rubric, remove_rubric, update_rubric, get_user_rubrics )
 
 from.index import index_views
 
@@ -25,4 +25,11 @@ def create_rubric_action():
 def delete_rubric_action(rubricId):
     remove_rubric(1, rubricId)
     flash('Rubric Deleted!')
+    return redirect(url_for('rubric_views.rubric_page'))
+
+@rubric_views.route('/update-rubric', methods=['POST'])
+def update_rubric_action(rubricId):
+    data = request.form
+    update_rubric(rubricId, data['name'], data['notes'], data['novelty'], data['relevance'], data['feasibility'], data['impact'], data['sustainability'], data['technology'], 1)
+    flash('Rubric Updatd!')
     return redirect(url_for('rubric_views.rubric_page'))

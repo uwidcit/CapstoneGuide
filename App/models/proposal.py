@@ -14,7 +14,7 @@ class Proposal(db.Model):
     requirements = db.Column(db.String)
     tools = db.Column(db.String)
     num_members = db.Column(db.Integer)
-    created = db.Column(db.DateTime, default=datetime.utcnow)
+    created = db.Column(db.String, default=datetime.utcnow().strftime('%d-%B-%Y')) # 13-May-2023
 
 
     def __init__(self, studentId, proposal_nm, problem_desc, solution_desc, num_members, requirements, tools, notes):

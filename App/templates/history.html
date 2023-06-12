@@ -62,16 +62,16 @@
                             <thead><tr>
                                 <th>Date Submitted</th>
                                 <th>Proposal Name</th>
+                                <th>No. of Group Members</th>
                             </tr></thead>
                             <tbody>
-                            <tr>
-                                <td>13-May-2023</td>
-                                <td>Cap Advisor</td>
-                            </tr>
-                            <tr>
-                                <td>13-May-2023</td>
-                                <td>Guessing Game</td>
-                            </tr>
+                            {% for proposal in proposals %}
+                                <tr>
+                                    <td>{{proposal.created}}</td>
+                                    <td>{{proposal.proposal_name}}</td>
+                                    <td>{{proposal.num_members}}</td>
+                                </tr>
+                            {% endfor %}
                             </tbody>
                         </table>
                     </div>

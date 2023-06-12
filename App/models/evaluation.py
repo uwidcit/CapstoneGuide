@@ -1,5 +1,4 @@
-from typing import Type
-
+from datetime import datetime
 from App.database import db
 
 class Evaluation(db.Model):
@@ -8,10 +7,11 @@ class Evaluation(db.Model):
     novelty = db.Column(db.Integer)
     relevance = db.Column(db.Integer)
     feasibility = db.Column(db.Integer)
-    score = db.Column(db.Integer)
+    score = db.Column(db.Integer, default='-')
     impact = db.Column(db.Integer)
     sustainability = db.Column(db.Integer)
     technologies = db.Column(db.Integer)
+    created = db.Column(db.String, default=datetime.utcnow().strftime('%d-%B-%Y')) # 13-May-2023
 
     def __init__(self, novelty, feasibility, score, impact, sustainability, technologies, proposal_id):
         self.proposalId = proposal_id

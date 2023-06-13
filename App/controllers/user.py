@@ -1,8 +1,8 @@
 from App.models import User, Student, Lecturer
 from App.database import db
 
-def create_student(username, first_name, last_name, password, email):
-    newuser = Student(username=username, first_name=first_name, last_name=last_name, password=password, email=email)
+def create_student(username, password, email, first_name, last_name, student_id):
+    newuser = Student(username=username, first_name=first_name, last_name=last_name, password=password, email=email, student_id=student_id)
     try:    
         db.session.add(newuser)
         db.session.commit()
@@ -10,8 +10,8 @@ def create_student(username, first_name, last_name, password, email):
     except:
         return None
 
-def create_lecturer(username, password, email, first_name, last_name, lecturerId):
-    newuser = Lecturer(username=username, first_name=first_name, last_name=last_name, password=password, email=email, lecturerId=lecturerId)
+def create_lecturer(username, password, email, first_name, last_name, lecturer_id):
+    newuser = Lecturer(username=username, first_name=first_name, last_name=last_name, password=password, email=email, lecturer_id=lecturer_id)
     try:
         db.session.add(newuser)
         db.session.commit()
@@ -20,14 +20,14 @@ def create_lecturer(username, password, email, first_name, last_name, lecturerId
         return None
 
 
-def get_lecturer(lecturerId):
-    return Lecturer.query.get(lecturerId)
+def get_lecturer(lecturer_id):
+    return Lecturer.query.get(lecturer_id)
 
 def get_student(studentId):
     return Student.query.get(studentId)
 
-def is_lecturer(lecturerId):
-    return Lecturer.query.get(lecturerId) != None
+def is_lecturer(lecturer_id):
+    return Lecturer.query.get(lecturer_id) != None
 
 def is_student(studentId):
     return Lecturer.query.get(studentId) != None

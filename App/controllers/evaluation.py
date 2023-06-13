@@ -10,14 +10,14 @@ def add_evaluation(novelty, feasibility, score, impact, sustainability, technolo
     return evaluation
 
 
-def get_user_evaluation(studentId, evaluationId):
-    evaluation = Evaluation.query.filter_by(studentId=studentId, evaluationId = evaluationId).all()
+def get_user_evaluation(student_id, evaluationId):
+    evaluation = Evaluation.query.filter_by(student_id=student_id, evaluationId = evaluationId).all()
     if evaluation:
         return evaluation
     return None
 
-def get_user_evaluations(studentId):
-    evaluation = Evaluation.query.filter_by(studentId=studentId)
+def get_user_evaluations(student_id):
+    evaluation = Evaluation.query.filter_by(student_id=student_id)
     if evaluation:
         return evaluation
     return None

@@ -12,18 +12,18 @@ def login(username, password):
         return student
     return None
 
-def register_student(username, first_name, last_name, password, email):
+def register_student(username, password, email, first_name, last_name, student_id):
     student = Student.query.filter_by(username=username).first()
     if student:
         return "Username already exists"
-    new_student = create_student(username=username, first_name=first_name, last_name=last_name, password=password, email=email)
+    new_student = create_student(username=username, first_name=first_name, last_name=last_name, password=password, email=email, student_id=student_id)
     return "Student registered successfully"
 
-def register_lecturer(username, first_name, last_name, password, email):
+def register_lecturer(username, password, email, first_name, last_name, lecturer_id):
     lecturer = Lecturer.query.filter_by(username=username).first()
     if lecturer:
         return "Username already exists"
-    new_lecturer = create_lecturer(username=username, first_name=first_name, last_name=last_name, password=password, email=email)
+    new_lecturer = create_lecturer(username=username, first_name=first_name, last_name=last_name, password=password, email=email, lecturer_id=lecturer_id)
     return "Lecturer registered successfully"
 
 def initialize():

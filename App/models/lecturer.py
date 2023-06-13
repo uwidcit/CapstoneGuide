@@ -4,8 +4,8 @@ from .user import User
 
 class Lecturer(User):
     __tablename__ = 'lecturer'
-    lecturerId = db.Column(db.Integer, unique=True)
+    lecturer_id = db.Column(db.Integer, unique=True)
 
-    def __init__(self, username, password, email, first_name, last_name, lecturerId):
+    def __init__(self, username, password, email, first_name, last_name, lecturer_id):
         super().__init__(username, password, email, first_name, last_name)
-        self.lecturerId = lecturerId
+        self.lecturer_id = lecturer_id

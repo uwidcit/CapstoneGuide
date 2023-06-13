@@ -16,7 +16,7 @@
         body, .tabs{
             background-color: #e3f2fd;
         }
-        a.btn {
+        div .btn {
             border-radius: 30px;
             width: 200px;
             color: #00e5ff;
@@ -28,15 +28,6 @@
             left: 0;
             width: 100%;
         }
-         /* Adjust footer on larger screens
-         @media (max-width : 1660px) {
-            .page-footer{
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-            }
-        }*/
        /* Change font Style*/  
         *{
             font-family: 'Libre Baskerville', serif;
@@ -111,7 +102,7 @@
                     </ul>
                     <div class="tabs-content">
                         <!--login form-->
-                        <div id="login" class="col s11">
+                        <div id="login" class="col s11" method="POST" action="/login">
                             <form class="col s12">
                                 <div class="row" style="margin-top: 80px;">
                                     <div class="col s1"></div>
@@ -128,11 +119,11 @@
                                     </div>
                                 </div>
                                 <div class="row" style="margin-top: 60px;">
-                                    <class class="col s12 center">
-                                        <div class="input-field ">
-                                            <a href="/proposal" class="btn z-depth-3 waves-effect waves-light indigo darken-4 z-depth-1">Login</a>
-                                        </div>
-                                    </class>
+                                    <div class="col s12 center">
+                                        <button class="btn indigo darken-4 z-depth-1 waves-effect waves-light" type="submit">  
+                                                Login
+                                            </button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -140,24 +131,26 @@
                         <!--register form-->
                         <div id="register" class="col s11">
                             <div class="row">
-                                <form class="col s12 ">
+                                <form class="col s12" method="POST" action="/user">
 
                                     <div class="row">
                                         <div class="input-field col s7">
-                                            <input id="username" type="text">
-                                            <label for="username">Username</label>
+                                            <input name="username" type="text" required>
+                                            <label for="username">Username
+                                                <i class="material-icons tiny red-text">*</i>
+                                            </label>
                                         </div>
 
                                         <div class="input-field col s3 offset-s1">
                                             <p>
                                                 <label>
-                                                    <input class="with-gap" name="group1" type="radio" checked>
+                                                    <input class="with-gap" name="role" type="radio" value="Student" checked>
                                                     <span>Student</span>
                                                 </label>
                                             </p>
                                             <p>
                                                 <label>
-                                                    <input class="with-gap" name="group1" type="radio">
+                                                    <input class="with-gap" name="role" type="radio" value="Lecturer">
                                                     <span>Lecturer</span>
                                                 </label>
                                             </p>
@@ -166,42 +159,51 @@
 
                                     <div class="row">
                                         <div class="input-field col s6">
-                                            <input id="first-name" type="text">
-                                            <label for="first-name" class="">First Name</label>
+                                            <input name="first_name" type="text" required>
+                                            <label for="first_name">First Name
+                                                <i class="material-icons tiny red-text">*</i>
+                                            </label>
                                         </div>
 
                                         <div class="input-field col s6">
-                                            <input id="last-name" type="text">
-                                            <label for="last-name" class="">Last Name</label>
+                                            <input name="last_name" type="text" required>
+                                            <label for="last_name">Last Name
+                                                <i class="material-icons tiny red-text">*</i>
+                                            </label>
                                         </div>
                                     </div>
                                 
 
                                     <div class="row">
                                         <div class="input-field col s9">
-                                            <input id="email" type="email">
-                                            <label for="email">Email</label>
+                                            <input name="email" type="email" required>
+                                            <label for="email">Email
+                                                <i class="material-icons tiny red-text">*</i>
+                                            </label>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="input-field col s6">
-                                            <input id="password" type="password">
-                                            <label for="password" class="">Password</label>
+                                            <input name="password" type="password" required> 
+                                            <label for="password" class="">Password
+                                                <i class="material-icons tiny red-text">*</i>
+                                            </label>
                                         </div>
 
                                         <div class="input-field col s6">
-                                            <input id="re-password" type="password">
-                                            <label for="password" class="">Re-enter Password</label>
+                                            <input name="re_password" type="password" required>
+                                            <label for="re_password" class="">Re-enter Password
+                                                <i class="material-icons tiny red-text">*</i>
+                                            </label>
                                         </div>
                                     </div>
-
-                                    
                                     
                                     <div class="row">
                                         <div class="input-field center">
-                                            <a href="/rubric" class="btn z-depth-3
-                        waves-effect waves-light indigo darken-4 z-depth-1">Sign-Up</a>
+                                            <button class="btn indigo darken-4 z-depth-1 waves-effect waves-light" type="submit">  
+                                                Sign-Up
+                                            </button>
                                         </div>
                                     </div>
                                 </form>

@@ -11,7 +11,7 @@ proposal_views = Blueprint('proposal_views', __name__, template_folder='../templ
 def get_proposal_page():
     return render_template('proposal.html')
 
-#@lecturer_required
+#@student_required
 @proposal_views.route('/proposal', methods=['POST'])
 def submit_proposal_action():
     data = request.form

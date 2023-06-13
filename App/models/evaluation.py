@@ -2,7 +2,7 @@ from datetime import datetime
 from App.database import db
 
 class Evaluation(db.Model):
-    proposalId = db.Column(db.Integer, db.ForeignKey('proposal.proposalId'))
+    proposal_id = db.Column(db.Integer, db.ForeignKey('proposal.proposal_id'))
     id = db.Column(db.Integer, primary_key=True)
     novelty = db.Column(db.Integer)
     relevance = db.Column(db.Integer)
@@ -14,7 +14,7 @@ class Evaluation(db.Model):
     created = db.Column(db.String, default=datetime.utcnow().strftime('%d-%B-%Y')) # 13-May-2023
 
     def __init__(self, novelty, feasibility, score, impact, sustainability, technologies, proposal_id):
-        self.proposalId = proposal_id
+        self.proposal_id = proposal_id
         self.novelty = novelty
         self.feasibility = feasibility
         self.score = score

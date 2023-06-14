@@ -1,4 +1,4 @@
-from flask_login import login_user, current_user
+from flask_login import login_user, current_user, LoginManager
 from App.models import db, User, Student, Lecturer
 from .user import create_student, create_lecturer
 from functools import wraps
@@ -42,10 +42,23 @@ def student_required(func):
 def lecturer_required(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
+        print('hello')
         if not current_user.is_authenticated or not isinstance(current_user, Lecturer):
             return "Unauthorized", 401
         return func(*args, **kwargs)
     return wrapper
 
- 
+def setup_flask_login(app):
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+    
+    @login_manager.user_loader
+    def load_user(user_id):
+        student =  Student.query.get(user_id)
+        if student:
+            return customer
+        return Lecturer.query.get(user_id)
+    
+    return login_manager
+
 

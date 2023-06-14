@@ -1,5 +1,17 @@
 from App.models import User, Student, Lecturer
 from App.database import db
+from sqlalchemy.exc import SQLAlchemyError
+
+def create_lecturer(username, password, email, first_name, last_name, lecturer_id):
+    newuser = Lecturer(username=username, first_name=first_name, last_name=last_name, password=password, email=email, lecturer_id=lecturer_id)
+    try:
+        db.session.add(newuser)
+        db.session.commit()
+        return newuser
+    except SQLAlchemyError as e:
+        print(f"Database error occurred: {str(e)}")
+        return None
+
 
 def create_student(username, password, email, first_name, last_name, student_id):
     newuser = Student(username=username, first_name=first_name, last_name=last_name, password=password, email=email, student_id=student_id)
@@ -7,7 +19,8 @@ def create_student(username, password, email, first_name, last_name, student_id)
         db.session.add(newuser)
         db.session.commit()
         return newuser
-    except:
+    except SQLAlchemyError as e:
+        print(f"Database error occurred: {str(e)}")
         return None
 
 def create_lecturer(username, password, email, first_name, last_name, lecturer_id):

@@ -1,11 +1,11 @@
 from flask import Blueprint, render_template, jsonify, request, send_from_directory, flash, redirect, url_for
-from flask_login import current_user, login_required
+from flask_login import current_user, login_required, login_user
 
 from.index import index_views
 from .proposal import proposal_views
-from .registration import registration_views
+from .auth import auth_views
 
-from App.controllers import ( register_student, register_lecturer)
+from App.controllers import ( register_student, create_lecturer)
 
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
 
@@ -15,19 +15,18 @@ def create_user_action():
     if data['role'] == 'Student':
         result = register_student(data['username'], data['re_password'], data['first_name'], data['last_name'], data['email'], 1)
         if result:
-            #jsonify({"message": f"Customer created with id {result.id}"}), 201
             print('user added')
             return redirect(url_for('proposal_views.get_proposal_page'))        
     else:
-        result = register_lecturer(data['username'], data['re_password'], data['first_name'], data['last_name'], data['email'], 1)
+        result = create_lecturer(data['username'], data['re_password'], data['first_name'], data['last_name'], data['email'], 1)
+        print(result)
         if result:
-            print('user added')
-            #jsonify({"message": f"Customer created with id {result.id}"}), 201
+            flash('Account Created')
+            login_user(result)
             return redirect(url_for('rubric_views.rubric_page'))
-    
-    #jsonify({"error": f"Username {data['username']} already exists "}), 500    
+    flash('user exists')
     print('user exists')
-    return redirect(url_for('registration_views.get_registration_page'))
+    return redirect(url_for('auth_views.get_registration_page'))
     
 
 # @user_views.route('/api/users', methods=['POST'])

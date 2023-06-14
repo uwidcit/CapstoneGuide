@@ -13,7 +13,7 @@
 
 {% block content %}
     <div class="row equal-height-grid" style="margin-bottom:5rem; margin-top:1.2rem;">
-        <h1>Your Rubrics</h1>
+        <h1>{{current_user.username}} Rubrics</h1>
         <div class="col s12">
             {% for rubric in rubrics %}
                 <div class="card col s12 m4">

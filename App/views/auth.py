@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, jsonify, request, send_from_direct
 from flask_login import login_required, login_user, current_user, logout_user
 
 from.index import index_views
+from .rubric import rubric_views
 
 from App.controllers import (
     login 
@@ -24,14 +25,19 @@ def identify_page():
     return jsonify({'message': f"username: {current_user.username}, id : {current_user.id}"})
 
 
+@auth_views.route('/login', methods=['GET'])
+def get_registration_page():
+    return render_template('registration.html')
+
 @auth_views.route('/login', methods=['POST'])
 def login_action():
     data = request.form
     user = login(data['username'], data['password'])
     if user:
         login_user(user)
-        return 'user logged in!'
-    return 'bad username or password given', 401
+        return redirect(url_for('rubric_views.rubric_page'))
+    flash('bad username or password given')
+    return redirect(url_for('auth_views.get_registration_page'))
 
 @auth_views.route('/logout', methods=['GET'])
 def logout_action():

@@ -4,27 +4,23 @@ from .user import create_student, create_lecturer
 from functools import wraps
 
 def login(username, password):
+    #login with username
     lecturer = Lecturer.query.filter_by(username=username).first()
     if lecturer and lecturer.check_password(password):
         return lecturer
     student = Student.query.filter_by(username=username).first()
+
+    if student and student.check_password(password):
+        return student
+
+    #login with ID    
+    lecturer = Lecturer.query.filter_by(lecturer_id=username).first()
+    if lecturer and lecturer.check_password(password):
+        return lecturer
+    student = Student.query.filter_by(student_id=username).first()
     if student and student.check_password(password):
         return student
     return None
-
-def register_student(username, password, email, first_name, last_name, student_id):
-    student = Student.query.filter_by(username=username).first()
-    if student:
-        return "Username already exists"
-    new_student = create_student(username=username, first_name=first_name, last_name=last_name, password=password, email=email, student_id=student_id)
-    return "Student registered successfully"
-
-def register_lecturer(username, password, email, first_name, last_name, lecturer_id):
-    lecturer = Lecturer.query.filter_by(username=username).first()
-    if lecturer:
-        return "Username already exists"
-    new_lecturer = create_lecturer(username=username, first_name=first_name, last_name=last_name, password=password, email=email, lecturer_id=lecturer_id)
-    return "Lecturer registered successfully"
 
 def initialize():
     db.drop_all()
@@ -56,7 +52,7 @@ def setup_flask_login(app):
     def load_user(user_id):
         student =  Student.query.get(user_id)
         if student:
-            return customer
+            return student
         return Lecturer.query.get(user_id)
     
     return login_manager

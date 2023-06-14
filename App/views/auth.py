@@ -3,6 +3,8 @@ from flask_login import login_required, login_user, current_user, logout_user
 
 from.index import index_views
 from .rubric import rubric_views
+from .proposal import proposal_views
+from App.models import Student, Lecturer
 
 from App.controllers import (
     login 
@@ -34,13 +36,17 @@ def login_action():
     data = request.form
     user = login(data['username'], data['password'])
     if user:
-        login_user(user)
-        return redirect(url_for('rubric_views.rubric_page'))
-    flash('bad username or password given')
+        if type(user) ==  Student:
+            login_user(user)
+            return redirect(url_for('proposal_views.get_proposal_page'))
+        elif type(user) ==  Lecturer:
+            login_user(user)
+            return redirect(url_for('rubric_views.rubric_page'))
+    flash('Incorrect username or password given')
     return redirect(url_for('auth_views.get_registration_page'))
 
 @auth_views.route('/logout', methods=['GET'])
 def logout_action():
-    data = request.form
-    user = login(data['username'], data['password'])
-    return 'logged out!'
+    logout_user()
+    flash('You logged out!')
+    return redirect(url_for('auth_views.get_registration_page'))

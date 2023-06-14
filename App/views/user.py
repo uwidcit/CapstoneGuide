@@ -5,7 +5,7 @@ from.index import index_views
 from .proposal import proposal_views
 from .auth import auth_views
 
-from App.controllers import ( register_student, create_lecturer)
+from App.controllers import ( create_student, create_lecturer)
 
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
 
@@ -13,12 +13,12 @@ user_views = Blueprint('user_views', __name__, template_folder='../templates')
 def create_user_action():
     data = request.form
     if data['role'] == 'Student':
-        result = register_student(data['username'], data['re_password'], data['first_name'], data['last_name'], data['email'], 1)
+        result = create_student(data['username'], data['re_password'], data['email'], data['first_name'], data['last_name'], data['uwi_id'])
         if result:
             print('user added')
             return redirect(url_for('proposal_views.get_proposal_page'))        
     else:
-        result = create_lecturer(data['username'], data['re_password'], data['first_name'], data['last_name'], data['email'], 1)
+        result = create_lecturer(data['username'], data['re_password'], data['email'], data['first_name'], data['last_name'], data['uwi_id'])
         print(result)
         if result:
             flash('Account Created')

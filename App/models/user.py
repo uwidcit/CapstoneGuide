@@ -13,11 +13,11 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String, nullable=False)
 
     def __init__(self, username, password, email, first_name, last_name):
-        self.username = username
-        self.first_name = first_name
-        self.last_name = last_name
-        self.set_password(password)
-        self.email = email
+        self.username = username.lower()
+        self.first_name = first_name.capitalize() 
+        self.last_name = last_name.capitalize()
+        self.set_password(password.lower())
+        self.email = email.lower()
 
     def get_json(self):
         return {

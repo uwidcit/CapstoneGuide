@@ -18,7 +18,7 @@ class Proposal(db.Model):
 
 
     def __init__(self, student_id, proposal_nm, problem_desc, solution_desc, num_members, requirements, tools, notes):
-        self.proposal_name = proposal_nm
+        self.proposal_name = proposal_nm.capitalize() 
         self.student_id = student_id
         #self.rubricId = 1
         self.problem_desc = problem_desc

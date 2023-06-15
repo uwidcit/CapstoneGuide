@@ -64,11 +64,11 @@ def create_student_command(username, password, email):
 
 # this command will be : flask user create bob bobpass
 
-@lecturer_cli.command("list", help="Lists users in the database")
-@click.argument("format", default="string")
-def list_students_command(format):
-    if format == 'string':
-        print(get_all_students())
+# @lecturer_cli.command("list", help="Lists users in the database")
+# @click.argument("format", default="string")
+# def list_students_command(format):
+#     if format == 'string':
+#         print(get_all_students())
 
 app.cli.add_command(student_cli) # add the group to the cli
 

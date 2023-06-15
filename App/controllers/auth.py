@@ -38,7 +38,6 @@ def student_required(func):
 def lecturer_required(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
-        print('hello')
         if not current_user.is_authenticated or not isinstance(current_user, Lecturer):
             return "Unauthorized", 401
         return func(*args, **kwargs)

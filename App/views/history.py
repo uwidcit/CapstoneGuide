@@ -6,9 +6,9 @@ from.index import index_views
 
 history_views = Blueprint('history_views', __name__, template_folder='../templates')
 
-#student_required
+@student_required
 @history_views.route('/history', methods=['GET'])
+@login_required
 def get_history_page():
-    # current_user.id
-    proposals = get_user_proposals(1)
+    proposals = get_user_proposals(current_user.id)
     return render_template('history.html', proposals=proposals)

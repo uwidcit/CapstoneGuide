@@ -89,7 +89,7 @@
   <header>
     <ul id="slide-out" class="sidenav z-depth-2" >
       <li>
-        <a class="logo-container" style="height:62px; padding:5px;"><span style="margin-left:25px">Dashboard</span></a>
+        <a class="logo-container" style="height:62px; padding:5px;"><span style="margin-left:25px" id="message">{{current_user.first_name}}</span></a>
       </li>
       {% block menuItems %}
       {% endblock %}
@@ -149,7 +149,16 @@
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script> M.AutoInit();</script>
+  <script> M.AutoInit();
+      document.addEventListener("DOMContentLoaded", function() {
+        var message = document.getElementById('message');
+        if(message.innerText.slice(-1) == 's'){
+            message.innerText = message.innerText + "' Dashboard"
+        }else{
+            message.innerText = message.innerText + "'s Dashboard"
+        }
+    });
+  </script>
   {% with messages = get_flashed_messages() %}
 {% if messages %}
     {% for message in messages %}

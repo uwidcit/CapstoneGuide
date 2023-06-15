@@ -5,21 +5,13 @@ from.index import index_views
 from .rubric import rubric_views
 from .proposal import proposal_views
 from App.models import Student, Lecturer
-
-from App.controllers import (
-    login 
-)
+from App.controllers import login 
 
 auth_views = Blueprint('auth_views', __name__, template_folder='../templates')
 
 '''
 Page/Action Routes
 '''
-
-# @auth_views.route('/users', methods=['GET'])
-# def get_user_page():
-#     return render_template('users.html')
-
 
 @auth_views.route('/identify', methods=['GET'])
 @login_required

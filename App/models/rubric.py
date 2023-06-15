@@ -13,7 +13,7 @@ class Rubric(db.Model):
     technology = db.Column(db.Integer)
 
     def __init__(self, name, notes, novelty, relevance, feasibility, impact, sustainability, technology, lecturer_id):
-        self.name = name
+        self.name = name.capitalize() 
         self.notes = notes
         self.novelty = novelty
         self.relevance = relevance

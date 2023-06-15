@@ -16,8 +16,8 @@ migrate = get_migrate(app)
 def initialize():
     db.drop_all()
     db.create_all()
-    create_lecturer('bob', 'bobpass', 'bob@mycavehilluwi.edu', 'bob', 'smith', 1232)
-    create_student('rob', 'robpass', 'rob@mycavehilluwi.edu', 'rob', 'smith', 1232)
+    # create_lecturer('bob', 'bobspass', 'bob@mycavehilluwi.edu', 'bob', 'smith', 1232)
+    # create_student('rob', 'robspass', 'rob@mycavehilluwi.edu', 'rob', 'smith', 1232)
     print('database intialized')
 
 '''

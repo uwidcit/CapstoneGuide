@@ -97,7 +97,7 @@
                 <!--right tab headers-->
                 <div class="col s12 l6 offset-l1">
                     <ul class="tabs tabs-fixed-width">
-                        <li class="tab col s5"><a href="#login" class=" active indigo-text">LOGIN</a></li>
+                        <li class="tab col s5"><a href="#login" class=" indigo-text">LOGIN</a></li>
                         <li class="tab col s5"><a class="indigo-text" href="#register">REGISTER</a></li>
                     </ul>
                     <div class="tabs-content">
@@ -196,14 +196,14 @@
 
                                     <div class="row">
                                         <div class="input-field col s6">
-                                            <input name="password" type="password" required> 
+                                            <input name="password" type="password" id="pw1" required> 
                                             <label for="password" class="">Password
                                                 <i class="material-icons tiny red-text">*</i>
                                             </label>
                                         </div>
 
                                         <div class="input-field col s6">
-                                            <input name="re_password" type="password" required>
+                                            <input name="re_password" type="password" id="pw2" required>
                                             <label for="re_password" class="">Re-enter Password
                                                 <i class="material-icons tiny red-text">*</i>
                                             </label>
@@ -232,7 +232,7 @@
             <div class="row">
                 <div class="col l6 s12">
                     <h5 class="white-text">About Floodtech</h5>
-                    <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                    <p class="grey-text text-lighten-4">Founded in 2020 to provide software solutions for students. Existing members are Alexander, Dante, and Ramon.</p>
                 </div>
                 <div class="col l4 offset-l2 s12">
                     <h5 class="white-text">Contact Us</h5>
@@ -251,7 +251,9 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script>M.AutoInit();</script>
+    <script>M.AutoInit();
+
+    </script>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
         {% for message in messages %}

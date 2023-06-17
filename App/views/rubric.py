@@ -21,7 +21,7 @@ def rubric_page():
 @login_required
 def create_rubric_action():
     data = request.form
-    add_rubric(data['name'], data['notes'], data['novelty'], data['relevance'], data['feasibility'], data['impact'], data['sustainability'], data['technology'], current_user.id)
+    add_rubric(data['name'], data['notes'], data['novelty'], data['relevance'], data['feasibility'], data['impact'], data['sustainability'], data['technology'], data['comments'],current_user.id)
     flash('Rubric Added!')
     return redirect(url_for('rubric_views.rubric_page'))
 

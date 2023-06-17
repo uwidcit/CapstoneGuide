@@ -31,6 +31,11 @@
         div .btn, .btn-flat {
             border-radius: 30px;
         }
+
+        .modal-content p{
+            font-size: large;
+        }
+
         main{
             min-height: 80vh;
         }
@@ -158,30 +163,6 @@
         <div class="container">{% block content %}{% endblock %}</div>
     </main>
 
-    <footer class="page-footer indigo darken-4">
-        <div class="container">
-            <div class="row">
-                <div class="col l6 s12">
-                    <h5 class="white-text">About Floodtech</h5>
-                    <p class="grey-text text-lighten-4">Founded in 2020 to provide software solutions for students. Existing members are Alexander, Dante, and Ramon.</p>
-                </div>
-                <div class="col l4 offset-l2 s12">
-                    <h5 class="white-text">Contact Us</h5>
-                    <ul>
-                        <li><a class="grey-text text-lighten-3" href="#!">floodtechbdos@gmail.com</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">https://floodtech.bdos.com</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-copyright">
-            <div class="container">
-                © 2023 Copyright
-                <!--<a class="grey-text text-lighten-4 right" href="#!">More Links</a>-->
-            </div>
-        </div>
-    </footer>
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script>
@@ -194,8 +175,19 @@
         }else{
             message.innerText = message.innerText + "'s Dashboard"
         }
+
     });
 
+    function check(){
+        document.getElementById('prop_name').innerText += document.getElementById('name').innerText
+        document.getElementById('prop_prob').innerText += document.getElementById('prob').innerText
+        document.getElementById('prop_sol').innerText += document.getElementById('sol').innerText
+        document.getElementById('prop_mem').innerText += document.getElementById('mem').innerText
+        document.getElementById('prop_req').innerText += document.getElementById('req').innerText
+        document.getElementById('prop_tool').innerText += document.getElementById('tool').innerText
+        document.getElementById('prop_note').innerText += document.getElementById('note').innerText
+        document.getElementById('prop_id').innerText = document.getElementById('p_id').innerText
+    }
 </script>
 {% with messages = get_flashed_messages() %}
 {% if messages %}

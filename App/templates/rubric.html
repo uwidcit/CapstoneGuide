@@ -1,12 +1,12 @@
 {% extends "lecturerBase.html" %}
-{% block title %}Add Requirements{% endblock %}
+{% block title %}Add Rubric{% endblock %}
 {% block page %}Cap Advisor{% endblock %}
 
 {% block menuItems %}
     <li class="no-padding">
         <ul>
             <li class="active" style="margin-top: 62px"><a href="/rubric">Add New Rubric</a></li>
-            <li><a href="/rubric">Student Proposals</a></li>
+            <li><a href="/submissions">Student Proposals</a></li>
         </ul>
     </li>
 {% endblock %}
@@ -53,7 +53,7 @@
     <form method="POST" action="/rubric">
 
         <div class="modal-content">
-            <h1>Add New Rubric</h1>
+            <h3>Add New Rubric</h3>
 
             <div class="row">
                 <div class="input-field col s12">

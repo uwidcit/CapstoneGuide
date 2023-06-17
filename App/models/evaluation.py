@@ -7,17 +7,20 @@ class Evaluation(db.Model):
     novelty = db.Column(db.Integer)
     relevance = db.Column(db.Integer)
     feasibility = db.Column(db.Integer)
-    score = db.Column(db.Integer, default='-')
     impact = db.Column(db.Integer)
     sustainability = db.Column(db.Integer)
     technologies = db.Column(db.Integer)
+    comments = db.Column(db.String)
+    score = db.Column(db.Integer, default='-')
     created = db.Column(db.String, default=datetime.utcnow().strftime('%d-%B-%Y')) # 13-May-2023
 
-    def __init__(self, novelty, feasibility, score, impact, sustainability, technologies, proposal_id):
+    def __init__(self, comments, novelty, relevance ,feasibility, impact, sustainability, technologies, proposal_id):
         self.proposal_id = proposal_id
+        self.comments = comments
         self.novelty = novelty
+        self.relevance = relevance
         self.feasibility = feasibility
-        self.score = score
+        self.score = round((int(novelty) + int(feasibility) + int(impact) + int(technologies) + int(sustainability) + int(relevance)) / 6)
         self.impact = impact
         self.technologies = technologies
         self.sustainability = sustainability

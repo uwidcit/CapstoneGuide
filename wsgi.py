@@ -4,7 +4,9 @@ from flask.cli import with_appcontext, AppGroup
 
 from App.database import db, get_migrate
 from App.main import create_app
-from App.controllers import ( create_student, create_lecturer, add_rubric, remove_rubric, get_all_rubrics, get_all_lecturers )
+from App.controllers import ( create_student, create_lecturer, add_rubric, 
+                             add_proposal,
+                             remove_rubric, get_all_rubrics, get_all_lecturers )
 # This commands file allow you to create convenient CLI commands for testing controllers
 
 app = create_app()
@@ -16,8 +18,11 @@ migrate = get_migrate(app)
 def initialize():
     db.drop_all()
     db.create_all()
-    # create_lecturer('bob', 'bobspass', 'bob@mycavehilluwi.edu', 'bob', 'smith', 1232)
-    # create_student('rob', 'robspass', 'rob@mycavehilluwi.edu', 'rob', 'smith', 1232)
+    create_lecturer('bob', 'bobspass', 'bob@mycavehilluwi.edu', 'bob', 'smith', 1111)
+    create_student('rob', 'robspass', 'rob@mycavehilluwi.edu', 'rob', 'smith', 2222)
+    add_proposal(2222, 'Cap Advisor', 'Students do not always have a supervisor available to provide feedback on their capstone projects',
+                  'we will devlop a software that allows students to have an AI assiatnt',
+                 3, '', 'students submit proposals based on cirtera', 'flask MVC')
     print('database intialized')
 
 '''

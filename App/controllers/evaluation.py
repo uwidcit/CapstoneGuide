@@ -2,11 +2,10 @@ from App.models import Evaluation
 from App.database import db
 
 
-def add_evaluation(novelty, feasibility, score, impact, sustainability, technologies, proposal_id):
-    evaluation = Evaluation(novelty=novelty, feasibility=feasibility, score=score, 
-                         impact=impact, sustainability=sustainability, technologies=technologies, proposal_id=proposal_id)
+def add_evaluation(notes, novelty, relevance, feasibility, impact, sustainability, technologies, proposal_id):
+    evaluation = Evaluation(comments=notes, novelty=novelty, relevance=relevance, feasibility=feasibility, impact=impact, sustainability=sustainability, technologies=technologies, proposal_id=proposal_id)
     db.session.add(evaluation)
-    db.session.commit(evaluation)
+    db.session.commit()
     return evaluation
 
 

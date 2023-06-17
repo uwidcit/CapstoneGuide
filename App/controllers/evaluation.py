@@ -8,9 +8,17 @@ def add_evaluation(notes, novelty, relevance, feasibility, impact, sustainabilit
     if proposal:
         evaluation = Evaluation(comments=notes, novelty=novelty, relevance=relevance, feasibility=feasibility, impact=impact, sustainability=sustainability, technologies=technologies, proposal_id=proposal_id)
         proposal.evaluations.append(evaluation)
-        print(evaluation)
+        proposal.status = 1
         db.session.commit()
         return evaluation
+    return None
+
+def remove_evaluation(proposal_id):
+    evaluation = Evaluation.query.filter_by(proposal_id=proposal_id).first()
+    if evaluation:
+        db.session.delete(evaluation)
+        res = db.session.commit()
+        return res
     return None
 
 def get_user_evaluation(proposal_id, evaluation_id):
@@ -25,3 +33,6 @@ def get_user_evaluations(proposal_id):
         return evaluation
     return None
 
+
+def get_all_evaluations():
+    return Evaluation.query.all()

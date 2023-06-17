@@ -14,6 +14,7 @@ class Proposal(db.Model):
     tools = db.Column(db.String)
     num_members = db.Column(db.Integer)
     created = db.Column(db.String, default=datetime.utcnow().strftime('%d-%B-%Y')) # 13-May-2023
+    status = db.Column(db.Integer, default=0)
     evaluations = db.relationship('Evaluation', backref=db.backref('proposal', lazy='joined'))
 
 

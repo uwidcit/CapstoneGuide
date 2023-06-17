@@ -20,19 +20,20 @@ def initialize():
     db.create_all()
     create_lecturer('bob', 'bobspass', 'bob@mycavehilluwi.edu', 'bob', 'smith', 1111)
     create_student('rob', 'robspass', 'rob@mycavehilluwi.edu', 'rob', 'smith', 2222)
-    # add_proposal(1, 'Cap Advisor', 'Students do not always have a supervisor available to provide feedback on their capstone projects',
-    #               'we will devlop a software that allows students to have an AI assiatnt',
-    #              3, '', 'students submit proposals based on cirtera', 'flask MVC')
-    # add_proposal(1, 'Reign Advisor', 'Students do not always have a supervisor available to provide feedback on their capstone projects',
-    #               'we will devlop a software that allows students to have an AI assiatnt',
-    #              3, '', 'students submit proposals based on cirtera', 'flask MVC')
-    # add_proposal(1, 'Feet Advisor', 'Students do not always have a supervisor available to provide feedback on their capstone projects',
-    #               'we will devlop a software that allows students to have an AI assiatnt',
-    #              3, '', 'students submit proposals based on cirtera', 'flask MVC')
+    create_student('steve', 'stevepass', 'steve@mycavehilluwi.edu', 'steve', 'smith', 3333)
+    add_proposal(1, 'Cap Advisor', 'Students do not always have a supervisor available to provide feedback on their capstone projects',
+                  'we will devlop a software that allows students to have an AI assiatnt',
+                 3, '', 'students submit proposals based on cirtera', 'flask MVC')
+    add_proposal(2, 'Reign Advisor', 'Students do not always have a supervisor available to provide feedback on their capstone projects',
+                  'we will devlop a software that allows students to have an AI assiatnt',
+                 3, '', 'students submit proposals based on cirtera', 'flask MVC')
+    add_proposal(1, 'Feet Advisor', 'Students do not always have a supervisor available to provide feedback on their capstone projects',
+                  'we will devlop a software that allows students to have an AI assiatnt',
+                 5, '', 'students submit proposals based on cirtera', 'flask MVC')
     
     add_rubric('Free','notes', 3, 5, 6, 6, 6, 1, 101)
-    # add_evaluation('notes', 5, 7, 5, 3, 10, 5, 1)
-    # add_evaluation('notes', 5, 7, 5, 3, 10, 5, 2)
+    add_evaluation('notes', 5, 7, 5, 3, 10, 5, 1)
+    add_evaluation('notes', 8, 7, 5, 3, 10, 5, 2)
     print('database intialized')
 
 '''

@@ -17,8 +17,8 @@
     <div class="row " style="margin-bottom:5rem; margin-top:1.2rem;">
         <div class="col s12">
 
-            <!--Proposal History-->
-            <h3 style="margin-top: 5rem;"> <span class="section-title"> Proposal Submissions </span> </h3>
+            <!--Pending Evaluations-->
+            <h3 style="margin-top: 5rem;"> <span class="section-title"> Pending Evaluations </span> </h3>
 
             <div class="card">
                 <div class="divider"></div>
@@ -36,9 +36,10 @@
                             </tr></thead>
                             <tbody>
                             {% for proposal in proposals %}
+                                {% if proposal.status == 0 %}
                                 <tr>
-                                    <td><a class="btn modal-trigger" href="#eval_proposal_modal{{proposal.proposal_id}}">
-                                        <i class="material-icons">input</i></a></td>
+                                    <td><a class="modal-trigger" href="#eval_proposal_modal{{proposal.proposal_id}}">
+                                        <i class="material-icons blue-text">input</i></a></td>
                                     <td>{{proposal.created}}</td>
                                     <td id="uwi_id">{{proposal.student.uwi_id}}</td>
                                     <td id="full_name">{{proposal.student.first_name}} {{proposal.student.last_name}}</td>
@@ -109,7 +110,6 @@
                                                 </div>
                                             </div>
                                             
-                                            
                                             <div class="row slide-label">
                                                 <div class="input-field col s6">
                                                     
@@ -158,12 +158,162 @@
                                 
                                         <div class="modal-footer">
                                             <button class="btn indigo darken-4 z-depth-1 waves-effect waves-light" type="submit">
-                                                Confirm
+                                                Evaluate
                                             </button>
-                                            <a href="#!" class="modal-close waves-effect waves-grey btn-flat" style="background-color: whitesmoke;">Cancel</a>
+                                            <a href="#!" class="modal-close waves-effect waves-grey btn-flat" style="background-color: lightgray;">Cancel</a>
                                         </div>
                                     </form>
                                 </div>
+                                {% endif %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!--Completed Evaluations-->
+            <h3 style="margin-top: 5rem;"> <span class="section-title"> Completed Evaluations </span> </h3>
+
+            <div class="card">
+                <div class="divider"></div>
+
+                <div class="card-content" style="min-height: 600px;">
+                    <div class="row">
+                        <table class="centered highlight striped">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Date Submitted</th>
+                                <th>Student ID</th>
+                                <th>Student Name</th>
+                                <th>Proposal Name</th>
+                            </tr></thead>
+                            <tbody>
+                            {% for proposal in proposals %}
+                                {% if proposal.status == 1 %}
+                                <tr>
+                                    <td><a class="modal-trigger" href="#eval_proposal_modal{{proposal.proposal_id}}">
+                                        <i class="material-icons blue-text">input</i></a></td>
+                                    <td>{{proposal.created}}</td>
+                                    <td id="uwi_id">{{proposal.student.uwi_id}}</td>
+                                    <td id="full_name">{{proposal.student.first_name}} {{proposal.student.last_name}}</td>
+                                    <td id="name">{{proposal.proposal_name}}</td>
+                                </tr>
+                                 <!--Modal Structure: Grade Proposal-->
+                                <div id="eval_proposal_modal{{proposal.proposal_id}}" class="modal modal-fixed-footer">
+                                    <form method="POST" action="/man-evaluation">
+                                        
+                                        <div class="modal-content">
+                                            <div class="row">
+                                                <div class="col s6">
+                                                    <h3>{{proposal.proposal_name}}</h3>
+                                                </div>
+                                                <div class="right">
+                                                    <p>Members: {{proposal.num_members}}</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Problem Statement: {{proposal.problem_desc}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Solution Goal: {{proposal.solution_desc}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Proposal Requirements: {{proposal.requirements}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Proposed Tools: {{proposal.tools}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Addtional Info: {{proposal.notes}}</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row slide-label">
+                                                <div class="input-field col s6">
+                                                
+                                                <p class="range-field">
+                                                    <label for="novelty">Novelty</label>
+                                                    <input type="range" name="novelty" min="1" max="10" value="{{proposal.evaluations[0].novelty}}"/>
+                                                </p>
+                                                </div>
+                                
+                                                <div class="input-field col s6">
+                                                    
+                                                <p class="range-field">
+                                                    <label for="relevance">Relevance</label>
+                                                    <input type="range" name="relevance" min="1" max="10" value="{{proposal.evaluations[0].relevance}}"/>
+                                                </p>
+                                                
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row slide-label">
+                                                <div class="input-field col s6">
+                                                    
+                                                <p class="range-field">
+                                                    <label for="feasibility">Feasibility</label>
+                                                    <input type="range" name="feasibility" min="1" max="10"  value="{{proposal.evaluations[0].feasibility}}"/>
+                                                </p>
+                                                
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    
+                                                <p class="range-field">
+                                                    <label for="impact">Impact</label>
+                                                    <input type="range" name="impact" min="1" max="10" vavalue="{{proposal.evaluations[0].impact}}"/>
+                                                </p>
+                                                </div>
+                                            </div>
+                                
+                                            <div class="row slide-label">
+                                                <div class="input-field col s6">
+                                                    
+                                                <p class="range-field">
+                                                    <label for="sustainability">Sustainability</label>
+                                                    <input type="range" name="sustainability" min="1" max="10" value="{{proposal.evaluations[0].sustainability}}"/>
+                                                </p>
+                                                
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    
+                                                <p class="range-field">
+                                                    <label for="technology">Technology</label>
+                                                    <input type="range" name="technology" min="1" max="10" value="{{proposal.evaluations[0].technology}}"/>
+                                                </p>
+                                            
+                                                </div>
+                                            </div>
+                                
+                                            <div class="row">
+                                                <div class="input-field col s12">
+                                                <textarea name="notes" class="materialize-textarea"></textarea>
+                                                <label for="notes" style="font-size: large;">Comments</label>
+                                                </div>
+                                            </div>
+                                
+                                        </div>
+                                
+                                        <div class="modal-footer">
+                                            <button class="btn indigo darken-4 z-depth-1 waves-effect waves-light" type="submit">
+                                                Re-evaluate
+                                            </button>
+                                            <a href="#!" class="modal-close waves-effect waves-grey btn-flat" style="background-color: lightgray">Cancel</a>
+                                        </div>
+                                    </form>
+                                </div>
+                                {% endif %}
                             {% endfor %}
                             </tbody>
                         </table>

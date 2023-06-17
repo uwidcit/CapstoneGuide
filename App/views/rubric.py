@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, jsonify, request, send_from_directory, flash, redirect, url_for
 from flask_login import current_user, login_required
-from App.controllers import (add_rubric, remove_rubric, update_rubric, get_user_rubrics, lecturer_required )
+from App.controllers import (add_rubric, remove_rubric, get_user_rubrics, lecturer_required )
 
 from.index import index_views
 
@@ -21,14 +21,14 @@ def rubric_page():
 @login_required
 def create_rubric_action():
     data = request.form
-    add_rubric(data['name'], data['notes'], data['novelty'], data['relevance'], data['feasibility'], data['impact'], data['sustainability'], data['technology'], data['comments'],current_user.id)
+    add_rubric(data['name'], data['comments'], data['novelty'], data['relevance'], data['feasibility'], data['impact'], data['sustainability'], data['technology'],current_user.id)
     flash('Rubric Added!')
     return redirect(url_for('rubric_views.rubric_page'))
 
 @lecturer_required
-@rubric_views.route('/delete-rubric/<int:rubricId>', methods=['GET'])
+@rubric_views.route('/delete-rubric/<int:rubric_id>', methods=['GET'])
 @login_required
-def delete_rubric_action(rubricId):
-    remove_rubric(current_user.id, rubricId)
+def delete_rubric_action(rubric_id):
+    remove_rubric(current_user.id, rubric_id)
     flash('Rubric Deleted!')
     return redirect(url_for('rubric_views.rubric_page'))

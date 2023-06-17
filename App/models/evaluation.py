@@ -2,8 +2,8 @@ from datetime import datetime
 from App.database import db
 
 class Evaluation(db.Model):
+    evaluation_id = db.Column(db.Integer, primary_key=True)
     proposal_id = db.Column(db.Integer, db.ForeignKey('proposal.proposal_id'))
-    id = db.Column(db.Integer, primary_key=True)
     novelty = db.Column(db.Integer)
     relevance = db.Column(db.Integer)
     feasibility = db.Column(db.Integer)

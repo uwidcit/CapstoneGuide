@@ -3,7 +3,7 @@ from flask_login import current_user, login_required, login_user
 
 from.index import index_views
 from .proposal import proposal_views
-from .rubric import rubric_views
+# from .rubric import rubric_views
 from .auth import auth_views
 
 from App.controllers import (create_student, create_lecturer)

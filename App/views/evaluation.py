@@ -17,8 +17,9 @@ def get_evaluation_page():
 @login_required
 def lect__evaluate():
     data = request.form
+    print(data['prop_id'])
     add_evaluation(data['notes'], data['novelty'], data['relevance'], data['feasibility'], data['impact'],
-                    data['sustainability'], data['technology'], data['id'])
+                    data['sustainability'], data['technology'], 1)
     flash('Evaluation Completed!')
     return redirect(url_for('history_views.get_submission_page'))
 

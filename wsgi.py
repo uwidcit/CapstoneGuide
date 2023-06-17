@@ -5,7 +5,7 @@ from flask.cli import with_appcontext, AppGroup
 from App.database import db, get_migrate
 from App.main import create_app
 from App.controllers import ( create_student, create_lecturer, add_rubric, 
-                             add_proposal,
+                             add_proposal, get_user_proposal, get_student, get_user_evaluations, add_evaluation,
                              remove_rubric, get_all_rubrics, get_all_lecturers )
 # This commands file allow you to create convenient CLI commands for testing controllers
 
@@ -20,9 +20,19 @@ def initialize():
     db.create_all()
     create_lecturer('bob', 'bobspass', 'bob@mycavehilluwi.edu', 'bob', 'smith', 1111)
     create_student('rob', 'robspass', 'rob@mycavehilluwi.edu', 'rob', 'smith', 2222)
-    add_proposal(2222, 'Cap Advisor', 'Students do not always have a supervisor available to provide feedback on their capstone projects',
-                  'we will devlop a software that allows students to have an AI assiatnt',
-                 3, '', 'students submit proposals based on cirtera', 'flask MVC')
+    # add_proposal(1, 'Cap Advisor', 'Students do not always have a supervisor available to provide feedback on their capstone projects',
+    #               'we will devlop a software that allows students to have an AI assiatnt',
+    #              3, '', 'students submit proposals based on cirtera', 'flask MVC')
+    # add_proposal(1, 'Reign Advisor', 'Students do not always have a supervisor available to provide feedback on their capstone projects',
+    #               'we will devlop a software that allows students to have an AI assiatnt',
+    #              3, '', 'students submit proposals based on cirtera', 'flask MVC')
+    # add_proposal(1, 'Feet Advisor', 'Students do not always have a supervisor available to provide feedback on their capstone projects',
+    #               'we will devlop a software that allows students to have an AI assiatnt',
+    #              3, '', 'students submit proposals based on cirtera', 'flask MVC')
+    
+    add_rubric('Free','notes', 3, 5, 6, 6, 6, 1, 101)
+    # add_evaluation('notes', 5, 7, 5, 3, 10, 5, 1)
+    # add_evaluation('notes', 5, 7, 5, 3, 10, 5, 2)
     print('database intialized')
 
 '''
@@ -84,7 +94,7 @@ rubric = AppGroup('rubric', help='Rubric object commands')
 @rubric.command("create", help="Creates a dummy rubric")
 @click.argument("notes", default="notes")
 def create_rubric_command(notes):
-    add_rubric(notes=notes, lecturerId=1, novelty=5, relevance=5, feasibility=5, impact=5, sustainability=5, technology=5)
+    add_rubric(notes=notes, lecturer_id=1, novelty=5, relevance=5, feasibility=5, impact=5, sustainability=5, technology=5)
     print(f'rubric created!')
 
 @rubric.command("list", help="Lists all rubrics in the database")

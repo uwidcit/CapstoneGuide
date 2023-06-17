@@ -1,13 +1,18 @@
 from App.models import Proposal
 from App.database import db
+from .user import get_student
 
 def add_proposal(student_id, proposal_nm, problem_desc, solution_desc,
                  num_members, notes, functionalities, technologies):
-    proposal = Proposal(student_id=student_id,proposal_nm=proposal_nm, problem_desc=problem_desc, solution_desc=solution_desc,
-                 num_members=num_members, requirements=functionalities, tools=technologies, notes=notes,)
-    db.session.add(proposal)
-    db.session.commit()
-    return proposal
+    student = get_student(student_id)
+    if student:
+        proposal = Proposal(student, proposal_nm=proposal_nm, problem_desc=problem_desc, solution_desc=solution_desc,
+                 num_members=num_members, requirements=functionalities, tools=technologies, notes=notes)
+        student.proposals.append(proposal)
+        db.session.add(proposal)
+        db.session.commit()
+        return proposal
+    return None
 
 def remove_proposal(student_id):
     proposal = Proposal.query.get(student_id)
@@ -17,8 +22,11 @@ def remove_proposal(student_id):
         return res
     return None
 
-def get_user_proposal(student_id, evaluationId):
-    proposal = Proposal.query.filter_by(student_id=student_id, evaluationId = evaluationId).all() 
+def get_proposal(proposal_id):
+    return Proposal.query.get(proposal_id)
+
+def get_user_proposal(proposal_id):
+    proposal = Proposal.query.filter_by(proposal_id = proposal_id).first() 
     return proposal
 
 def get_user_proposals(student_id):

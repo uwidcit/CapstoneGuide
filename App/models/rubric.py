@@ -1,8 +1,8 @@
 from App.database import db
 
 class Rubric(db.Model):
-    lecturer_id = db.Column(db.Integer, db.ForeignKey('lecturer.lecturer_id'))
-    id = db.Column(db.Integer, primary_key=True)  # to be used for options(CS, SE, all, etc.)
+    rubric_id = db.Column(db.Integer, primary_key=True)  # to be used for options(CS, SE, all, etc.)
+    id = db.Column(db.Integer, db.ForeignKey('lecturer.id'))
     name = db.Column(db.String(80))
     novelty = db.Column(db.Integer)
     relevance = db.Column(db.Integer)
@@ -21,5 +21,5 @@ class Rubric(db.Model):
         self.impact = impact
         self.sustainability = sustainability
         self.technology = technology
-        self.lecturer_id = lecturer_id
+        self.id = lecturer_id
 

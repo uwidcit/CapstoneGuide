@@ -14,11 +14,11 @@ def login(username, password):
         return student
 
     #login with ID    
-    lecturer = Lecturer.query.filter_by(lecturer_id=username).first()
+    lecturer = Lecturer.query.filter_by(uwi_id=username).first()
     if lecturer and lecturer.check_password(password):
         return lecturer
     
-    student = Student.query.filter_by(student_id=username).first()
+    student = Student.query.filter_by(uwi_id=username).first()
     if student and student.check_password(password):
         return student
     return None

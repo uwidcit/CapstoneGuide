@@ -24,15 +24,41 @@
       color: #000;
     }
     /* label focus color */
-    .input-field input[type]:focus + label, .materialize-textarea:focus + label {
+    .input-field input[type=text]:focus + label, .materialize-textarea:focus + label {
       color: #1a237e !important;
     }
 
     /* label underline focus color */
-    .input-field input[type]:focus, .materialize-textarea:focus{
+    .input-field input[type=text]:focus, .materialize-textarea:focus{
       border-bottom: 2px solid #1a237e !important;
       box-shadow: 0 1px 0 0 #1a237e !important;
     }
+    /*change Slider colours*/
+    input[type=range]::-webkit-slider-thumb {
+            background-color:#1a237e;
+        }
+        input[type=range]::-moz-range-thumb {
+            background-color: #1a237e;
+        }
+        input[type=range]::-ms-thumb {
+            background-color: #1a237e;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            height: 5px;
+            background: #c2c0c2;
+            border: none
+        }
+        .slide-label {
+            font-size: x-large;
+        }
+
+        /* These are to edit the thumb and the text inside the thumb */
+        input[type=range] + .thumb {
+            background-color: #dedede;
+        }
+        input[type=range] + .thumb.active .value {
+            color: #1a237e;
+        }
     /*Change font style*/
     *{
       font-family: 'Libre Baskerville', serif;

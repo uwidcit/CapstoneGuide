@@ -26,24 +26,100 @@
                     <table class="centered highlight striped">
                         <!--Status can be either Review In-Progress, Completed, or Under Manual Review-->
                         <thead><tr>
-                            <th>Date Submitted</th>
+                            <th></th>
+                            <th>Date Evaluated</th>
                             <th>Proposal Name</th>
                             <th>Evaluation Status</th>
-                            <th>Proposal Score</th>
+                            <th>Evaluation Score (/10)</th>
                         </tr></thead>
                         <tbody>
-                        <tr>
-                            <td>13-May-2023</td>
-                            <td>Cap Advisor</td>
-                            <td>Completed</td>
-                            <td>4/5</td>
-                        </tr>
-                        <tr>
-                            <td>13-May-2023</td>
-                            <td>Guessing Game</td>
-                            <td>In-Progress</td>
-                            <td>-</td>
-                        </tr>
+                        {% for evaluation in evaluations %}
+                            <tr>
+                                <td><a class="modal-trigger" href="#evaluation_modal" onclick="check_eval()"><i class="material-icons">input</i></a></td>
+                                <td>{{evaluation.created}}</td>
+                                <td id="name"></td>
+                                <td></td>
+                                <td>{{evaluation.score}}</td>
+                            </tr>
+                            <p id="novel" hidden>{{evaluation.novelty}}</p>
+                            <p id="rele" hidden>{{evaluation.relevance}}</p>
+                            <p id="feas" hidden>{{evaluation.feasibility}}</p>
+                            <p id="imp" hidden>{{evaluation.impact}}</p>
+                            <p id="sus" hidden>{{evaluation.sustainability}}</p>
+                            <p id="tech" hidden>{{evaluation.technology}}</p>
+                            <p id="comments" hidden>{{evaluation.comments}}</p>
+                            <!-- Modal Structure: View Evaluations -->
+<div id="evaluation_modal" class="modal modal-fixed-footer">
+    <form>
+        <div class="modal-content">
+            <h3>Proposal Name</h3>
+
+            <div class="row slide-label">
+                <div class="input-field col s6">
+                    <label for="novelty">Novelty</label>
+                <p class="range-field">
+                    <input id="eval_novel" type="range" name="novelty" min="1" max="10" disabled />
+                </p>
+                </div>
+
+                <div class="input-field col s6">
+                    <label for="relevance">Relevance</label>
+                <p class="range-field">
+                    <input id="eval_rele" type="range" name="relevance" min="1" max="10" disabled/>
+                </p>
+                
+                </div>
+            </div>
+
+            <div class="row slide-label">
+                <div class="input-field col s6">
+                    <label for="feasibility">Feasibility</label>
+                <p class="range-field">
+                    <input id="eval_feas" type="range" name="feasibility" min="1" max="10" disabled />
+                </p>
+                
+                </div>
+                <div class="input-field col s6">
+                    <label for="impact">Impact</label>
+                <p class="range-field">
+                    <input id="eval_imp" type="range" name="impact" min="1" max="10"  disabled/>
+                </p>
+                
+                </div>
+            </div>
+
+            <div class="row slide-label">
+                <div class="input-field col s6">
+                    <label for="sustainability">Sustainability</label>
+                <p class="range-field">
+                    <input id="eval_sus" type="range" name="sustainability" min="1" max="10" disabled/>
+                </p>
+                
+                </div>
+                <div class="input-field col s6">
+                    <label for="technology">Technology</label>
+                <p class="range-field">
+                    <input id="eval_tech" type="range" name="technology" min="1" max="10" disabled/>
+                </p>
+               
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                <textarea name="comments" class="materialize-textarea" disabled></textarea>
+                <label id="eval_comments" for="comments">Comments</label>
+                </div>
+            </div>
+
+        </div>
+
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-grey btn-flat" style="background-color: whitesmoke;">Close</a>
+                </div>
+            </form>
+        </div>
+                        {% endfor %}
                         </tbody>
                     </table>
                     </div>
@@ -60,6 +136,7 @@
                     <div class="row">
                         <table class="centered highlight striped">
                             <thead><tr>
+                                <th></th>
                                 <th>Date Submitted</th>
                                 <th>Proposal Name</th>
                                 <th>No. of Group Members</th>
@@ -67,10 +144,18 @@
                             <tbody>
                             {% for proposal in proposals %}
                                 <tr>
+                                    <td><a class="modal-trigger" href="#proposal_modal" onclick="check_prop()"><i class="material-icons">input</i></a></td>
                                     <td>{{proposal.created}}</td>
                                     <td>{{proposal.proposal_name}}</td>
                                     <td>{{proposal.num_members}}</td>
                                 </tr>
+                                <p id="p_id" hidden>{{proposal.proposal_id}}</p>
+                                <p id="prob" hidden>{{proposal.problem_desc}}</p>
+                                <p id="sol" hidden>{{proposal.solution_desc}}</p>
+                                <p id="note" hidden>{{proposal.notes}}</p>
+                                <p id="req" hidden>{{proposal.requirements}}</p>
+                                <p id="tool" hidden>{{proposal.tools}}</p>
+                                <p id="mem" hidden>{{proposal.num_members}}</p>
                             {% endfor %}
                             </tbody>
                         </table>
@@ -82,4 +167,70 @@
 
         </div>
     </div>
+
+
+
+<!-- Modal Structure: View Proposal -->
+<div id="proposal_modal" class="modal modal-fixed-footer">
+    <form>
+        <div class="modal-content">
+            <div class="row slide-label">
+                <div class="input-field col s6">
+                    <label for="feasibility">Feasibility</label>
+                <p class="range-field">
+                    <input type="range" name="feasibility" min="1" max="10"  />
+                </p>
+                
+                </div>
+                <div class="input-field col s6">
+                    <label for="impact">Impact</label>
+                <p class="range-field">
+                    <input type="range" name="impact" min="1" max="10" />
+                </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s3">
+                    <h3>proposal.proposal_name</h3>
+                </div>
+                <div class="right">
+                    <p>Members: proposal.num_members</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col s12">
+                    <p>Problem Statement: proposal.problem_desc</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <p>Solution Goal: proposal.solution_desc</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <p>Proposal Requirements: proposal.requirements</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <p>Proposed Tools: proposal.tools</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <p">Addtional Info: proposal.notes</p>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn indigo darken-4 z-depth-1 waves-effect waves-light" type="submit">
+                    Confirm
+                </button>
+                <a href="#!" class="modal-close waves-effect waves-grey btn-flat" style="background-color: whitesmoke;">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>
 {% endblock %}

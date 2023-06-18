@@ -12,7 +12,6 @@ def index_page():
 def init():
     db.drop_all()
     db.create_all()
-    create_student('bob', 'bob', 'pass', 'bobpass', 'bobpass@uwi.cavehill.edu')
     return jsonify(message='db initialized!')
 
 @index_views.route('/health', methods=['GET'])

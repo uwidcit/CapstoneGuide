@@ -1,22 +1,25 @@
 from App.database import db
 
 class Rubric(db.Model):
-    supervisorId = db.Column(db.Integer, db.ForeignKey('supervisor.id'))
+    lecturer_id = db.Column(db.Integer, db.ForeignKey('lecturer.lecturer_id'))
     id = db.Column(db.Integer, primary_key=True)  # to be used for options(CS, SE, all, etc.)
-    novelty = db.Column(db.String)
-    relevance = db.Column(db.String)
-    feasibility = db.Column(db.String)
-    notes = db.Column(db.String)
-    impact = db.Column(db.String)
-    sustainability = db.Column(db.String)
-    technologies = db.Column(db.String)
+    name = db.Column(db.String(80))
+    novelty = db.Column(db.Integer)
+    relevance = db.Column(db.Integer)
+    feasibility = db.Column(db.Integer)
+    notes = db.Column(db.String(80))
+    impact = db.Column(db.Integer)
+    sustainability = db.Column(db.Integer)
+    technology = db.Column(db.Integer)
 
-    def __init__(self, novelty, feasibility, notes, impact, sustainability, technologies, supervisorId):
-        self.supervisorId = supervisorId
-        self.novelty = novelty
-        self.feasibility = feasibility
+    def __init__(self, name, notes, novelty, relevance, feasibility, impact, sustainability, technology, lecturer_id):
+        self.name = name.capitalize() 
         self.notes = notes
+        self.novelty = novelty
+        self.relevance = relevance
+        self.feasibility = feasibility
         self.impact = impact
-        self.technologies = technologies
         self.sustainability = sustainability
+        self.technology = technology
+        self.lecturer_id = lecturer_id
 

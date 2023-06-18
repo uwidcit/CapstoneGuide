@@ -3,25 +3,26 @@ from datetime import datetime
 
 
 class Proposal(db.Model):
-    proposalId = db.Column(db.Integer, primary_key=True)
-    studentId = db.Column(db.Integer, db.ForeignKey('student.id'))
+    proposal_id = db.Column(db.Integer, primary_key=True)
+    student_id = db.Column(db.Integer, db.ForeignKey('student.id'))
     rubricId = db.Column(db.Integer, db.ForeignKey('rubric.id'))
+    proposal_name = db.Column(db.String) 
     problem_desc = db.Column(db.String)
     solution_desc = db.Column(db.String)
     notes = db.Column(db.String)
-    functionalities = db.Column(db.String)
-    technologies = db.Column(db.String)
+    requirements = db.Column(db.String)
+    tools = db.Column(db.String)
     num_members = db.Column(db.Integer)
-    created = db.Column(db.DateTime, default=datetime.utcnow)
+    created = db.Column(db.String, default=datetime.utcnow().strftime('%d-%B-%Y')) # 13-May-2023
 
 
-    def __init__(self, studentId, rubricId, problem_desc, solution_desc,
-                 num_members, notes, functionalities, technologies):
-        self.studentId = studentId
-        self.rubricId = rubricId
+    def __init__(self, student_id, proposal_nm, problem_desc, solution_desc, num_members, requirements, tools, notes):
+        self.proposal_name = proposal_nm.capitalize() 
+        self.student_id = student_id
+        #self.rubricId = 1
         self.problem_desc = problem_desc
         self.solution_desc = solution_desc
-        self.num_members = num_members
+        self.num_members = int(num_members)
         self.notes = notes
-        self.functionalities = functionalities
-        self.technologies = technologies
+        self.requirements = requirements
+        self.tools = tools

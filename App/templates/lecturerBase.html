@@ -28,6 +28,14 @@
             font-family: 'Ubuntu', sans-serif;
 
         }
+        div .btn, .btn-flat {
+            border-radius: 30px;
+        }
+
+        .modal-content p{
+            font-size: large;
+        }
+
         main{
             min-height: 80vh;
         }
@@ -38,12 +46,7 @@
             margin-bottom: 80px;
             width: 100%;
         }
-        a.btn {
-            border-radius: 30px;
-            width: 200px;
-            color: #00e5ff;
-        }
-            @media (min-width : 993px){
+        @media (min-width : 993px){
                 .brand-logo{
                     margin-left: 70px;
                 }
@@ -51,21 +54,61 @@
                     display:block;
             }
         }
- 
-        /* label focus color */
-        .input-field input[type]:focus + label,.input-field input[textarea]:focus + label {
-            color: #1a237e !important;
-            }
-        /* label underline focus color */
-        .input-field input[type]:focus,.input-field input[textarea]:focus {
-            border-bottom: 1px solid #1a237e !important;
-            box-shadow: 0 1px 0 0 #1a237e !important;
+        div .fixed-action-button{
+            position:fixed;
+            bottom: 15rem;
+            right: 5rem;
         }
-            #selector{
-                height:1000vh;
-                border-style: solid;
-                border-color: blue;
-            }
+        .btn-floating, .btn-floating:hover{
+            background-color: #1a237e;
+        }
+ 
+            /* label color */
+        .input-field label {
+            color: #000;
+        }
+        /* label focus color */
+        .input-field input[type]:focus + label, .materialize-textarea:focus + label {
+            color: #1a237e !important;
+        }
+
+        /* label underline focus color */
+        .input-field input[type=text]:focus, .materialize-textarea:focus{
+        border-bottom: 2px solid #1a237e !important;
+        box-shadow: 0 1px 0 0 #1a237e !important;
+        }
+        /*change Slider colours*/
+        input[type=range]::-webkit-slider-thumb {
+            background-color:#1a237e;
+        }
+        input[type=range]::-moz-range-thumb {
+            background-color: #1a237e;
+        }
+        input[type=range]::-ms-thumb {
+            background-color: #1a237e;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            height: 5px;
+            background: #c2c0c2;
+            border: none
+        }
+        .slide-label {
+            font-size: x-large;
+        }
+
+        /* These are to edit the thumb and the text inside the thumb */
+        input[type=range] + .thumb {
+            background-color: #dedede;
+        }
+        input[type=range] + .thumb.active .value {
+            color: #1a237e;
+        }
+
+        #selector{
+            height:1000vh;
+            border-style: solid;
+            border-color: blue;
+        }
         .sidenav .logo-container {
             padding: 0 17px;
             height: 64px;
@@ -82,13 +125,13 @@
     <header>
     <ul id="slide-out" class="sidenav z-depth-2">
         <li><a class="logo-container" style="height:62px; padding:5px;">
-          <span style="margin-left:25px">
-              Dashboard
+          <span style="margin-left:25px" id="message">
+            {{current_user.first_name}}
           </span>
         </a></li>
         {% block menuItems %}
         {% endblock %}
-        <li id="bottom-div"><a href="/login">
+        <li id="bottom-div"><a href="/logout">
             <span>Log Out</span>
           </a></li>
     </ul>
@@ -120,33 +163,41 @@
         <div class="container">{% block content %}{% endblock %}</div>
     </main>
 
-    <footer class="page-footer indigo darken-4">
-        <div class="container">
-            <div class="row">
-                <div class="col l6 s12">
-                    <h5 class="white-text">About Floodtech</h5>
-                    <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-                </div>
-                <div class="col l4 offset-l2 s12">
-                    <h5 class="white-text">Contact Us</h5>
-                    <ul>
-                        <li><a class="grey-text text-lighten-3" href="#!">floodtechbdos@gmail.com</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">https://floodtech.bdos.com</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-copyright">
-            <div class="container">
-                © 2023 Copyright
-                <!--<a class="grey-text text-lighten-4 right" href="#!">More Links</a>-->
-            </div>
-        </div>
-    </footer>
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script> M.AutoInit();  </script>
+<script>
+    M.AutoInit();  
+    //toast for flash messages
+    document.addEventListener("DOMContentLoaded", function() {
+        var message = document.getElementById('message');
+        if(message.innerText.slice(-1) == 's'){
+            message.innerText = message.innerText + "' Dashboard"
+        }else{
+            message.innerText = message.innerText + "'s Dashboard"
+        }
+
+    });
+
+    function check(){
+        document.getElementById('prop_name').innerText += document.getElementById('name').innerText
+        document.getElementById('prop_prob').innerText += document.getElementById('prob').innerText
+        document.getElementById('prop_sol').innerText += document.getElementById('sol').innerText
+        document.getElementById('prop_mem').innerText += document.getElementById('mem').innerText
+        document.getElementById('prop_req').innerText += document.getElementById('req').innerText
+        document.getElementById('prop_tool').innerText += document.getElementById('tool').innerText
+        document.getElementById('prop_note').innerText += document.getElementById('note').innerText
+        document.getElementById('prop_id').innerText = document.getElementById('p_id').innerText
+    }
+</script>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    {% for message in messages %}
+    <script>
+        M.toast({html: '{{ message }}'});
+    </script>
+    {% endfor %}
+{% endif %}
+{% endwith %}
 
 </body>
 </html>

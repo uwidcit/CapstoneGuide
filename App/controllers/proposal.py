@@ -24,5 +24,5 @@ def get_user_proposal(student_id, evaluationId):
 def get_user_proposals(student_id):
     return Proposal.query.filter_by(student_id=student_id).all()
 
-def get_all_proposal():
+def get_all_proposals():
     return Proposal.query.all()

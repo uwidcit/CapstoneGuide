@@ -1,6 +1,6 @@
 from flask_login import login_user, current_user, LoginManager
 from App.models import db, User, Student, Lecturer
-from .user import create_student, create_lecturer
+#from .user import create_student, create_lecturer
 from functools import wraps
 
 def login(username, password):
@@ -8,8 +8,8 @@ def login(username, password):
     lecturer = Lecturer.query.filter_by(username=username).first()
     if lecturer and lecturer.check_password(password):
         return lecturer
+    
     student = Student.query.filter_by(username=username).first()
-
     if student and student.check_password(password):
         return student
 
@@ -17,6 +17,7 @@ def login(username, password):
     lecturer = Lecturer.query.filter_by(lecturer_id=username).first()
     if lecturer and lecturer.check_password(password):
         return lecturer
+    
     student = Student.query.filter_by(student_id=username).first()
     if student and student.check_password(password):
         return student

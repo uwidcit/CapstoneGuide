@@ -16,8 +16,10 @@ migrate = get_migrate(app)
 def initialize():
     db.drop_all()
     db.create_all()
-    # create_lecturer('bob', 'bobspass', 'bob@mycavehilluwi.edu', 'bob', 'smith', 1232)
-    # create_student('rob', 'robspass', 'rob@mycavehilluwi.edu', 'rob', 'smith', 1232)
+    bob = create_lecturer('bob', 'bobspass', 'bob@mycavehilluwi.edu', 'bob', 'smith', 1232)
+    add_rubric('SWEN 3290 - Capstrone', 'notes', 5, 5, 5, 5, 5, 5, bob.id)
+    add_rubric('Year 2 Web Project', 'notes', 1, 1, 2, 3, 5, 5, bob.id)
+    create_student('rob', 'robspass', 'rob@mycavehilluwi.edu', 'rob', 'smith', 1232)
     print('database intialized')
 
 '''

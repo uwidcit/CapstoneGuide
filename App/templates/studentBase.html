@@ -89,12 +89,12 @@
   <header>
     <ul id="slide-out" class="sidenav z-depth-2" >
       <li>
-        <a class="logo-container" style="height:62px; padding:5px;"><span style="margin-left:25px">Dashboard</span></a>
+        <a class="logo-container" style="height:62px; padding:5px;"><span style="margin-left:25px" id="message">{{current_user.first_name}}</span></a>
       </li>
       {% block menuItems %}
       {% endblock %}
       <li id="bottom-div">
-        <a href="/login"><span>Log Out</span></a>
+        <a href="/logout"><span>Log Out</span></a>
       </li>
     </ul>
 
@@ -129,7 +129,7 @@
   <div class="row">
   <div class="col l6 s12">
   <h5 class="white-text">About Floodtech</h5>
-  <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+  <p class="grey-text text-lighten-4">Founded in 2020 to provide software solutions for students. Existing members are Alexander, Dante, and Ramon.</p>
   </div>
   <div class="col l4 offset-l2 s12">
   <h5 class="white-text">Contact Us</h5>
@@ -149,7 +149,16 @@
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script> M.AutoInit();</script>
+  <script> M.AutoInit();
+      document.addEventListener("DOMContentLoaded", function() {
+        var message = document.getElementById('message');
+        if(message.innerText.slice(-1) == 's'){
+            message.innerText = message.innerText + "' Dashboard"
+        }else{
+            message.innerText = message.innerText + "'s Dashboard"
+        }
+    });
+  </script>
   {% with messages = get_flashed_messages() %}
 {% if messages %}
     {% for message in messages %}

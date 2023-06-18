@@ -1,7 +1,7 @@
 from App.database import db
 
 class Rubric(db.Model):
-    lecturerId = db.Column(db.Integer, db.ForeignKey('lecturer.lecturerId'))
+    lecturer_id = db.Column(db.Integer, db.ForeignKey('lecturer.lecturer_id'))
     id = db.Column(db.Integer, primary_key=True)  # to be used for options(CS, SE, all, etc.)
     name = db.Column(db.String(80))
     novelty = db.Column(db.Integer)
@@ -12,8 +12,8 @@ class Rubric(db.Model):
     sustainability = db.Column(db.Integer)
     technology = db.Column(db.Integer)
 
-    def __init__(self, name, notes, novelty, relevance, feasibility, impact, sustainability, technology, lecturerId):
-        self.name = name
+    def __init__(self, name, notes, novelty, relevance, feasibility, impact, sustainability, technology, lecturer_id):
+        self.name = name.capitalize() 
         self.notes = notes
         self.novelty = novelty
         self.relevance = relevance
@@ -21,5 +21,5 @@ class Rubric(db.Model):
         self.impact = impact
         self.sustainability = sustainability
         self.technology = technology
-        self.lecturerId = lecturerId
+        self.lecturer_id = lecturer_id
 

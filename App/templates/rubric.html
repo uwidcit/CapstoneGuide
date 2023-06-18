@@ -12,9 +12,8 @@
 {% endblock %}
 
 {% block content %}
-
     <div class="row equal-height-grid" style="margin-bottom:5rem; margin-top:1.2rem;">
-        <h1>Your Rubrics</h1>
+        <h1 id="message">Your Rubrics</h1>
         <div class="col s12">
             {% for rubric in rubrics %}
                 <div class="card col s12 m4">
@@ -36,8 +35,7 @@
                     <div class="card-action">
                         <a href="#update_rubric_modal" class="indigo-text modal-trigger">Edit</a>
                         <a href="/delete-rubric/{{rubric.id}}" class="right red-text">Delete</a>
-                    </div>
-                        
+                    </div>     
                 </div>
             {% endfor %}
         </div>
@@ -136,10 +134,11 @@
         </div>
     </form>
 </div>
+{% endblock %}
 
-<!-- Modal Structure: Update Rubric -->
+<!-- Modal Structure: Update Rubric
 
-<!--<div id="update_rubric_modal" class="modal modal-fixed-footer">
+<div id="update_rubric_modal" class="modal modal-fixed-footer">
     <form method="POST" action="/update-rubric">
 
         <div class="modal-content">
@@ -227,4 +226,3 @@
 
 </div>-->
 
-{% endblock %}

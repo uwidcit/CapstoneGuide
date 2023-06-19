@@ -23,7 +23,6 @@
             font-weight: 400;
         }
         .brand-logo {
-            margin-left:30px;
             font-family: 'Libre Baskerville', serif;
             font-family: 'Ubuntu', sans-serif;
 
@@ -31,13 +30,17 @@
         div .btn, .btn-flat {
             border-radius: 30px;
         }
-
-        .modal-content p{
-            font-size: large;
-        }
-
         main{
             min-height: 80vh;
+        }
+
+        main, header{
+           padding-left: 300px;
+        }
+        @media (max-width : 992px) {
+            header, main{
+                padding-left: 0;
+            }
         }
         #bottom-div{
             position: absolute;
@@ -47,16 +50,22 @@
             width: 100%;
         }
         @media (min-width : 993px){
-                .brand-logo{
-                    margin-left: 70px;
-                }
-                nav a.sidenav-trigger {
-                    display:block;
+            .brand-logo{
+                margin-left: 40px;
             }
+            nav a.sidenav-trigger {
+                display:none;
+            }
+        }
+        div p{
+            font-size: large;
+        }
+        label {
+            font-size: large;
         }
         div .fixed-action-button{
             position:fixed;
-            bottom: 15rem;
+            bottom: 10rem;
             right: 5rem;
         }
         .btn-floating, .btn-floating:hover{
@@ -123,8 +132,8 @@
 
 <body>
     <header>
-    <ul id="slide-out" class="sidenav z-depth-2">
-        <li><a class="logo-container" style="height:62px; padding:5px;">
+    <ul id="slide-out" class="sidenav sidenav-fixed z-depth-2">
+        <li style="background-color: #D8FEF9;"><a class="logo-container" style="height:62px; padding:5px;">
           <span style="margin-left:25px" id="message">
             {{current_user.first_name}}
           </span>
@@ -159,9 +168,9 @@
     </nav>
 </header>
 
-    <main>
-        <div class="container">{% block content %}{% endblock %}</div>
-    </main>
+<main>
+    <div class="container">{% block content %}{% endblock %}</div>
+</main>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -178,16 +187,6 @@
 
     });
 
-    function check(){
-        document.getElementById('prop_name').innerText += document.getElementById('name').innerText
-        document.getElementById('prop_prob').innerText += document.getElementById('prob').innerText
-        document.getElementById('prop_sol').innerText += document.getElementById('sol').innerText
-        document.getElementById('prop_mem').innerText += document.getElementById('mem').innerText
-        document.getElementById('prop_req').innerText += document.getElementById('req').innerText
-        document.getElementById('prop_tool').innerText += document.getElementById('tool').innerText
-        document.getElementById('prop_note').innerText += document.getElementById('note').innerText
-        document.getElementById('prop_id').innerText = document.getElementById('p_id').innerText
-    }
 </script>
 {% with messages = get_flashed_messages() %}
 {% if messages %}

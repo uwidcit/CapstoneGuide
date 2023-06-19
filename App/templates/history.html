@@ -20,32 +20,82 @@
 
             <div class="card">
                 <div class="divider"></div>
-
                 <div class="card-content" style="min-height: 600px;">
                     <div class="row">
-                    <table class="centered highlight striped">
-                        <!--Status can be either Review In-Progress, Completed, or Under Manual Review-->
-                        <thead><tr>
-                            <th>Date Submitted</th>
-                            <th>Proposal Name</th>
-                            <th>Evaluation Status</th>
-                            <th>Proposal Score</th>
-                        </tr></thead>
-                        <tbody>
-                        <tr>
-                            <td>13-May-2023</td>
-                            <td>Cap Advisor</td>
-                            <td>Completed</td>
-                            <td>4/5</td>
-                        </tr>
-                        <tr>
-                            <td>13-May-2023</td>
-                            <td>Guessing Game</td>
-                            <td>In-Progress</td>
-                            <td>-</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                        <table class="centered highlight striped">
+                            <thead><tr>
+                                <th></th>
+                                <th>Date Evaluated</th>
+                                <th>Proposal Name</th>
+                                <th>Evaluator</th>
+                                <th>Evaluation Score (/10)</th>
+                            </tr></thead>
+                            <tbody>
+                            {% for evaluation in evaluations %}
+                                <tr>
+                                    <td><a class="modal-trigger" href="#evaluation_modal{{evaluation.evaluation_id}}"><i class="material-icons">input</i></a></td>
+                                    <td>{{evaluation.created}}</td>
+                                    <td id="name">{{evaluation.proposal.proposal_name}}</td>
+                                    <td></td>
+                                    <td>{{evaluation.score}}</td>
+                                </tr>
+
+                                  <!-- Modal Structure: View Evaluations -->
+                                <div id="evaluation_modal{{evaluation.evaluation_id}}" class="modal modal-fixed-footer">
+                                    <form >
+                                        
+                                        <div class="modal-content">
+                                            <div class="row" >
+                                                <div class="col s5">
+                                                    <h3>{{evaluation.proposal.proposal_name}}</h3>
+                                                </div>
+                                                <div class="col s2 offset-s4">
+                                                    <h5>Score: {{evaluation.score}}/10</h5>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row" style="margin-top: 3em;">
+                                                <div class="col s3 offset-s2">
+                                                    <h5>Novelty: {{evaluation.novelty}}</h5>
+                                                </div>
+                                                <div class="col s3 offset-s3">
+                                                    <h5>Relevance: {{evaluation.relevance}}</h5>
+                                                </div>
+                                            </div>
+         
+                                            <div class="row">
+                                                <div class="col s3 offset-s2">
+                                                    <h5>Feasibility: {{evaluation.feasibility}}</h5>
+                                                </div>
+                                                <div class="col s3 offset-s3">
+                                                    <h5>Impact {{evaluation.impact}}</h5>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col s3 offset-s2">
+                                                    <h5>Sustainability: {{evaluation.sustainability}}</h5>
+                                                </div>
+                                                <div class="col s3 offset-s3">
+                                                    <h5>Resources: {{evaluation.technologies}}</h5>
+                                                </div>
+                                            </div>
+                                
+                                            <div class="row" style="margin-top: 8em;">
+                                                <div class="input-field col s12">
+                                                <textarea name="notes" class="materialize-textarea" disabled>{{evaluation.comments}}</textarea>
+                                                <label for="notes" style="font-size: large;">Reviewer's Comments</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">      
+                                            <a href="#!" class="modal-close waves-effect waves-grey btn-flat" style="background-color: lightgray; border-radius: 30px;">Close</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -59,18 +109,93 @@
                 <div class="card-content" style="min-height: 600px;">
                     <div class="row">
                         <table class="centered highlight striped">
-                            <thead><tr>
+                            <thead>
+                            <tr>
+                                <th></th>
                                 <th>Date Submitted</th>
+                                <th>Student Name</th>
                                 <th>Proposal Name</th>
-                                <th>No. of Group Members</th>
+                                <th></th>
                             </tr></thead>
                             <tbody>
                             {% for proposal in proposals %}
                                 <tr>
+                                    <td><a class=" modal-trigger" href="#eval_proposal_modal{{proposal.proposal_id}}">
+                                        <i class="material-icons blue-text">input</i></a></td>
                                     <td>{{proposal.created}}</td>
-                                    <td>{{proposal.proposal_name}}</td>
-                                    <td>{{proposal.num_members}}</td>
+                                    <td id="name">{{proposal.student.first_name}} {{proposal.student.last_name}}</td>
+                                    <td id="name">{{proposal.proposal_name}}</td>
+                                    <td><a class="" href="/delete-proposal/{{proposal.proposal_id}}">
+                                        <i class="material-icons red-text">delete</i></a></td>
                                 </tr>
+                                 <!--Modal Structure: Grade Proposal-->
+                                <div id="eval_proposal_modal{{proposal.proposal_id}}" class="modal modal-fixed-footer">
+                                    <form>
+                                        
+                                        <div class="modal-content">
+                                            <div class="row">
+                                                <div class="col s5">
+                                                    <h3>{{proposal.proposal_name}}</h3>
+                                                </div>
+                                                <div class="col s2 offset-s4">
+                                                    <h5>Members: {{proposal.num_members}}</h5>
+                                                </div>
+                                            </div>
+
+                                            <h4> <span class="section-title"> Relevance</span> </h4>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Problem Statement: {{proposal.problem_desc}}</p>
+                                                </div>
+                                            </div>
+
+                                            <h4> <span class="section-title">Summary </span> </h4>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Solution Goal: {{proposal.solution_desc}}</p>
+                                                </div>
+                                            </div>
+
+                                            <h4> <span class="section-title">Feasibility </span> </h4>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Requirements: {{proposal.requirements}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Resources: {{proposal.tools}}</p>
+                                                </div>
+                                            </div>
+
+                                            <h4> <span class="section-title">Impact</span> </h4>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Desired Goals: {{proposal.impact}}</p>
+                                                </div>
+                                            </div>
+
+                                            <h4> <span class="section-title">Sustainability</span> </h4>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Sustainability: {{proposal.sustainability}}</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <h4> <span class="section-title">Additional Information</span> </h4>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Addtional Info: {{proposal.notes}}</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                
+                                        <div class="modal-footer">
+                                            <a href="#!" class="modal-close waves-effect waves-grey btn-flat" style="background-color: lightgray; border-radius: 30px;">Close</a>
+                                        </div>
+                                    </form>
+                                </div>
                             {% endfor %}
                             </tbody>
                         </table>

@@ -3,9 +3,10 @@ from .user import User
 
 
 class Lecturer(User):
-    __tablename__ = 'lecturer'
-    lecturer_id = db.Column(db.Integer, unique=True)
+    uwi_id = db.Column(db.Integer, unique=True)
+    rubrics = db.relationship('Rubric', backref=db.backref('lecturer', lazy='joined'))
+    evaluations = db.relationship('Evaluation', backref=db.backref('lecturer', lazy='joined'))
 
-    def __init__(self, username, password, email, first_name, last_name, lecturer_id):
+    def __init__(self, username, password, email, first_name, last_name, uwi_id):
         super().__init__(username, password, email, first_name, last_name)
-        self.lecturer_id = lecturer_id
+        self.uwi_id = uwi_id

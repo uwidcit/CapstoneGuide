@@ -6,7 +6,7 @@
 {% block menuItems %}
     <li class="no-padding">
         <ul>
-            <li style="margin-top: 62px"><a href="/rubric">Add New Rubric</a></li>
+            <li style="margin-top: 62px"><a href="/rubric">Rubric</a></li>
             <li  class="active"><a href="/submissions">Student Proposals</a></li>
         </ul>
     </li>
@@ -17,8 +17,8 @@
     <div class="row " style="margin-bottom:5rem; margin-top:1.2rem;">
         <div class="col s12">
 
-            <!--Proposal History-->
-            <h3 style="margin-top: 5rem;"> <span class="section-title"> Proposal Submissions </span> </h3>
+            <!--Pending Evaluations-->
+            <h3 style="margin-top: 5rem;"> <span class="section-title"> Pending Evaluations </span> </h3>
 
             <div class="card">
                 <div class="divider"></div>
@@ -31,23 +31,161 @@
                                 <th></th>
                                 <th>Date Submitted</th>
                                 <th>Student ID</th>
+                                <th>Student Name</th>
                                 <th>Proposal Name</th>
                             </tr></thead>
                             <tbody>
                             {% for proposal in proposals %}
+                                {% if proposal.status == 0 %}
                                 <tr>
-                                    <td><a class="modal-trigger" href="#eval_proposal_modal" onclick="check()"><i class="material-icons">input</i></a></td>
+                                    <td><a class="modal-trigger" href="#eval_proposal_modal{{proposal.proposal_id}}">
+                                        <i class="material-icons blue-text">input</i></a></td>
                                     <td>{{proposal.created}}</td>
-                                    <td>{{proposal.student_id}}</td>
+                                    <td id="uwi_id">{{proposal.student.uwi_id}}</td>
+                                    <td id="full_name">{{proposal.student.first_name}} {{proposal.student.last_name}}</td>
                                     <td id="name">{{proposal.proposal_name}}</td>
                                 </tr>
-                                <p id="p_id" hidden>{{proposal.proposal_id}}</p>
-                                <p id="prob" hidden>{{proposal.problem_desc}}</p>
-                                <p id="sol" hidden>{{proposal.solution_desc}}</p>
-                                <p id="note" hidden>{{proposal.notes}}</p>
-                                <p id="req" hidden>{{proposal.requirements}}</p>
-                                <p id="tool" hidden>{{proposal.tools}}</p>
-                                <p id="mem" hidden>{{proposal.num_members}}</p>
+                                 <!--Modal Structure: Grade Proposal-->
+                                <div id="eval_proposal_modal{{proposal.proposal_id}}" class="modal modal-fixed-footer">
+                                    <form method="POST" action="/man-evaluation">
+                                        
+                                        <div class="modal-content">
+                                           <div class="row">
+                                                <div class="col s5">
+                                                    <h3>{{proposal.proposal_name}}</h3>
+                                                </div>
+                                                <div class="col s2 offset-s4">
+                                                    <h5>Members: {{proposal.num_members}}</h5>
+                                                </div>
+                                            </div>
+
+                                            <h4> <span class="section-title"> Relevance</span> </h4>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Problem Statement: {{proposal.problem_desc}}</p>
+                                                </div>
+                                            </div>
+
+                                            <h4> <span class="section-title">Summary </span> </h4>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Solution Goal: {{proposal.solution_desc}}</p>
+                                                </div>
+                                            </div>
+
+                                            <h4> <span class="section-title">Feasibility </span> </h4>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Requirements: {{proposal.requirements}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Resources: {{proposal.tools}}</p>
+                                                </div>
+                                            </div>
+
+                                            <h4> <span class="section-title">Impact</span> </h4>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Desired Goals: {{proposal.impact}}</p>
+                                                </div>
+                                            </div>
+
+                                            <h4> <span class="section-title">Sustainability</span> </h4>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Sustainability: {{proposal.sustainability}}</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <h4> <span class="section-title">Additional Information</span> </h4>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Addtional Info: {{proposal.notes}}</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="input-field col s4">
+                                                    <input name="prop_id" type="text" value="{{proposal.proposal_id}}" hidden>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row slide-label">
+                                                <div class="input-field col s6">
+                                                
+                                                <p class="range-field">
+                                                    <label for="novelty">Novelty</label>
+                                                    <input type="range" name="novelty" min="1" max="10" />
+                                                </p>
+                                                </div>
+                                
+                                                <div class="input-field col s6">
+                                                    
+                                                <p class="range-field">
+                                                    <label for="relevance">Relevance</label>
+                                                    <input type="range" name="relevance" min="1" max="10" />
+                                                </p>
+                                                
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row slide-label">
+                                                <div class="input-field col s6">
+                                                    
+                                                <p class="range-field">
+                                                    <label for="feasibility">Feasibility</label>
+                                                    <input type="range" name="feasibility" min="1" max="10"  />
+                                                </p>
+                                                
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    
+                                                <p class="range-field">
+                                                    <label for="impact">Impact</label>
+                                                    <input type="range" name="impact" min="1" max="10" />
+                                                </p>
+                                                </div>
+                                            </div>
+                                
+                                            <div class="row slide-label">
+                                                <div class="input-field col s6">
+                                                    
+                                                <p class="range-field">
+                                                    <label for="sustainability">Sustainability</label>
+                                                    <input type="range" name="sustainability" min="1" max="10" />
+                                                </p>
+                                                
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    
+                                                <p class="range-field">
+                                                    <label for="technology">Technology</label>
+                                                    <input type="range" name="technology" min="1" max="10" />
+                                                </p>
+                                            
+                                                </div>
+                                            </div>
+                                
+                                            <div class="row">
+                                                <div class="input-field col s12">
+                                                <textarea name="notes" class="materialize-textarea"></textarea>
+                                                <label for="notes" style="font-size: large;">Comments</label>
+                                                </div>
+                                            </div>
+                                
+                                        </div>
+                                
+                                        <div class="modal-footer">
+                                            <button class="btn indigo darken-4 z-depth-1 waves-effect waves-light" type="submit">
+                                                Evaluate
+                                            </button>
+                                            <a href="#!" class="modal-close waves-effect waves-grey btn-flat" style="background-color: lightgray;">Cancel</a>
+                                        </div>
+                                    </form>
+                                </div>
+                                {% endif %}
                             {% endfor %}
                             </tbody>
                         </table>
@@ -55,156 +193,188 @@
                 </div>
             </div>
 
-            <!-- Evaluation History
-           <h3> <span class="section-title"> Evaluation History </span> </h3>
+            <!--Completed Evaluations-->
+            <h3 style="margin-top: 5rem;"> <span class="section-title"> Completed Evaluations </span> </h3>
 
             <div class="card">
                 <div class="divider"></div>
 
                 <div class="card-content" style="min-height: 600px;">
                     <div class="row">
-                    <table class="centered highlight striped">
-                        Status can be either Review In-Progress, Completed, or Under Manual Review
-                        <thead><tr>
-                            <th>Date Submitted</th>
-                            <th>Proposal Name</th>
-                            <th>Evaluation Status</th>
-                            <th>Proposal Score</th>
-                        </tr></thead>
-                        <tbody>
-                        <tr>
-                            <td>13-May-2023</td>
-                            <td>Cap Advisor</td>
-                            <td>Completed</td>
-                            <td>4/5</td>
-                        </tr>
-                        <tr>
-                            <td>13-May-2023</td>
-                            <td>Guessing Game</td>
-                            <td>In-Progress</td>
-                            <td>-</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                        <table class="centered highlight striped">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Date Submitted</th>
+                                <th>Student ID</th>
+                                <th>Student Name</th>
+                                <th>Proposal Name</th>
+                                <th>Reviewer</th>
+                                <th>Evaluation Score (/10)</th>
+                            </tr></thead>
+                            <tbody>
+                            {% for evaluation in evaluations %}
+                            {% set user = evaluation.reviewer_id | int %}
+                                <tr>
+                                    <td><a class="modal-trigger" href="#evaluation_modal{{evaluation.evaluation_id}}">
+                                        <i class="material-icons blue-text">input</i></a></td>
+                                    <td>{{evaluation.created}}</td>
+                                    <td>{{evaluation.proposal.student.uwi_id}}</td>
+                                    <td>{{evaluation.proposal.student.first_name}} {{evaluation.proposal.student.last_name}}</td>
+                                    <td>{{evaluation.proposal.proposal_name}}</td>
+                                    <td>{{evaluation.lecturer.first_name}} {{evaluation.lecturer.last_name}}</td>
+                                    <td>{{evaluation.score}}</td>
+                                </tr>
+                                 <!--Modal Structure: Grade Proposal-->
+                                <div id="evaluation_modal{{evaluation.evaluation_id}}" class="modal modal-fixed-footer">
+                                    <form method="POST" action="/man-evaluation"> 
+                                        <div class="modal-content">
+                                            <div class="row">
+                                                <div class="col s5">
+                                                    <h3>{{evaluation.proposal.proposal_name}}</h3>
+                                                </div>
+                                                <div class="col s2 offset-s4">
+                                                    <h5>Members: {{evaluation.proposal.num_members}}</h5>
+                                                </div>
+                                            </div>
+
+                                            <h4> <span class="section-title"> Relevance</span> </h4>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Problem Statement: {{evaluation.proposal.problem_desc}}</p>
+                                                </div>
+                                            </div>
+
+                                            <h4> <span class="section-title">Summary </span> </h4>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Solution Goal: {{evaluation.proposal.solution_desc}}</p>
+                                                </div>
+                                            </div>
+
+                                            <h4> <span class="section-title">Feasibility </span> </h4>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Requirements: {{evaluation.proposal.requirements}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Resources: {{evaluation.proposal.tools}}</p>
+                                                </div>
+                                            </div>
+
+                                            <h4> <span class="section-title">Impact</span> </h4>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Desired Goals: {{evaluation.proposal.impact}}</p>
+                                                </div>
+                                            </div>
+
+                                            <h4> <span class="section-title">Sustainability</span> </h4>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Sustainability: {{evaluation.proposal.sustainability}}</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <h4> <span class="section-title">Additional Information</span> </h4>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Addtional Info: {{evaluation.proposal.notes}}</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="input-field col s4">
+                                                    <input name="prop_id" type="text" value="{{evaluation.proposal.proposal_id}}" hidden>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row slide-label">
+                                                <div class="input-field col s6">
+                                                
+                                                <p class="range-field">
+                                                    <label for="novelty">Novelty</label>
+                                                    <input type="range" name="novelty" min="1" max="10" value="{{evaluation.novelty}}"/>
+                                                </p>
+                                                </div>
+                                
+                                                <div class="input-field col s6">
+                                                    
+                                                <p class="range-field">
+                                                    <label for="relevance">Relevance</label>
+                                                    <input type="range" name="relevance" min="1" max="10" value="{{evaluation.relevance}}"/>
+                                                </p>
+                                                
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row slide-label">
+                                                <div class="input-field col s6">
+                                                    
+                                                <p class="range-field">
+                                                    <label for="feasibility">Feasibility</label>
+                                                    <input type="range" name="feasibility" min="1" max="10"  value="{{evaluation.feasibility}}"/>
+                                                </p>
+                                                
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    
+                                                <p class="range-field">
+                                                    <label for="impact">Impact</label>
+                                                    <input type="range" name="impact" min="1" max="10" value="{{evaluation.impact}}"/>
+                                                </p>
+                                                </div>
+                                            </div>
+                                
+                                            <div class="row slide-label">
+                                                <div class="input-field col s6">
+                                                    
+                                                <p class="range-field">
+                                                    <label for="sustainability">Sustainability</label>
+                                                    <input type="range" name="sustainability" min="1" max="10" value="{{evaluation.sustainability}}"/>
+                                                </p>
+                                                
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    
+                                                <p class="range-field">
+                                                    <label for="technology">Technology</label>
+                                                    <input type="range" name="technology" min="1" max="10" value="{{evaluation.technologies}}"/>
+                                                </p>
+                                            
+                                                </div>
+                                            </div>
+                                
+                                            <div class="row">
+                                                <div class="input-field col s12">
+                                                <textarea name="notes" class="materialize-textarea">{{evaluation.comments}}</textarea>
+                                                <label for="notes" style="font-size: large;">Reviewer's Comments</label>
+                                                </div>
+                                            </div>
+                                
+                                        </div>
+                                
+                                        <div class="modal-footer">
+                                            {% if user == current_user.id %}
+                                                <button class="btn indigo darken-4 z-depth-1 waves-effect waves-light" type="submit">
+                                                    Re-evaluate
+                                                </button>
+                                            {% endif %}
+                                            <a href="#!" class="modal-close waves-effect waves-grey btn-flat" style="background-color: lightgray">Close</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </div> -->
+            </div>
         </div>
     </div>
 
-    <!--Modal Structure: Grade Proposal-->
-    <div id="eval_proposal_modal" class="modal modal-fixed-footer">
-        <form method="POST" action="/man-evaluation">
-
-            <div>
-                <input  name="id" type="text" hidden>
-                <p id="prop_id" hidden></p>
-            </div>
-            
-            <div class="modal-content">
-                <div class="row">
-                    <div class="col s6">
-                        <h3 id="prop_name"></h3>
-                    </div>
-                    <div class="right">
-                        <p id="prop_mem">Members: </p>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col s12">
-                        <p id="prop_prob">Problem Statement: </p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s12">
-                        <p id="prop_sol">Solution Goal: </p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s12">
-                        <p id="prop_req">Proposal Requirements: </p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s12">
-                        <p id="prop_tool">Proposed Tools: </p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s12">
-                        <p id="prop_note">Addtional Info: </p>
-                    </div>
-                </div>
-                
-
-                <div class="row slide-label">
-                    <div class="input-field col s6">
-                        <label for="novelty">Novelty</label>
-                    <p class="range-field">
-                        <input type="range" name="novelty" min="1" max="10" />
-                    </p>
-                    </div>
-    
-                    <div class="input-field col s6">
-                        <label for="relevance">Relevance</label>
-                    <p class="range-field">
-                        <input type="range" name="relevance" min="1" max="10" />
-                    </p>
-                    
-                    </div>
-                </div>
-    
-                <div class="row slide-label">
-                    <div class="input-field col s6">
-                        <label for="feasibility">Feasibility</label>
-                    <p class="range-field">
-                        <input type="range" name="feasibility" min="1" max="10"  />
-                    </p>
-                    
-                    </div>
-                    <div class="input-field col s6">
-                        <label for="impact">Impact</label>
-                    <p class="range-field">
-                        <input type="range" name="impact" min="1" max="10" />
-                    </p>
-                    
-                    </div>
-                </div>
-    
-                <div class="row slide-label">
-                    <div class="input-field col s6">
-                        <label for="sustainability">Sustainability</label>
-                    <p class="range-field">
-                        <input type="range" name="sustainability" min="1" max="10" />
-                    </p>
-                    
-                    </div>
-                    <div class="input-field col s6">
-                        <label for="technology">Technology</label>
-                    <p class="range-field">
-                        <input type="range" name="technology" min="1" max="10" />
-                    </p>
-                   
-                    </div>
-                </div>
-    
-                <div class="row">
-                    <div class="input-field col s12">
-                    <textarea name="notes" class="materialize-textarea"></textarea>
-                    <label for="notes">Comments</label>
-                    </div>
-                </div>
-    
-            </div>
-    
-            <div class="modal-footer">
-                <button class="btn indigo darken-4 z-depth-1 waves-effect waves-light" type="submit">
-                    Confirm
-                </button>
-                <a href="#!" class="modal-close waves-effect waves-grey btn-flat" style="background-color: whitesmoke;">Cancel</a>
-            </div>
-        </form>
-    </div>
+   
     
 {% endblock %}

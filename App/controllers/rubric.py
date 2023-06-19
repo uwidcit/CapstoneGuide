@@ -32,8 +32,8 @@ def update_rubric(rubricId, name, notes, novelty, relevance, feasibility, impact
         return res
     return None
 
-def get_user_rubric(lecturer_id, evaluationId):
-    rubric = Rubric.query.filter_by(lecturer_id=lecturer_id, evaluationId = evaluationId).all() 
+def get_user_rubric(lecturer_id, rubric_id):
+    rubric = Rubric.query.filter_by(lecturer_id=lecturer_id, id = rubric_id).all() 
     return rubric
 
 def get_user_rubrics(lecturer_id):

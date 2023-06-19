@@ -5,7 +5,7 @@
 {% block menuItems %}
     <li class="no-padding">
         <ul>
-            <li class="active" style="margin-top: 62px"><a href="/rubric">Add New Rubric</a></li>
+            <li class="active" style="margin-top: 62px"><a href="/rubric">Rubric</a></li>
             <li><a href="/submissions">Student Proposals</a></li>
         </ul>
     </li>
@@ -16,7 +16,7 @@
         <h1 id="message">Your Rubrics</h1>
         <div class="col s12">
             {% for rubric in rubrics %}
-                <div class="card col s12 m4">
+                <div class="card col s12 m5">
                     <div class="card-content">
                         <span class="card-title">{{rubric.name}}</span>
                         <div class="col s6">
@@ -135,94 +135,3 @@
     </form>
 </div>
 {% endblock %}
-
-<!-- Modal Structure: Update Rubric
-
-<div id="update_rubric_modal" class="modal modal-fixed-footer">
-    <form method="POST" action="/update-rubric">
-
-        <div class="modal-content">
-            <h1>Update Rubric</h1>
-
-            <div class="row">
-                <div class="input-field col s12">
-                <input name="name" type="text" autofocus class="validate" required>
-                <label for="name">Name
-                    <i class="material-icons tiny red-text">*</i>
-                </label>
-                <span class="helper-text" data-error="wrong" data-success="right">
-                    What is the type of rurbic?</span>
-                </div>
-            </div>
-
-            <div class="row slide-label">
-                <div class="input-field col s6">
-                    <label for="novelty">Novelty</label>
-                <p class="range-field">
-                    <input type="range" name="novelty" min="1" max="10" />
-                </p>
-                </div>
-
-                <div class="input-field col s6">
-                    <label for="relevance">Relevance</label>
-                <p class="range-field">
-                    <input type="range" name="relevance" min="1" max="10" />
-                </p>
-                
-                </div>
-            </div>
-
-            <div class="row slide-label">
-                <div class="input-field col s6">
-                    <label for="feasibility">Feasibility</label>
-                <p class="range-field">
-                    <input type="range" name="feasibility" min="1" max="10"  />
-                </p>
-                
-                </div>
-                <div class="input-field col s6">
-                    <label for="impact">Impact</label>
-                <p class="range-field">
-                    <input type="range" name="impact" min="1" max="10" />
-                </p>
-                
-                </div>
-            </div>
-
-            <div class="row slide-label">
-                <div class="input-field col s6">
-                    <label for="sustainability">Sustainability</label>
-                <p class="range-field">
-                    <input type="range" name="sustainability" min="1" max="10" />
-                </p>
-                
-                </div>
-                <div class="input-field col s6">
-                    <label for="technology">Technology</label>
-                <p class="range-field">
-                    <input type="range" name="technology" min="1" max="10" />
-                </p>
-               
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="input-field col s12">
-                <textarea name="notes" class="materialize-textarea"></textarea>
-                <label for="notes">Notes</label>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="modal-footer">
-            <button class="btn indigo darken-4 z-depth-1 waves-effect waves-light" type="submit">
-                Update
-            </button>
-            <a href="#!" class="modal-close waves-effect waves-grey btn-flat" style="background-color: whitesmoke;">Cancel</a>
-        </div>
-    
-    </form>
-
-</div>-->
-

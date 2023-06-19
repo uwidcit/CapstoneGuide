@@ -19,46 +19,14 @@
     main{
       min-height: 80vh;
     }
-    /* label color */
-    .input-field label {
-      color: #000;
+    main, header{
+      padding-left: 300px;
     }
-    /* label focus color */
-    .input-field input[type=text]:focus + label, .materialize-textarea:focus + label {
-      color: #1a237e !important;
+    @media (max-width : 992px) {
+      header, main{
+        padding-left: 0;
+      }
     }
-
-    /* label underline focus color */
-    .input-field input[type=text]:focus, .materialize-textarea:focus{
-      border-bottom: 2px solid #1a237e !important;
-      box-shadow: 0 1px 0 0 #1a237e !important;
-    }
-    /*change Slider colours*/
-    input[type=range]::-webkit-slider-thumb {
-            background-color:#1a237e;
-        }
-        input[type=range]::-moz-range-thumb {
-            background-color: #1a237e;
-        }
-        input[type=range]::-ms-thumb {
-            background-color: #1a237e;
-        }
-        input[type=range]::-webkit-slider-runnable-track {
-            height: 5px;
-            background: #c2c0c2;
-            border: none
-        }
-        .slide-label {
-            font-size: x-large;
-        }
-
-        /* These are to edit the thumb and the text inside the thumb */
-        input[type=range] + .thumb {
-            background-color: #dedede;
-        }
-        input[type=range] + .thumb.active .value {
-            color: #1a237e;
-        }
     /*Change font style*/
     *{
       font-family: 'Libre Baskerville', serif;
@@ -66,32 +34,52 @@
       font-weight: 400;
     }
     .brand-logo {
-      margin-left:30px;
       font-family: 'Libre Baskerville', serif;
       font-family: 'Ubuntu', sans-serif;
     }
+
+    label color
+    .input-field label {
+      color: #000;
+    }
+
+    .input-field input[type]:focus + label,.materialize-textarea:focus + label {
+      color: #1a237e !important;
+    }
+
+    .input-field input[type]:focus, .materialize-textarea:focus{
+      border-bottom: 2px solid #1a237e !important;
+      box-shadow: 0 1px 0 0 #1a237e !important;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      background-color:#1a237e;
+    }
+    input[type=range]::-moz-range-thumb {
+      background-color: #1a237e;
+    } 
+    input[type=range]::-ms-thumb {
+      background-color: #1a237e;
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+      height: 5px;
+      background: #c2c0c2;
+      order: none
+    }
+    .slide-label {
+      font-size: x-large;
+    }
+    input[type=range] + .thumb {
+      background-color: #dedede;
+    }
+    input[type=range] + .thumb.active .value {
+      color: #1a237e;
+    }
+    
     div .btn {
       border-radius: 30px;
       width: 200px;
       color: #00e5ff;
     }
-    @media (min-width : 993px){
-      .brand-logo{
-        margin-left: 70px;
-      }
-      nav a.sidenav-trigger {
-        display:block;
-      }
-    }
-    @media (min-width : 2300px) {
-      .page-footer{
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-      }
-    }
-
     .sidenav .logo-container {
       padding: 0 17px;
       height: 64px;
@@ -108,14 +96,31 @@
       margin-bottom: 80px;
       width: 100%;
     }
+    @media (min-width : 993px){
+      .brand-logo{
+        margin-left: 40px;
+      }
+      nav a.sidenav-trigger {
+        display:none;
+      }
+    }
+    @media (min-width : 2300px) {
+      .page-footer{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+      }
+    }
+
   </style>
 </head>
 
 <body>
   <header>
-    <ul id="slide-out" class="sidenav z-depth-2" >
-      <li>
-        <a class="logo-container" style="height:62px; padding:5px;"><span style="margin-left:25px" id="message">{{current_user.first_name}}</span></a>
+    <ul id="slide-out" class="sidenav sidenav-fixed z-depth-2">
+      <li style="background-color: #D8FEF9;">
+        <a class="logo-container" style="height:62px; padding:5px;"><span style="margin-left:25px;" id="message">{{current_user.first_name}}</span></a>
       </li>
       {% block menuItems %}
       {% endblock %}

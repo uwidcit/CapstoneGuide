@@ -21,9 +21,9 @@
             width: 200px;
             color: #00e5ff;
         }
-       
+   
         .page-footer{
-            position: absolute;
+            position: relative;
             bottom: 0;
             left: 0;
             width: 100%;
@@ -35,7 +35,6 @@
             font-weight: 400;
         }
         .brand-logo {
-            margin-left:30px;
             font-family: 'Libre Baskerville', serif;
             font-family: 'Ubuntu', sans-serif;
 
@@ -50,7 +49,6 @@
         }
         .tabs-content{
             display:flex;
-            justify-content: center;
             align-content:center;
             min-height: 548px;
         }
@@ -76,6 +74,18 @@
          border-bottom: 2px solid #1a237e !important;
          box-shadow: 0 1px 0 0 #1a237e !important;
        }
+        /*Media Queries to adjust screen items*/
+        @media screen and (min-width : 993px) {
+            .brand-logo{
+                margin-left: 40px;
+            }
+            .page-footer{
+               position: absolute;
+               bottom: 0;
+               left: 0;
+               width: 100%;
+            }
+        }
     </style>
 </head>
 
@@ -83,7 +93,7 @@
     <header>
         <nav class="indigo darken-4 z-depth-1">
             <div class="nav-wrapper">
-                <a href="/" class="brand-logo left" id="brandText">Cap Advisor</a>
+                <a href="/" class="brand-logo white-text">Cap Advisor</a>
             </div>
         </nav>
     </header>

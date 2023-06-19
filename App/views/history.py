@@ -23,5 +23,4 @@ def get_history_page():
 @login_required
 def get_submission_page():
     proposals = get_all_proposals()
-    print(proposals[0].evaluations[0].novelty)
     return render_template('submissions.html', proposals=proposals)

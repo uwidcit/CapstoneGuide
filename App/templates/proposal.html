@@ -17,18 +17,34 @@
 
         <h3> <span class="section-title"> Project Proposal</span> </h3>
 
+
         <div class="card">
-            <form class="col s12" method="POST" action="/proposal">
+            <form class="col s11 offset-l1" method="POST" action="/proposal">
+                
+                <h4> <span class="section-title"> General Information</span> </h4>
 
                 <div class="row">
-                    <div class="input-field col s4">
+                    <div class="input-field col s8">
                         <input  name="name" type="text" required>
-                        <label for="name" class="">Proposal Name
+                        <label for="name">Proposal Name
                             <i class="material-icons tiny right red-text">*</i></label>
                         <span class="helper-text" data-error="wrong" data-success="right">
-                            What is the Project's name?</span>
+                           Provide a name for the project.</span>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="input-field col s9 l3">
+                        <input name="group_num" type="number" min="1" max="5" value="1" required>
+                        <label for="group_num">No. of Group Members
+                            <i class="material-icons tiny right red-text">*</i></label>
+                        <span class="helper-text" data-error="wrong" data-success="right">
+                        How many group members are there (including you)?</span>
+                    </div>
+                </div>
+                
+
+                <h4> <span class="section-title"> Relevance</span> </h4>
 
                 <div class="row">
                     <div class="input-field col s12 l7" >
@@ -36,9 +52,11 @@
                         <label for="problem">Problem Statement
                             <i class="material-icons tiny right red-text">*</i></label>
                         <span class="helper-text" data-error="wrong" data-success="right">
-                            What is the problem identified for the project?</span>
+                            Describe the problem identified which the project is to address</span>
                     </div>
                 </div>
+
+                <h4> <span class="section-title">Summary </span> </h4>
 
                 <div class="row">
                     <div class="input-field col s12 l7">
@@ -46,24 +64,16 @@
                         <label for="solution">Solution Goal
                             <i class="material-icons tiny right red-text">*</i></label>
                         <span class="helper-text" data-error="wrong" data-success="right">
-                            What is the solution provided by the Project?</span>
+                            Summarize the solution which the project provides</span>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="input-field col s5 l3">
-                        <input name="group_num" type="number" min="1" max="5" required>
-                        <label>No. of Group Members
-                            <i class="material-icons tiny right red-text">*</i></label>
-                        <span class="helper-text" data-error="wrong" data-success="right">
-                        How many group members are there (including you)?</span>
-                    </div>
-                </div>
+                <h4> <span class="section-title">Feasibility </span> </h4>
 
                 <div class="row">
                     <div class="input-field col s12 l7">
                         <input name="requirements" type="text">
-                        <label for="requirements" >Proposal Requirements</label>
+                        <label for="requirements" >Requirements</label>
                         <span class="helper-text" data-error="wrong" data-success="right">
                             What requirements have you identified for the Project?</span>
                     </div>
@@ -72,14 +82,39 @@
                 <div class="row">
                     <div class="input-field col s12 l7">
                         <input name="tools" type="text">
-                        <label for="tools" >Proposed tools</label>
+                        <label for="tools" >Resources</label>
                         <span class="helper-text" data-error="wrong" data-success="right">
-                            What are possible tools you may need to develop the Project?</span>
+                            Describe the technical/skill resources required to deliver the project.</span>
                     </div>
                 </div>
 
+                <h4> <span class="section-title">Impact</span> </h4>
+
                 <div class="row">
-                    <div class="input-field col s8">
+                    <div class="input-field col s12 l7">
+                        <input name="goals" type="text">
+                        <label for="goals" >Desired Goals</label>
+                        <span class="helper-text" data-error="wrong" data-success="right">
+                            Describe the desired goals for the project.</span>
+                    </div>
+                </div>
+
+                <h4> <span class="section-title">Sustainability</span> </h4>
+
+                <div class="row">
+                    <div class="input-field col s12 l7">
+                        <input name="sustain" type="text">
+                        <label for="sustain" >Sustainability</label>
+                        <span class="helper-text" data-error="wrong" data-success="right">
+                            Describe how the project will remian susutainable.</span>
+                    </div>
+                </div>
+
+
+                <h4> <span class="section-title">Additional Information</span> </h4>
+
+                <div class="row">
+                    <div class="input-field col s12">
                         <textarea name="additional_info" class="materialize-textarea"></textarea>
                         <label for="additional_info">Additional Info</label>
                         <span class="helper-text" data-error="wrong" data-success="right">

@@ -27,7 +27,6 @@ def create_user_action():
             if data['role'] == 'Lecturer':
                 result = create_lecturer(data['username'], data['re_password'], data['email'], data['first_name'], data['last_name'], data['uwi_id'])
                 if result:
-                    result.id -= 100
                     flash('Account Created')
                     login_user(result)
                     return redirect(url_for('rubric_views.rubric_page'))

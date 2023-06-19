@@ -19,25 +19,25 @@ migrate = get_migrate(app)
 def initialize():
     db.drop_all()
     db.create_all()
-    create_lecturer('bob', 'bobspass', 'bob@mycavehilluwi.edu', 'bob', 'smith', 1111)
-    create_student('rob', 'robspass', 'rob@mycavehilluwi.edu', 'Rob', 'Renolds', 2222)
-    create_student('steve', 'stevepass', 'steve@mycavehilluwi.edu', 'Steve', 'Pass', 3333)
+    rob = create_student('rob', 'robspass', 'rob@mycavehilluwi.edu', 'Rob', 'Renolds', 2222)
+    steve = create_student('steve', 'stevepass', 'steve@mycavehilluwi.edu', 'Steve', 'Pass', 3333)
+    bob = create_lecturer('bob', 'bobspass', 'bob@mycavehilluwi.edu', 'bob', 'smith', 1111)
     create_lecturer('cory', 'corypass', 'cory@mycavehilluwi.edu', 'Cory', 'Jones', 4444)
-    add_proposal(1, 'Cap Advisor', 'Students can have their proposals evaluated early',
+    rubric = add_rubric('test project','notes', 3, 5, 6, 6, 6, 1, bob.id)
+    cap_advisor = add_proposal(steve.id, rubric.id, 'Cap Advisor', 'Students can have their proposals evaluated early',
                 'Students can submit capstone proposals to and have feedback',
                 3, 'students must submit proposals based on cirtera', 'flask MVC, python, GPT-3', 'lecturers will evaluate submitted proposals', 'manged by lecturer eventually',
                 'May be revised')
-    add_proposal(1, 'Flask Test', 'Students can have their proposals evaluated early',
+    flask_test = add_proposal(steve.id, rubric.id, 'Flask Test', 'Students can have their proposals evaluated early',
                 'Students can submit capstone proposals to and have feedback',
                 5, 'students must submit proposals based on cirtera', 'flask MVC, python, GPT-3', 'lecturers will evaluate submitted proposals', 'manged by lecturer eventually',
                 'May be revised')
-    add_proposal(2, 'Solo', 'Students can have their proposals evaluated early',
+    add_proposal(rob.id, rubric.id, 'Solo', 'Students can have their proposals evaluated early',
                 'Students can submit capstone proposals to and have feedback',
                 1, 'students must submit proposals based on cirtera', 'flask MVC', 'lecturers will evaluate submitted proposals', 'manged by lecturer eventually',
                 'May be revised')
-    # add_rubric('Free','notes', 3, 5, 6, 6, 6, 1, 101)
-    add_evaluation('notes', 5, 7, 5, 3, 10, 5, 1, 101)
-    add_evaluation('crash', 10, 10, 1, 3, 10, 10, 1, 102)
+    add_evaluation('notes', 5, 7, 5, 3, 10, 5, cap_advisor.proposal_id, steve.id)
+    add_evaluation('crash', 10, 10, 1, 3, 10, 10, flask_test.proposal_id, steve.id)
     print('database intialized')
 
 '''

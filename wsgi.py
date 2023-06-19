@@ -20,19 +20,24 @@ def initialize():
     db.drop_all()
     db.create_all()
     create_lecturer('bob', 'bobspass', 'bob@mycavehilluwi.edu', 'bob', 'smith', 1111)
-    create_student('rob', 'robspass', 'rob@mycavehilluwi.edu', 'rob', 'smith', 2222)
-    # create_student('steve', 'stevepass', 'steve@mycavehilluwi.edu', 'Steve', 'Pass', 3333)
+    create_student('rob', 'robspass', 'rob@mycavehilluwi.edu', 'Rob', 'Renolds', 2222)
+    create_student('steve', 'stevepass', 'steve@mycavehilluwi.edu', 'Steve', 'Pass', 3333)
+    create_lecturer('cory', 'corypass', 'cory@mycavehilluwi.edu', 'Cory', 'Jones', 4444)
     add_proposal(1, 'Cap Advisor', 'Students can have their proposals evaluated early',
                 'Students can submit capstone proposals to and have feedback',
                 3, 'students must submit proposals based on cirtera', 'flask MVC, python, GPT-3', 'lecturers will evaluate submitted proposals', 'manged by lecturer eventually',
                 'May be revised')
-    # add_proposal(1, 'Flask Advisor', 'Students can have their proposals evaluated early',
-    #             'service student can submit capstone proposals to and have feedback',
-    #             3, 'students submit proposals based on cirtera', 'flask MVC', 'evaluate proposals from a lecturer', 'manged by lecturer eventually',
-    #             'May be revised')
+    add_proposal(1, 'Flask Test', 'Students can have their proposals evaluated early',
+                'Students can submit capstone proposals to and have feedback',
+                5, 'students must submit proposals based on cirtera', 'flask MVC, python, GPT-3', 'lecturers will evaluate submitted proposals', 'manged by lecturer eventually',
+                'May be revised')
+    add_proposal(2, 'Solo', 'Students can have their proposals evaluated early',
+                'Students can submit capstone proposals to and have feedback',
+                1, 'students must submit proposals based on cirtera', 'flask MVC', 'lecturers will evaluate submitted proposals', 'manged by lecturer eventually',
+                'May be revised')
     # add_rubric('Free','notes', 3, 5, 6, 6, 6, 1, 101)
-    add_evaluation('notes', 5, 7, 5, 3, 10, 5, 1)
-    # add_evaluation('notes', 8, 7, 5, 3, 10, 5, 2)
+    add_evaluation('notes', 5, 7, 5, 3, 10, 5, 1, 101)
+    add_evaluation('crash', 10, 10, 1, 3, 10, 10, 1, 102)
     print('database intialized')
 
 '''
@@ -148,7 +153,7 @@ evaluation = AppGroup('evaluation', help='Evaluation object commands')
 @click.argument("prop", default=1)
 @click.argument("notes", default="notes")
 def create_evaluation_command(prop, notes):
-    add_evaluation(notes, 5, 7, 5, 3, 10, 5, prop)
+    add_evaluation(notes, 5, 7, 5, 3, 10, 5, prop, 101)
     print(f'evaluation created!')
 
 @evaluation.command("list", help="Lists all evaluations in the database")

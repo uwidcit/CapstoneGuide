@@ -7,8 +7,9 @@ def create_lecturer(username, password, email, first_name, last_name, uwi_id):
     try:
         db.session.add(newuser)
         db.session.commit()
-        newuser.id += 100
-        newuser = get_lecturer(newuser.id)
+        if(Lecturer.query.count() == 1):
+            newuser.id += 100
+            newuser = get_lecturer(newuser.id)
         return newuser
     except SQLAlchemyError as e:
         print(f"Database error occurred: {str(e)}")

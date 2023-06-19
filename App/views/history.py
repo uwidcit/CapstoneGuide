@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, jsonify, request, send_from_directory, flash, redirect, url_for
 from flask_login import current_user, login_required
-from App.controllers import (get_user_proposal, get_user_proposals, get_all_proposals, get_user_evaluations, get_all_evaluations ,student_required, lecturer_required)
+from App.controllers import (get_user_proposal, get_proposal, get_user_proposals, get_all_proposals, get_user_evaluations, get_all_evaluations ,student_required, lecturer_required)
 
 from.index import index_views
 
@@ -23,4 +23,11 @@ def get_history_page():
 @login_required
 def get_submission_page():
     proposals = get_all_proposals()
-    return render_template('submissions.html', proposals=proposals)
+    evaluations = get_all_evaluations()
+    # evals =[]
+    print(evaluations)
+    # for count in evaluations:
+    #     print(get_proposal(count.proposal_id).status)
+    #     if(get_proposal(count.proposal_id).status == 1):
+    #         evals.append(count)
+    return render_template('submissions.html', proposals=proposals ,evaluations=evaluations)

@@ -33,7 +33,7 @@
                             <tbody>
                             {% for evaluation in evaluations %}
                                 <tr>
-                                    <td><a class="modal-trigger" href="#evaluation_modal"><i class="material-icons">input</i></a></td>
+                                    <td><a class="modal-trigger" href="#evaluation_modal{{evaluation.evaluation_id}}"><i class="material-icons">input</i></a></td>
                                     <td>{{evaluation.created}}</td>
                                     <td id="name">{{evaluation.proposal.proposal_name}}</td>
                                     <td></td>
@@ -41,7 +41,7 @@
                                 </tr>
 
                                   <!-- Modal Structure: View Evaluations -->
-                                <div id="evaluation_modal" class="modal modal-fixed-footer">
+                                <div id="evaluation_modal{{evaluation.evaluation_id}}" class="modal modal-fixed-footer">
                                     <form >
                                         
                                         <div class="modal-content">

@@ -3,10 +3,11 @@ from App.database import db
 from .proposal import get_user_proposals, get_proposal
 
 
-def add_evaluation(notes, novelty, relevance, feasibility, impact, sustainability, technologies, proposal_id):
+def add_evaluation(notes, novelty, relevance, feasibility, impact, sustainability, technologies, proposal_id, reviewer):
     proposal = get_proposal(proposal_id)
     if proposal:
-        evaluation = Evaluation(comments=notes, novelty=novelty, relevance=relevance, feasibility=feasibility, impact=impact, sustainability=sustainability, technologies=technologies, proposal_id=proposal_id)
+        evaluation = Evaluation(comments=notes, novelty=novelty, relevance=relevance, feasibility=feasibility, impact=impact, sustainability=sustainability,
+                                 technologies=technologies, proposal_id=proposal_id, reviewer_id=reviewer)
         proposal.evaluations.append(evaluation)
         proposal.status = 1
         db.session.commit()
@@ -36,3 +37,4 @@ def get_user_evaluations(proposal_id):
 
 def get_all_evaluations():
     return Evaluation.query.all()
+

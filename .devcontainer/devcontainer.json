@@ -11,7 +11,8 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"GitHub.copilot"
+				"GitHub.copilot",
+				"GitHub.copilot-chat"
 			]
 		}
 	}
@@ -23,7 +24,9 @@
 	// "forwardPorts": [],
 
 	// Uncomment the next line to run commands after the container is created.
+
 	"postCreateCommand": "pip install -r requirements.txt",
+
 
 	// Configure tool-specific properties.
 	// "customizations": {},

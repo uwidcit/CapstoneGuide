@@ -2,11 +2,11 @@ from App.models import Proposal
 from App.database import db
 from .user import get_student
 
-def add_proposal(student_id, proposal_nm, problem_desc, solution_desc,
+def add_proposal(student_id, rubric_id, proposal_nm, problem_desc, solution_desc,
                  num_members, functionalities, technologies, goals, sustain, notes):
     student = get_student(student_id)
     if student:
-        proposal = Proposal(student, proposal_nm=proposal_nm, problem_desc=problem_desc, solution_desc=solution_desc,
+        proposal = Proposal(student, rubric_id, proposal_nm=proposal_nm, problem_desc=problem_desc, solution_desc=solution_desc,
                  num_members=num_members, requirements=functionalities, tools=technologies, goals=goals, sustainability=sustain, notes=notes)
         student.proposals.append(proposal)
         db.session.add(proposal)

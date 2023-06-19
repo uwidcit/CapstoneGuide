@@ -5,7 +5,7 @@ from datetime import datetime
 class Proposal(db.Model):
     proposal_id = db.Column(db.Integer, primary_key=True)
     student_id = db.Column(db.Integer, db.ForeignKey('student.id'))
-    #rubricId = db.Column(db.Integer, db.ForeignKey('rubric.id'))
+    rubricId = db.Column(db.Integer, db.ForeignKey('rubric.id'))
     proposal_name = db.Column(db.String)
     num_members = db.Column(db.Integer)
     problem_desc = db.Column(db.String)
@@ -20,10 +20,10 @@ class Proposal(db.Model):
     evaluations = db.relationship('Evaluation', backref=db.backref('proposal', lazy='joined'))
 
 
-    def __init__(self, id, proposal_nm, problem_desc, solution_desc, num_members, requirements, tools, goals, sustainability, notes):
+    def __init__(self, id, rubric_id, proposal_nm, problem_desc, solution_desc, num_members, requirements, tools, goals, sustainability, notes):
         self.proposal_name = proposal_nm.capitalize() 
         self.student_id = id.id
-        #self.rubricId = 1
+        self.rubricId = rubric_id
         self.problem_desc = problem_desc.capitalize()
         self.solution_desc = solution_desc.capitalize()
         self.num_members = int(num_members)

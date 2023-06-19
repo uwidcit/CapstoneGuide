@@ -8,7 +8,7 @@ def create_lecturer(username, password, email, first_name, last_name, uwi_id):
         db.session.add(newuser)
         db.session.commit()
         newuser.id += 100
-        newuser = get_lect_user(newuser.id)
+        newuser = get_lecturer(newuser.id)
         return newuser
     except SQLAlchemyError as e:
         print(f"Database error occurred: {str(e)}")
@@ -42,12 +42,6 @@ def get_stu_by_username(username):
 
 def get_lect_by_username(username):
     return Lecturer.query.filter_by(username=username).first()
-
-def get_lect_user(id):
-    return Lecturer.query.get(id)
-
-def get_stu_user(id):
-    return Lecturer.query.get(id)
 
 def get_all_students():
     return Student.query.all()

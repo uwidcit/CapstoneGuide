@@ -4,9 +4,10 @@ from flask.cli import with_appcontext, AppGroup
 
 from App.database import db, get_migrate
 from App.main import create_app
-from App.controllers import ( create_student, create_lecturer, add_rubric, 
-                             add_proposal, get_user_proposal, get_student, get_user_evaluations, add_evaluation,
-                             remove_rubric, get_all_rubrics, get_all_lecturers )
+from App.controllers import ( create_student, create_lecturer, get_stu_by_username, get_lect_by_username, get_all_students, get_all_lecturers,
+                             add_rubric, get_user_rubric, get_all_rubrics,
+                             add_proposal, get_proposal, get_all_proposals,
+                             add_evaluation, get_user_evaluation,  get_all_evaluations)
 # This commands file allow you to create convenient CLI commands for testing controllers
 
 app = create_app()
@@ -20,19 +21,17 @@ def initialize():
     db.create_all()
     create_lecturer('bob', 'bobspass', 'bob@mycavehilluwi.edu', 'bob', 'smith', 1111)
     create_student('rob', 'robspass', 'rob@mycavehilluwi.edu', 'rob', 'smith', 2222)
-    # create_student('steve', 'stevepass', 'steve@mycavehilluwi.edu', 'steve', 'smith', 3333)
-    # add_proposal(1, 'Cap Advisor', 'Students do not always have a supervisor available to provide feedback on their capstone projects',
-    #               'we will devlop a software that allows students to have an AI assiatnt',
-    #              3, '', 'students submit proposals based on cirtera', 'flask MVC')
-    # add_proposal(2, 'Reign Advisor', 'Students do not always have a supervisor available to provide feedback on their capstone projects',
-    #               'we will devlop a software that allows students to have an AI assiatnt',
-    #              3, '', 'students submit proposals based on cirtera', 'flask MVC')
-    # add_proposal(1, 'Feet Advisor', 'Students do not always have a supervisor available to provide feedback on their capstone projects',
-    #               'we will devlop a software that allows students to have an AI assiatnt',
-    #              5, '', 'students submit proposals based on cirtera', 'flask MVC')
-    
+    # create_student('steve', 'stevepass', 'steve@mycavehilluwi.edu', 'Steve', 'Pass', 3333)
+    add_proposal(1, 'Cap Advisor', 'Students can have their proposals evaluated early',
+                'Students can submit capstone proposals to and have feedback',
+                3, 'students must submit proposals based on cirtera', 'flask MVC, python, GPT-3', 'lecturers will evaluate submitted proposals', 'manged by lecturer eventually',
+                'May be revised')
+    # add_proposal(1, 'Flask Advisor', 'Students can have their proposals evaluated early',
+    #             'service student can submit capstone proposals to and have feedback',
+    #             3, 'students submit proposals based on cirtera', 'flask MVC', 'evaluate proposals from a lecturer', 'manged by lecturer eventually',
+    #             'May be revised')
     # add_rubric('Free','notes', 3, 5, 6, 6, 6, 1, 101)
-    # add_evaluation('notes', 5, 7, 5, 3, 10, 5, 1)
+    add_evaluation('notes', 5, 7, 5, 3, 10, 5, 1)
     # add_evaluation('notes', 8, 7, 5, 3, 10, 5, 2)
     print('database intialized')
 
@@ -48,16 +47,20 @@ lecturer_cli = AppGroup('lecturer', help='Lecturer object commands')
 
 # Then define the command and any parameters and annotate it with the group (@)
 @lecturer_cli.command("create", help="Creates a lecturer")
-@click.argument("username", default="rob")
-@click.argument("password", default="robpass")
-@click.argument("email", default="rob@mail.com")
-def create_lecturer_command(username, password, email):
-    create_lecturer(username, password, "bob", "smith", email, 1232)
-    print(f'{username} created!')
+@click.argument("username", default="bob")
+@click.argument("password", default="bobspass")
+@click.argument("email", default="bob@mail.com")
+@click.argument("first", default="bob")
+@click.argument("last", default="smith")
+@click.argument("id", default=1111)
+def create_lecturer_command(username, password, email, id, first, last):
+    create_lecturer(username, password, email, first, last, id)
+    if get_lect_by_username(username):
+        print(f'{username} created!')
 
-# this command will be : flask user create bob bobpass
+# this command will be : flask lecturer create name password email firstname lastname uwi_id
 
-@lecturer_cli.command("list", help="Lists users in the database")
+@lecturer_cli.command("list", help="Lists lecturers in the database")
 @click.argument("format", default="string")
 def list_lecturers_command(format):
     if format == 'string':
@@ -72,37 +75,87 @@ student_cli = AppGroup('student', help='Student object commands')
 # Then define the command and any parameters and annotate it with the group (@)
 @student_cli.command("create", help="Creates a student")
 @click.argument("username", default="rob")
-@click.argument("password", default="robpass")
+@click.argument("password", default="robspass")
 @click.argument("email", default="rob@mail.com")
-def create_student_command(username, password, email):
-    create_student(username, password, "bob", "smith", email, 1232)
-    print(f'{username} created!')
+@click.argument("first", default="rob")
+@click.argument("last", default="smith")
+@click.argument("id", default=2222)
+def create_student_command(username, password, email,  id, first, last):
+    create_student(username, password, email, first, last, id)
+    if get_stu_by_username(username):
+        print(f'{username} created!')
 
-# this command will be : flask user create bob bobpass
+# this command will be : flask student create name password email firstname lastname uwi_id
 
-# @lecturer_cli.command("list", help="Lists users in the database")
-# @click.argument("format", default="string")
-# def list_students_command(format):
-#     if format == 'string':
-#         print(get_all_students())
+@student_cli.command("list", help="Lists students in the database")
+@click.argument("format", default="string")
+def list_students_command(format):
+    if format == 'string':
+        print(get_all_students())
 
 app.cli.add_command(student_cli) # add the group to the cli
 
 
+# Rubric Test
+# eg : flask rurbric <command>
 rubric = AppGroup('rubric', help='Rubric object commands') 
 
 # Then define the command and any parameters and annotate it with the group (@)
 @rubric.command("create", help="Creates a dummy rubric")
 @click.argument("notes", default="notes")
-def create_rubric_command(notes):
-    add_rubric(notes=notes, lecturer_id=1, novelty=5, relevance=5, feasibility=5, impact=5, sustainability=5, technology=5)
-    print(f'rubric created!')
+@click.argument("name", default="COMP")
+def create_rubric_command(notes, name):
+    add_rubric(name=name,notes=notes, novelty=5, relevance=5, feasibility=5,
+                impact=5, sustainability=5, technology=5, lecturer_id=101)
+    if(get_user_rubric(101, 1)):
+        print(f'rubric created!')
 
 @rubric.command("list", help="Lists all rubrics in the database")
 def list_rubric_command():
     print(get_all_rubrics())
 
-app.cli.add_command(rubric)  
+app.cli.add_command(rubric) 
+
+# Proposal Test
+# eg : flask proposal <command>
+proposal = AppGroup('proposal', help='Proposal object commands') 
+
+# Then define the command and any parameters and annotate it with the group (@)
+@proposal.command("create", help="Creates a dummy proposal")
+@click.argument("student", default=1)
+def create_proposal_command(student):
+    add_proposal(student_id=student, proposal_nm='Cap Advisor', problem_desc='Students can have their proposals evaluated early',
+                  solution_desc='service student can submit capstone proposals to and have feedback',
+                 num_members=3, functionalities='students submit proposals based on cirtera', technologies='flask MVC', 
+                 goals='evaluate proposals from a lecturer', sustain='manged by lecturer eventually',
+                 notes='May be revised')
+    print(f'proposal created!')
+
+@rubric.command("list", help="Lists all proposals in the database")
+def list_proposal_command():
+    print(get_all_proposals())
+
+app.cli.add_command(proposal) 
+
+
+
+# Evaluation Test
+# eg : flask evaluation <command>
+evaluation = AppGroup('evaluation', help='Evaluation object commands') 
+
+# Then define the command and any parameters and annotate it with the group (@)
+@evaluation.command("create", help="Creates a dummy evaluation")
+@click.argument("prop", default=1)
+@click.argument("notes", default="notes")
+def create_evaluation_command(prop, notes):
+    add_evaluation(notes, 5, 7, 5, 3, 10, 5, prop)
+    print(f'evaluation created!')
+
+@evaluation.command("list", help="Lists all evaluations in the database")
+def list_evaluation_command():
+    print(get_all_evaluations())
+
+app.cli.add_command(evaluation) 
 
 '''
 Test Commands

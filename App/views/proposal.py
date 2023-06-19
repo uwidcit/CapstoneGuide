@@ -17,7 +17,8 @@ def get_proposal_page():
 @login_required
 def submit_proposal_action():
     data = request.form
-    add_proposal(current_user.id, data['name'], data['problem'], data['solution'], data['group_num'], data['requirements'], data['tools'], data['additional_info'])
+    add_proposal(current_user.id, data['name'], data['problem'], data['solution'], data['group_num'], data['requirements'], data['tools'],
+                 data['goals'], data['sustain'], data['additional_info'])
     flash('Proposal Submitted!')
     return redirect(url_for('proposal_views.get_proposal_page'))
 

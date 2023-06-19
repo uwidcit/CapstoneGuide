@@ -7,10 +7,10 @@ class Rubric(db.Model):
     novelty = db.Column(db.Integer)
     relevance = db.Column(db.Integer)
     feasibility = db.Column(db.Integer)
-    notes = db.Column(db.String(80))
     impact = db.Column(db.Integer)
     sustainability = db.Column(db.Integer)
     technology = db.Column(db.Integer)
+    notes = db.Column(db.String(80))
 
     def __init__(self, name, notes, novelty, relevance, feasibility, impact, sustainability, technology, lecturer_id):
         self.name = name.capitalize() 

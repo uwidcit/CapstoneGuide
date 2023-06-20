@@ -38,7 +38,7 @@
                             {% for proposal in proposals %}
                                 {% if proposal.status == 0 %}
                                 <tr>
-                                    <td><a class="modal-trigger" href="#eval_proposal_modal{{proposal.proposal_id}}">
+                                    <td><a class="modal-trigger" href="#eval_proposal_modal{{proposal.id}}">
                                         <i class="material-icons blue-text">input</i></a></td>
                                     <td>{{proposal.created}}</td>
                                     <td id="uwi_id">{{proposal.student.uwi_id}}</td>
@@ -46,7 +46,7 @@
                                     <td id="name">{{proposal.proposal_name}}</td>
                                 </tr>
                                  <!--Modal Structure: Grade Proposal-->
-                                <div id="eval_proposal_modal{{proposal.proposal_id}}" class="modal modal-fixed-footer">
+                                <div id="eval_proposal_modal{{proposal.id}}" class="modal modal-fixed-footer">
                                     <form method="POST" action="/man-evaluation">
                                         
                                         <div class="modal-content">
@@ -108,7 +108,7 @@
 
                                             <div class="row">
                                                 <div class="input-field col s4">
-                                                    <input name="prop_id" type="text" value="{{proposal.proposal_id}}" hidden>
+                                                    <input name="prop_id" type="text" value="{{proposal.id}}" hidden>
                                                 </div>
                                             </div>
                                             
@@ -287,7 +287,7 @@
 
                                             <div class="row">
                                                 <div class="input-field col s4">
-                                                    <input name="prop_id" type="text" value="{{evaluation.proposal.proposal_id}}" hidden>
+                                                    <input name="prop_id" type="text" value="{{evaluation.proposal.id}}" hidden>
                                                 </div>
                                             </div>
                                             

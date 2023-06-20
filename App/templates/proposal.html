@@ -19,7 +19,7 @@
 
 
         <div class="card">
-            <form class="col s11 offset-l1" method="POST" action="/proposal">
+            <form class="col s11 offset-l1" method="POST" action="/select-rubric/{{rubricId}}">
                 
                 <h4> <span class="section-title"> General Information</span> </h4>
 
@@ -73,7 +73,9 @@
                 <div class="row">
                     <div class="input-field col s12 l7">
                         <input name="requirements" type="text">
-                        <label for="requirements" >Requirements</label>
+                        <label for="requirements" >Requirements
+                            <i class="material-icons tiny right red-text">*</i>
+                        </label>
                         <span class="helper-text" data-error="wrong" data-success="right">
                             What requirements have you identified for the Project?</span>
                     </div>
@@ -82,7 +84,9 @@
                 <div class="row">
                     <div class="input-field col s12 l7">
                         <input name="tools" type="text">
-                        <label for="tools" >Resources</label>
+                        <label for="tools" >Resources
+                            <i class="material-icons tiny right red-text">*</i>
+                        </label>
                         <span class="helper-text" data-error="wrong" data-success="right">
                             Describe the technical/skill resources required to deliver the project.</span>
                     </div>
@@ -93,7 +97,9 @@
                 <div class="row">
                     <div class="input-field col s12 l7">
                         <input name="goals" type="text">
-                        <label for="goals" >Desired Goals</label>
+                        <label for="goals" >Desired Goals
+                            <i class="material-icons tiny right red-text">*</i>
+                        </label>
                         <span class="helper-text" data-error="wrong" data-success="right">
                             Describe the desired goals for the project.</span>
                     </div>
@@ -104,7 +110,9 @@
                 <div class="row">
                     <div class="input-field col s12 l7">
                         <input name="sustain" type="text">
-                        <label for="sustain" >Sustainability</label>
+                        <label for="sustain" >Sustainability
+                            <i class="material-icons tiny right red-text">*</i>
+                        </label>
                         <span class="helper-text" data-error="wrong" data-success="right">
                             Describe how the project will remian susutainable.</span>
                     </div>

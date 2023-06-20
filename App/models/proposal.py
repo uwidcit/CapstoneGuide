@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 class Proposal(db.Model):
-    proposal_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     student_id = db.Column(db.Integer, db.ForeignKey('student.id'))
     rubricId = db.Column(db.Integer, db.ForeignKey('rubric.id'))
     proposal_name = db.Column(db.String)

@@ -1,0 +1,43 @@
+{% extends "studentBase.html" %}
+{% block title %}Capstone Proposal{% endblock %}
+{% block page %}Submit Proposal{% endblock %}
+
+<!--Side Nav items-->
+{% block menuItems %}
+    <li class="active" style="margin-top: 62px"><a href="/proposal">Submit New Proposal</a></li>
+    <li><a href="/ask-query">Ask a Question</a></li>
+    <li><a href="/history">History</a></li>
+    <li><a href="#!">Contact Lecturer</a></li>
+{% endblock %}
+
+<!--Screen content-->
+
+{% block content %}
+    <div class="row equal-height-grid" style="margin-bottom:5rem; margin-top:1.2rem;">
+        <h2>Select a rubric to begin</h2>
+        <div class="col s12">
+            {% for rubric in rubrics %}
+                <div class="card col s12 m5">
+                    <div class="card-content">
+                        <span class="card-title">{{rubric.name}}</span>
+                        <div class="col s6">
+                            <p>Novelty = {{rubric.novelty}}</p>
+                            <p>Feasibility = {{rubric.feasibility}}</p>
+                            <p>Sustainability = {{rubric.sustainability}}</p>
+                        </div>
+                        <div class="col s6">
+                            <p>Relevance = {{rubric.relevance}}</p>
+                            <p>Impact = {{rubric.impact}}</p>
+                            <p>Technology = {{rubric.technology}}</p>
+                        </div>
+                        <div class="row" style="margin-top: 20px;"></div>
+                        <p>Notes : {{rubric.notes}}</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="/select-rubric/{{rubric.id}}" class="indigo-text modal-trigger">Select</a>
+                    </div>     
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock %}

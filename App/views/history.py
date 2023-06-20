@@ -24,10 +24,5 @@ def get_history_page():
 def get_submission_page():
     proposals = get_all_proposals()
     evaluations = get_all_evaluations()
-    # evals =[]
-    print(evaluations)
-    # for count in evaluations:
-    #     print(get_proposal(count.proposal_id).status)
-    #     if(get_proposal(count.proposal_id).status == 1):
-    #         evals.append(count)
     return render_template('submissions.html', proposals=proposals ,evaluations=evaluations)
+

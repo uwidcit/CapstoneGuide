@@ -15,13 +15,16 @@ function viewEvaluation(evaluationId){
 
 
 function closeEvaluation(){
+    document.querySelector('#passSummary').innerHTML = ''
+    document.querySelector('#failSummary').innerHTML = ''
     modal.close();
+    
   
 }
 
 async function renderData(evaluationId){
     let response = await fetch(`/get-evaluation/${evaluationId}`);
-    let { series, name, score, comments } = await response.json();
+    let { series, name, score, comments, novelty, relevance, feasibility, impact, sustainability, technologies} = await response.json();
 
     let commens = document.querySelector('#comments');
     commens.innerHTML = `
@@ -32,6 +35,9 @@ async function renderData(evaluationId){
         </div>
     </div>`;
 
+    document.querySelector('#res').innerHTML = `
+        <p class="card-title">Overall Score ${score}</p>
+    `; 
 
     Highcharts.chart('container', {
 
@@ -102,14 +108,20 @@ async function renderData(evaluationId){
     
     });
 
-    let res = document.querySelector('#res');
-    res.innerHTML = `
-        <p class="card-title">Overall Score ${score}</p>
-    `; 
-}
+    let grades = [novelty, relevance, feasibility, technologies, impact, sustainability];
+    for (i in grades) {
+        if(grades[i].score < grades[i].threshold){
+        document.querySelector('#failSummary').innerHTML += `
+            <p class="card-title">${grades[i].name} failed: Score is ${grades[i].score}; threshold is ${grades[i].threshold}</p>
+         `;
+        }else{
+            document.querySelector('#passSummary').innerHTML += `
+                <p class="card-title">${grades[i].name} passed: Score is ${grades[i].score}; threshold is ${grades[i].threshold}</p>
+            `;
+        }
+    }
 
 
 html = `<div class="row" >
-
-
 `;
+}

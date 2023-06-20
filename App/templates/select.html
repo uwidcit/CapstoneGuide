@@ -1,5 +1,5 @@
 {% extends "studentBase.html" %}
-{% block title %}Capstone Proposal{% endblock %}
+{% block title %}Cap Advisor - Submit Proposal{% endblock %}
 {% block page %}Submit Proposal{% endblock %}
 
 <!--Side Nav items-->
@@ -7,13 +7,13 @@
     <li class="active" style="margin-top: 62px"><a href="/proposal">Submit New Proposal</a></li>
     <li><a href="/ask-query">Ask a Question</a></li>
     <li><a href="/history">History</a></li>
-    <li><a href="#!">Contact Lecturer</a></li>
+    <li><a href="/contacts">Lecturer Contacts</a></li>
 {% endblock %}
 
 <!--Screen content-->
 
 {% block content %}
-    <div class="row equal-height-grid" style="margin-bottom:5rem; margin-top:1.2rem;">
+    <div class="row equal-height-grid" style="margin-top: 50px;">
         <h2>Select a rubric to begin</h2>
         <div class="col s12">
             {% for rubric in rubrics %}

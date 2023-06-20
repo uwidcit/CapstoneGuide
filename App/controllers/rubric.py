@@ -36,6 +36,9 @@ def get_user_rubric(lecturer_id, rubric_id):
     rubric = Rubric.query.filter_by(lecturer_id=lecturer_id, id = rubric_id).all() 
     return rubric
 
+def get_rubric(rubric_id):
+    return Rubric.query.get(rubric_id)
+
 def get_user_rubrics(lecturer_id):
     return Rubric.query.filter_by(lecturer_id=lecturer_id).all()
 

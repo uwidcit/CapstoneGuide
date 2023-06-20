@@ -10,6 +10,7 @@ from App.controllers import (create_student, create_lecturer)
 
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
 
+# Registers user for service
 @user_views.route('/user', methods=['POST'])
 def create_user_action():
     data = request.form

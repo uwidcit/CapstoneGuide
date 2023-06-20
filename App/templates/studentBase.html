@@ -150,22 +150,25 @@
     </nav>
   </header>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
   <main>
     <div class="container">{% block content %}{% endblock %}</div>
   </main>
 
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script> M.AutoInit();
-      document.addEventListener("DOMContentLoaded", function() {
-        var message = document.getElementById('message');
-        if(message.innerText.slice(-1) == 's'){
-            message.innerText = message.innerText + "' Dashboard"
-        }else{
-            message.innerText = message.innerText + "'s Dashboard"
-        }
-    });
-  </script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var message = document.getElementById('message');
+      if(message.innerText.slice(-1) == 's'){
+          message.innerText = message.innerText + "' Dashboard"
+      }else{
+          message.innerText = message.innerText + "'s Dashboard"
+      }
+  });
+</script>
+
+
   {% with messages = get_flashed_messages() %}
 {% if messages %}
     {% for message in messages %}

@@ -17,6 +17,7 @@ def get_evaluation_endpoint(evaluationId):
     eval = get_evaluation(evaluationId)
     if eval:
         return jsonify({
+            'name': eval.proposal.proposal_name,
             'novelty': {
                 'score': eval.novelty,
                 'threshold': eval.proposal.rubric.novelty
@@ -41,7 +42,20 @@ def get_evaluation_endpoint(evaluationId):
                 'score': eval.technologies,
                 'threshold': eval.proposal.rubric.technology
             },
-            'comments': eval.comments
+            'series':[
+                {
+                    'name': 'Score',
+                    'data': [eval.novelty, eval.relevance, eval.feasibility, eval.impact, eval.sustainability, eval.technologies]
+                },
+                {
+                    'name': 'Threshold',
+                   'data': [eval.proposal.rubric.novelty, eval.proposal.rubric.relevance, eval.proposal.rubric.feasibility, eval.proposal.rubric.impact, eval.proposal.rubric.sustainability, eval.proposal.rubric.technology]
+                }
+            ],
+            'score': eval.score,
+            'comments': eval.comments,
+            'notes': eval.proposal.notes,
+            'num_members': eval.proposal.num_members,
         })
     return jsonify(message="Evaluation not found!")
     

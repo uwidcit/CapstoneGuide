@@ -11,6 +11,7 @@ class Rubric(db.Model):
     sustainability = db.Column(db.Integer)
     technology = db.Column(db.Integer)
     notes = db.Column(db.String(80))
+    proposals = db.relationship('Proposal', backref=db.backref('rubric', lazy='joined'))
 
     def __init__(self, name, notes, novelty, relevance, feasibility, impact, sustainability, technology, lecturer_id):
         self.name = name.capitalize() 

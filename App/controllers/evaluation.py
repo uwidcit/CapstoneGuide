@@ -23,7 +23,13 @@ def remove_evaluation(proposal_id):
     return None
 
 def get_user_evaluation(proposal_id, evaluation_id):
-    evaluation = Evaluation.query.filter_by(proposal_id_id=proposal_id, id = evaluation_id).all()
+    evaluation = Evaluation.query.filter_by(proposal_id=proposal_id, evaluation_id=evaluation_id).all()
+    if evaluation:
+        return evaluation
+    return None
+
+def get_evaluation(evaluation_id):
+    evaluation = Evaluation.query.get(evaluation_id)
     if evaluation:
         return evaluation
     return None

@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, jsonify, request, send_from_directory, flash, redirect, url_for
 from flask_login import current_user, login_required
-from App.controllers import (student_required, add_proposal, remove_proposal,remove_evaluation, get_all_rubrics)
+from App.controllers import (ai_test, student_required, add_proposal, remove_proposal,remove_evaluation, get_all_rubrics)
 
 from .history import history_views
 
@@ -28,6 +28,7 @@ def submit_proposal_action(rubricId):
     add_proposal(current_user.id, rubricId, data['name'], data['problem'], data['solution'], data['group_num'], data['requirements'], data['tools'],
                  data['goals'], data['sustain'], data['additional_info'])
     flash('Proposal Submitted, Go to History to view!')
+    print(ai_test(str(data['problem'])))
     return redirect(url_for('proposal_views.get_proposal_page'))
 
 @student_required

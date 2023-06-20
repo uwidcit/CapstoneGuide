@@ -1,13 +1,13 @@
 {% extends "studentBase.html" %}
-{% block title %}Capstone Proposal{% endblock %}
-{% block page %}Capstone Proposal Evaluation{% endblock %}
+{% block title %}Cap Advisor - History{% endblock %}
+{% block page %}Proposal Evaluation{% endblock %}
 
 <!--Side nav items-->
 {% block menuItems %}
     <li style="margin-top: 62px"><a href="/proposal">Submit New Proposal</a></li>
     <li><a href="/ask-query">Ask a Question</a></li>
     <li class="active" ><a href="/history">History</a></li>
-    <li><a href="#!">Contact Lecturer</a></li>
+    <li><a href="/contacts">Lecturer Contacts</a></li>
 {% endblock %}
 
 <!--Screen content-->
@@ -20,182 +20,206 @@
 
     <link rel="stylesheet" href="/static/chart.css">
 
-    <div class="row " style="margin-bottom:5rem; margin-top:1.2rem;">
+    <style>
+        /* Edit materialize tab style*/
+        .tabs{
+            background-color: transparent;
+        }
+        .tabs .indicator {
+            background-color: indigo;
+        }
+        .tabs .tab a:focus,.tabs .tab a:focus.active {
+            background-color: transparent;
+            outline: none
+        }
+        .tabs-content{
+            display:flex;
+            align-content:center;
+            min-height: 548px;
+        }
+    </style>
+    
+    <!--Tabs Setup-->
+    <div class="row" style="margin-top: 100px;">
         <div class="col s12">
 
-            <!--Evaluation History-->
-           <h3> <span class="section-title"> Evaluation History </span> </h3>
-
-            <div class="card">
-                <div class="divider"></div>
-                <div class="card-content" style="min-height: 600px;">
-                    <div class="row">
-                        <table class="centered highlight striped">
-                            <thead><tr>
-                                <th></th>
-                                <th>Date Evaluated</th>
-                                <th>Proposal Name</th>
-                                <th>Evaluator</th>
-                                <th>Evaluation Score (/10)</th>
-                            </tr></thead>
-                            <tbody>
-                            {% for evaluation in evaluations %}
-                            {% set id = evaluation.evaluation_id %}
-                                <tr>
-                                    <td><a onclick="viewEvaluation({{id}})" href="#evaluation_modal"><i class="material-icons">input</i></a></td>
-                                    <td>{{evaluation.created}}</td>
-                                    <td>{{evaluation.proposal.proposal_name}}</td>
-                                    <td>{{evaluation.lecturer.id}} {{evaluation.lecturer.uwi_id}}</td>
-                                    <td>{{evaluation.score}}</td>
-                                </tr>
-                            {% endfor %}
-
-                            
-                                  <!-- Modal Structure: View Evaluations -->
-                                  <div id="evaluation_modal" class="modal modal-fixed-footer">
-                                    <form>
-                                        
-                                        <div class="modal-content">
-                                           
-                                            <div id="comments">
-
-                                            </div>
-
-                                            <div id="res">
-
-                                            </div>
-
-                                            <figure class="highcharts-figure">
-                                                <div id="container"></div>
+            <!--Tab headers-->
+            <ul class="tabs tabs-fixed-width">
+                <li class="tab col s6"><a href="#evaluation" class=" indigo-text">EVALUATION HISTORY</a></li>
+                <li class="tab col s6"><a class="indigo-text" href="#proposal">PROPOSAL HISTORY</a></li>
+            </ul>
+            <div class="tabs-content">
+                <!--View Evaluations-->
+                <div id="evaluation" class="col s12">
+                    <div class="card">
+                        <div class="divider"></div>
+                        <div class="card-content" style="min-height: 600px;">
+                            <div class="row">
+                                <table class="centered highlight striped">
+                                    <thead><tr>
+                                        <th></th>
+                                        <th>Date Evaluated</th>
+                                        <th>Proposal Name</th>
+                                        <th>Evaluator</th>
+                                        <th>Evaluation Score (/10)</th>
+                                    </tr></thead>
+                                    <tbody>
+                                    {% for evaluation in evaluations %}
+                                    {% set id = evaluation.evaluation_id %}
+                                        <tr>
+                                            <td><a onclick="viewEvaluation({{id}})" href="#evaluation_modal"><i class="material-icons">input</i></a></td>
+                                            <td>{{evaluation.created}}</td>
+                                            <td>{{evaluation.proposal.proposal_name}}</td>
+                                            <td>{{evaluation.lecturer.id}} {{evaluation.lecturer.uwi_id}}</td>
+                                            <td>{{evaluation.score}}</td>
+                                        </tr>
+                                    {% endfor %}
+        
+                                    
+                                          <!-- Modal Structure: View Evaluations -->
+                                          <div id="evaluation_modal" class="modal modal-fixed-footer">
+                                            <form>
                                                 
-                                            </figure>
-
-                                            <div id="failSummary">
-
-                                            </div>
-                                            <div id="passSummary">
-
-                                            </div>
-
-                                            <script src="/static/chart.js"></script>
-  
+                                                <div class="modal-content">
+                                                   
+                                                    <div id="comments">
+        
+                                                    </div>
+        
+                                                    <div id="res">
+        
+                                                    </div>
+        
+                                                    <figure class="highcharts-figure">
+                                                        <div id="container"></div>
+                                                        
+                                                    </figure>
+        
+                                                    <div id="failSummary">
+        
+                                                    </div>
+                                                    <div id="passSummary">
+        
+                                                    </div>
+        
+                                                    <script src="/static/chart.js"></script>
+          
+                                                </div>
+                                                <div class="modal-footer">      
+                                                    <a href="#!" onclick="closeEvaluation()" class="waves-effect waves-grey btn-flat" style="background-color: lightgray; border-radius: 30px;">Close</a>
+                                                </div>
+                                            </form>
                                         </div>
-                                        <div class="modal-footer">      
-                                            <a href="#!" onclick="closeEvaluation()" class="waves-effect waves-grey btn-flat" style="background-color: lightgray; border-radius: 30px;">Close</a>
-                                        </div>
-                                    </form>
-                                </div>
-                            </tbody>
-                        </table>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!--Proposal History-->
-            <h3 style="margin-top: 5rem;"> <span class="section-title"> Proposal Submissions </span> </h3>
-
-            <div class="card">
-                <div class="divider"></div>
-
-                <div class="card-content" style="min-height: 600px;">
-                    <div class="row">
-                        <table class="centered highlight striped">
-                            <thead>
-                            <tr>
-                                <th></th>
-                                <th>Date Submitted</th>
-                                <th>Student Name</th>
-                                <th>Proposal Name</th>
-                                <th></th>
-                            </tr></thead>
-                            <tbody>
-                            {% for proposal in proposals %}
-                                <tr>
-                                    <td><a class=" modal-trigger" href="#proposal_modal{{proposal.id}}">
-                                        <i class="material-icons blue-text">input</i></a></td>
-                                    <td>{{proposal.created}}</td>
-                                    <td>{{proposal.student.first_name}} {{proposal.student.last_name}}</td>
-                                    <td>{{proposal.proposal_name}}</td>
-                                    <td><a class="" href="/delete-proposal/{{proposal.id}}">
-                                        <i class="material-icons red-text">delete</i></a></td>
-                                </tr>
-                                 <!--Modal Structure: Grade Proposal-->
-                                <div id="proposal_modal{{proposal.id}}" class="modal modal-fixed-footer">
-                                    <form>
+                <!--View Proposals-->
+                <div id="proposal" class="col s12">
+                    <div class="card">
+                        <div class="divider"></div>
+                        <div class="card-content" style="min-height: 600px;">
+                            <div class="row">
+                                <table class="centered highlight striped">
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Date Submitted</th>
+                                        <th>Student Name</th>
+                                        <th>Proposal Name</th>
+                                        <th></th>
+                                    </tr></thead>
+                                    <tbody>
+                                    {% for proposal in proposals %}
+                                        <tr>
+                                            <td><a class=" modal-trigger" href="#proposal_modal{{proposal.id}}">
+                                                <i class="material-icons blue-text">input</i></a></td>
+                                            <td>{{proposal.created}}</td>
+                                            <td>{{proposal.student.first_name}} {{proposal.student.last_name}}</td>
+                                            <td>{{proposal.proposal_name}}</td>
+                                            <td><a class="" href="/delete-proposal/{{proposal.id}}">
+                                                <i class="material-icons red-text">delete</i></a></td>
+                                        </tr>
+                                         <!--Modal Structure: Grade Proposal-->
+                                        <div id="proposal_modal{{proposal.id}}" class="modal modal-fixed-footer">
+                                            <form>
+                                                
+                                                <div class="modal-content">
+                                                    <div class="row">
+                                                        <div class="col s5">
+                                                            <h3>{{proposal.proposal_name}}</h3>
+                                                        </div>
+                                                        <div class="col s2 offset-s4">
+                                                            <h5>Members: {{proposal.num_members}}</h5>
+                                                        </div>
+                                                    </div>
+        
+                                                    <h4> <span class="section-title"> Relevance</span> </h4>
+                                                    <div class="row">
+                                                        <div class="col s12">
+                                                            <p>Problem Statement: {{proposal.problem_desc}}</p>
+                                                        </div>
+                                                    </div>
+        
+                                                    <h4> <span class="section-title">Summary </span> </h4>
+                                                    <div class="row">
+                                                        <div class="col s12">
+                                                            <p>Solution Goal: {{proposal.solution_desc}}</p>
+                                                        </div>
+                                                    </div>
+        
+                                                    <h4> <span class="section-title">Feasibility </span> </h4>
+                                                    <div class="row">
+                                                        <div class="col s12">
+                                                            <p>Requirements: {{proposal.requirements}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col s12">
+                                                            <p>Resources: {{proposal.tools}}</p>
+                                                        </div>
+                                                    </div>
+        
+                                                    <h4> <span class="section-title">Impact</span> </h4>
+                                                    <div class="row">
+                                                        <div class="col s12">
+                                                            <p>Desired Goals: {{proposal.impact}}</p>
+                                                        </div>
+                                                    </div>
+        
+                                                    <h4> <span class="section-title">Sustainability</span> </h4>
+                                                    <div class="row">
+                                                        <div class="col s12">
+                                                            <p>Sustainability: {{proposal.sustainability}}</p>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <h4> <span class="section-title">Additional Information</span> </h4>
+                                                    <div class="row">
+                                                        <div class="col s12">
+                                                            <p>Addtional Info: {{proposal.notes}}</p>
+                                                        </div>
+                                                    </div>
+        
+                                                </div>
                                         
-                                        <div class="modal-content">
-                                            <div class="row">
-                                                <div class="col s5">
-                                                    <h3>{{proposal.proposal_name}}</h3>
+                                                <div class="modal-footer">
+                                                    <a href="#!" class="modal-close waves-effect waves-grey btn-flat" style="background-color: lightgray; border-radius: 30px;">Close</a>
                                                 </div>
-                                                <div class="col s2 offset-s4">
-                                                    <h5>Members: {{proposal.num_members}}</h5>
-                                                </div>
-                                            </div>
-
-                                            <h4> <span class="section-title"> Relevance</span> </h4>
-                                            <div class="row">
-                                                <div class="col s12">
-                                                    <p>Problem Statement: {{proposal.problem_desc}}</p>
-                                                </div>
-                                            </div>
-
-                                            <h4> <span class="section-title">Summary </span> </h4>
-                                            <div class="row">
-                                                <div class="col s12">
-                                                    <p>Solution Goal: {{proposal.solution_desc}}</p>
-                                                </div>
-                                            </div>
-
-                                            <h4> <span class="section-title">Feasibility </span> </h4>
-                                            <div class="row">
-                                                <div class="col s12">
-                                                    <p>Requirements: {{proposal.requirements}}</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col s12">
-                                                    <p>Resources: {{proposal.tools}}</p>
-                                                </div>
-                                            </div>
-
-                                            <h4> <span class="section-title">Impact</span> </h4>
-                                            <div class="row">
-                                                <div class="col s12">
-                                                    <p>Desired Goals: {{proposal.impact}}</p>
-                                                </div>
-                                            </div>
-
-                                            <h4> <span class="section-title">Sustainability</span> </h4>
-                                            <div class="row">
-                                                <div class="col s12">
-                                                    <p>Sustainability: {{proposal.sustainability}}</p>
-                                                </div>
-                                            </div>
-                                            
-                                            <h4> <span class="section-title">Additional Information</span> </h4>
-                                            <div class="row">
-                                                <div class="col s12">
-                                                    <p>Addtional Info: {{proposal.notes}}</p>
-                                                </div>
-                                            </div>
-
+                                            </form>
                                         </div>
-                                
-                                        <div class="modal-footer">
-                                            <a href="#!" class="modal-close waves-effect waves-grey btn-flat" style="background-color: lightgray; border-radius: 30px;">Close</a>
-                                        </div>
-                                    </form>
-                                </div>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!--to edit-->
-
+            </div>           
         </div>
     </div>
+
 {% endblock %}

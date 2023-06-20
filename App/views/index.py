@@ -4,6 +4,7 @@ from App.controllers import create_student, create_lecturer
 
 index_views = Blueprint('index_views', __name__, template_folder='../templates')
 
+# Main page
 @index_views.route('/', methods=['GET'])
 def index_page():
     return render_template('index.html')

@@ -1,0 +1,44 @@
+{% extends "studentBase.html" %}
+{% block title %}Cap Advisor - Lecturers{% endblock %}
+{% block page %}Capstone Proposal Evaluation{% endblock %}
+
+{% block menuItems %}
+    <li style="margin-top: 62px"><a href="/proposal">Submit New Proposal</a></li>
+    <li><a href="/ask-query">Ask a Question</a></li>
+    <li><a href="/history">History</a></li>
+    <li class="active"><a href="/contacts">Lecturers</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="row" style="margin-top: 50px;">
+    <div class="col s12">
+        <h3> <span class="section-title"> Lecturers </span> </h3>
+
+        <div class="card">
+            <div class="divider"></div>
+
+            <div class="card-content" style="min-height: 600px;">
+                <div class="row">
+                    <table class="centered highlight striped">
+                        <thead>
+                        <tr>
+                            <th>UWI ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr></thead>
+                        <tbody>
+                        {% for lecturer in lecturers %}
+                            <tr>
+                                <td>{{lecturer.uwi_id}}</td>
+                                <td>{{lecturer.first_name}} {{lecturer.last_name}}</td>
+                                <td>{{lecturer.email}}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

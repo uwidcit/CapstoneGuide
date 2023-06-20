@@ -12,17 +12,18 @@ auth_views = Blueprint('auth_views', __name__, template_folder='../templates')
 '''
 Page/Action Routes
 '''
-
+# Identify user
 @auth_views.route('/identify', methods=['GET'])
 @login_required
 def identify_page():
     return jsonify({'message': f"username: {current_user.username}, id : {current_user.id}"})
 
-
+# login page
 @auth_views.route('/login', methods=['GET'])
 def get_registration_page():
     return render_template('registration.html')
 
+# verify user credentials
 @auth_views.route('/login', methods=['POST'])
 def login_action():
     data = request.form
@@ -37,6 +38,7 @@ def login_action():
     flash('Incorrect username or password given')
     return redirect(url_for('auth_views.get_registration_page'))
 
+# log user out
 @auth_views.route('/logout', methods=['GET'])
 def logout_action():
     logout_user()

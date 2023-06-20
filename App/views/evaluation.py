@@ -7,7 +7,7 @@ from.history import history_views
 
 evaluation_views = Blueprint('evaluation_views', __name__, template_folder='../templates')
 
-
+# landing page to store evaluation info
 @student_required
 @evaluation_views.route('/get-evaluation/<evaluationId>', methods=['GET'])
 @login_required
@@ -64,6 +64,7 @@ def get_evaluation_endpoint(evaluationId):
     return jsonify(message="Evaluation not found!")
     
 
+# displays submissions and evaluations to lecturer
 @lecturer_required
 @evaluation_views.route('/man-evaluation', methods=['POST'])
 @login_required

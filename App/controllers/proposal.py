@@ -25,6 +25,9 @@ def remove_proposal(student_id, proposal_id):
 def get_proposal(proposal_id):
     return Proposal.query.get(proposal_id)
 
+def get_proposal_by_rubric(rubric_id):
+    return Proposal.query.filter_by(rubric_id=rubric_id).first()
+
 def get_user_proposal(proposal_id, student_id):
     proposal = Proposal.query.filter_by(student_id=student_id, id = proposal_id).first() 
     return proposal

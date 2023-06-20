@@ -40,11 +40,12 @@
                             </tr></thead>
                             <tbody>
                             {% for evaluation in evaluations %}
+                            {% set id = evaluation.evaluation_id %}
                                 <tr>
-                                    <td><a onclick="viewEvaluation({{ evaluation.evaluation_id }})" href="#evaluation_modal"><i class="material-icons">input</i></a></td>
+                                    <td><a onclick="viewEvaluation({{id}})" href="#evaluation_modal"><i class="material-icons">input</i></a></td>
                                     <td>{{evaluation.created}}</td>
-                                    <td id="name">{{evaluation.proposal.proposal_name}}</td>
-                                    <td></td>
+                                    <td>{{evaluation.proposal.proposal_name}}</td>
+                                    <td>{{evaluation.lecturer.id}} {{evaluation.lecturer.uwi_id}}</td>
                                     <td>{{evaluation.score}}</td>
                                 </tr>
                             {% endfor %}
@@ -60,21 +61,27 @@
 
                                             </div>
 
+                                            <div id="res">
+
+                                            </div>
+
                                             <figure class="highcharts-figure">
                                                 <div id="container"></div>
                                                 
                                             </figure>
 
-                                            <div id="res">
+                                            <div id="failSummary">
+
+                                            </div>
+                                            <div id="passSummary">
 
                                             </div>
 
                                             <script src="/static/chart.js"></script>
-                                
-                                            
+  
                                         </div>
                                         <div class="modal-footer">      
-                                            <a href="#!" onclick="closeEvaluation()" class="modal-close waves-effect waves-grey btn-flat" style="background-color: lightgray; border-radius: 30px;">Close</a>
+                                            <a href="#!" onclick="closeEvaluation()" class="waves-effect waves-grey btn-flat" style="background-color: lightgray; border-radius: 30px;">Close</a>
                                         </div>
                                     </form>
                                 </div>
@@ -104,16 +111,16 @@
                             <tbody>
                             {% for proposal in proposals %}
                                 <tr>
-                                    <td><a class=" modal-trigger" href="#eval_proposal_modal{{proposal.proposal_id}}">
+                                    <td><a class=" modal-trigger" href="#proposal_modal{{proposal.id}}">
                                         <i class="material-icons blue-text">input</i></a></td>
                                     <td>{{proposal.created}}</td>
-                                    <td id="name">{{proposal.student.first_name}} {{proposal.student.last_name}}</td>
-                                    <td id="name">{{proposal.proposal_name}}</td>
-                                    <td><a class="" href="/delete-proposal/{{proposal.proposal_id}}">
+                                    <td>{{proposal.student.first_name}} {{proposal.student.last_name}}</td>
+                                    <td>{{proposal.proposal_name}}</td>
+                                    <td><a class="" href="/delete-proposal/{{proposal.id}}">
                                         <i class="material-icons red-text">delete</i></a></td>
                                 </tr>
                                  <!--Modal Structure: Grade Proposal-->
-                                <div id="eval_proposal_modal{{proposal.proposal_id}}" class="modal modal-fixed-footer">
+                                <div id="proposal_modal{{proposal.id}}" class="modal modal-fixed-footer">
                                     <form>
                                         
                                         <div class="modal-content">
@@ -176,7 +183,7 @@
                                         </div>
                                 
                                         <div class="modal-footer">
-                                            <a href="#!" onclick="closeEvaluation()"  class="waves-effect waves-grey btn-flat" style="background-color: lightgray; border-radius: 30px;">Close</a>
+                                            <a href="#!" class="modal-close waves-effect waves-grey btn-flat" style="background-color: lightgray; border-radius: 30px;">Close</a>
                                         </div>
                                     </form>
                                 </div>

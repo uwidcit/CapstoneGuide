@@ -15,7 +15,7 @@ def add_proposal(student_id, rubric_id, proposal_nm, problem_desc, solution_desc
     return None
 
 def remove_proposal(student_id, proposal_id):
-    proposal = Proposal.query.filter_by(student_id=student_id, proposal_id=proposal_id).first()
+    proposal = Proposal.query.filter_by(student_id=student_id, id=proposal_id).first()
     if proposal:
         db.session.delete(proposal)
         res = db.session.commit()
@@ -26,7 +26,7 @@ def get_proposal(proposal_id):
     return Proposal.query.get(proposal_id)
 
 def get_user_proposal(proposal_id, student_id):
-    proposal = Proposal.query.filter_by(student_id=student_id, proposal_id = proposal_id).first() 
+    proposal = Proposal.query.filter_by(student_id=student_id, id = proposal_id).first() 
     return proposal
 
 def get_user_proposals(student_id):

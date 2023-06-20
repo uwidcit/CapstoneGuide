@@ -1,44 +1,48 @@
 from flask import Blueprint, render_template, jsonify, request, send_from_directory, flash, redirect, url_for
 from flask_login import current_user, login_required
 
-from App.controllers import lecturer_required, add_evaluation, get_evaluation
+from App.controllers import lecturer_required, add_evaluation, get_evaluation, student_required
 
 from.history import history_views
 
 evaluation_views = Blueprint('evaluation_views', __name__, template_folder='../templates')
 
-@evaluation_views.route('/proposal-evaluation', methods=['GET'])
-@login_required
-def get_evaluation_page():
-    return render_template('evaluation.html')
 
+@student_required
 @evaluation_views.route('/get-evaluation/<evaluationId>', methods=['GET'])
+@login_required
 def get_evaluation_endpoint(evaluationId):
     eval = get_evaluation(evaluationId)
     if eval:
         return jsonify({
             'name': eval.proposal.proposal_name,
             'novelty': {
+                'name': 'Novelty',
                 'score': eval.novelty,
                 'threshold': eval.proposal.rubric.novelty
             },
             'relevance': {
+                'name': 'Releavance',
                 'score': eval.relevance,
                 'threshold': eval.proposal.rubric.relevance
             },
             'feasibility': {
+                'name': 'Feasibility',
                 'score': eval.feasibility,
                 'threshold': eval.proposal.rubric.feasibility
             },
             'impact': {
+                'name': 'Impact',
                 'score': eval.impact,
                 'threshold': eval.proposal.rubric.impact
             },
             'sustainability': {
+                'name': 'Sustainability',
                 'score': eval.sustainability,
                 'threshold': eval.proposal.rubric.sustainability
             },
             'technologies': {
+                'name': 'Technology',
                 'score': eval.technologies,
                 'threshold': eval.proposal.rubric.technology
             },

@@ -22,7 +22,7 @@ def initialize():
     rob = create_student('rob', 'robspass', 'rob@mycavehilluwi.edu', 'Rob', 'Renolds', 2222)
     steve = create_student('steve', 'stevepass', 'steve@mycavehilluwi.edu', 'Steve', 'Pass', 3333)
     bob = create_lecturer('bob', 'bobspass', 'bob@mycavehilluwi.edu', 'bob', 'smith', 1111)
-    create_lecturer('cory', 'corypass', 'cory@mycavehilluwi.edu', 'Cory', 'Jones', 4444)
+    cory = create_lecturer('cory', 'corypass', 'cory@mycavehilluwi.edu', 'Cory', 'Jones', 4444)
     rubric = add_rubric('test project','notes', 3, 5, 6, 6, 6, 1, bob.id)
     cap_advisor = add_proposal(steve.id, rubric.id, 'Cap Advisor', 'Students can have their proposals evaluated early',
                 'Students can submit capstone proposals to and have feedback',
@@ -36,8 +36,8 @@ def initialize():
                 'Students can submit capstone proposals to and have feedback',
                 1, 'students must submit proposals based on cirtera', 'flask MVC', 'lecturers will evaluate submitted proposals', 'manged by lecturer eventually',
                 'May be revised')
-    add_evaluation('notes', 5, 7, 5, 3, 10, 5, cap_advisor.proposal_id, steve.id)
-    add_evaluation('crash', 10, 10, 1, 3, 10, 10, flask_test.proposal_id, steve.id)
+    add_evaluation('notes', 5, 7, 5, 3, 10, 5, cap_advisor.id, cory.id)
+    add_evaluation('crash', 10, 10, 1, 3, 10, 10, flask_test.id, bob.id)
     print('database intialized')
 
 '''

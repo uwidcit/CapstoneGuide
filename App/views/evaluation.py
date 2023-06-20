@@ -22,7 +22,7 @@ def get_evaluation_endpoint(evaluationId):
                 'threshold': eval.proposal.rubric.novelty
             },
             'relevance': {
-                'name': 'Releavance',
+                'name': 'Relevance',
                 'score': eval.relevance,
                 'threshold': eval.proposal.rubric.relevance
             },

@@ -28,7 +28,7 @@ def submit_proposal_action(rubricId):
     add_proposal(current_user.id, rubricId, data['name'], data['problem'], data['solution'], data['group_num'], data['requirements'], data['tools'],
                  data['goals'], data['sustain'], data['additional_info'])
     flash('Proposal Submitted, Go to History to view!')
-    print(ai_test(str(data['problem'])))
+    print(ai_test(data['problem'], data['solution']))
     return redirect(url_for('proposal_views.get_proposal_page'))
 
 @student_required

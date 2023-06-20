@@ -50,11 +50,12 @@
                                     <form method="POST" action="/man-evaluation">
                                         
                                         <div class="modal-content">
+                                            <!--Format is data field above the slider to grade it-->
                                            <div class="row">
                                                 <div class="col s5">
                                                     <h3>{{proposal.proposal_name}}</h3>
                                                 </div>
-                                                <div class="col s2 offset-s4">
+                                                <div class="col s3 offset-s4">
                                                     <h5>Members: {{proposal.num_members}}</h5>
                                                 </div>
                                             </div>
@@ -65,6 +66,14 @@
                                                     <p>Problem Statement: {{proposal.problem_desc}}</p>
                                                 </div>
                                             </div>
+                                            <div class="row slide-label">
+                                                <div class="input-field col s6">
+                                                    <p class="range-field">
+                                                        <label for="relevance">Relevance Threshold: {{proposal.rubric.relevance}}</label>
+                                                        <input type="range" name="relevance" min="0" max="10" value="{{proposal.rubric.relevance}}"/>
+                                                    </p>    
+                                                </div>
+                                            </div>
 
                                             <h4> <span class="section-title">Summary </span> </h4>
                                             <div class="row">
@@ -72,6 +81,15 @@
                                                     <p>Solution Goal: {{proposal.solution_desc}}</p>
                                                 </div>
                                             </div>
+                                            <div class="row slide-label">
+                                                <div class="input-field col s6">
+                                                    <p class="range-field">
+                                                        <label for="novelty">Novelty Threshold: {{proposal.rubric.novelty}}</label>
+                                                        <input type="range" name="novelty" min="0" max="10" value="{{proposal.rubric.novelty}}"/>
+                                                    </p>
+                                                </div>
+                                            </div>
+
 
                                             <h4> <span class="section-title">Feasibility </span> </h4>
                                             <div class="row">
@@ -79,11 +97,28 @@
                                                     <p>Requirements: {{proposal.requirements}}</p>
                                                 </div>
                                             </div>
+                                            <div class="row slide-label">
+                                                <div class="input-field col s6">
+                                                    <p class="range-field">
+                                                        <label for="feasibility">Feasibility Threshold: {{proposal.rubric.feasibility}}</label>
+                                                        <input type="range" name="feasibility" min="0" max="10"  value="{{proposal.rubric.feasibility}}"/>
+                                                    </p>
+                                                </div>
+                                            </div>
                                             <div class="row">
                                                 <div class="col s12">
                                                     <p>Resources: {{proposal.tools}}</p>
                                                 </div>
                                             </div>
+                                            <div class="row slide-label">
+                                                <div class="input-field col s6">
+                                                    <p class="range-field">
+                                                        <label for="technology">Technology Threshold: {{proposal.rubric.technology}}</label>
+                                                        <input type="range" name="technology" min="0" max="10" value="{{proposal.rubric.technology}}"/>
+                                                    </p>
+                                                </div>
+                                            </div>
+
 
                                             <h4> <span class="section-title">Impact</span> </h4>
                                             <div class="row">
@@ -91,6 +126,15 @@
                                                     <p>Desired Goals: {{proposal.impact}}</p>
                                                 </div>
                                             </div>
+                                            <div class="row slide-label">
+                                                <div class="input-field col s6">
+                                                    <p class="range-field">
+                                                        <label for="impact">Impact Threshold: {{proposal.rubric.impact}}</label>
+                                                        <input type="range" name="impact" min="0" max="10" value="{{proposal.rubric.impact}}"/>
+                                                    </p>
+                                                </div>
+                                            </div>
+
 
                                             <h4> <span class="section-title">Sustainability</span> </h4>
                                             <div class="row">
@@ -98,6 +142,15 @@
                                                     <p>Sustainability: {{proposal.sustainability}}</p>
                                                 </div>
                                             </div>
+                                            <div class="row slide-label">
+                                                <div class="input-field col s6">
+                                                    <p class="range-field">
+                                                        <label for="sustainability">Sustainability Threshold: {{proposal.rubric.sustainability}}</label>
+                                                        <input type="range" name="sustainability" min="0" max="10" value="{{proposal.rubric.sustainability}}"/>
+                                                    </p>
+                                                </div>
+                                            </div>
+
                                             
                                             <h4> <span class="section-title">Additional Information</span> </h4>
                                             <div class="row">
@@ -105,6 +158,12 @@
                                                     <p>Addtional Info: {{proposal.notes}}</p>
                                                 </div>
                                             </div>
+                                            <div class="row slide-label">
+                                                <div class="input-field col s6">
+                                                
+                                                </div>
+                                            </div>
+
 
                                             <div class="row">
                                                 <div class="input-field col s4">
@@ -112,62 +171,6 @@
                                                 </div>
                                             </div>
                                             
-                                            <div class="row slide-label">
-                                                <div class="input-field col s6">
-                                                
-                                                <p class="range-field">
-                                                    <label for="novelty">Novelty</label>
-                                                    <input type="range" name="novelty" min="1" max="10" />
-                                                </p>
-                                                </div>
-                                
-                                                <div class="input-field col s6">
-                                                    
-                                                <p class="range-field">
-                                                    <label for="relevance">Relevance</label>
-                                                    <input type="range" name="relevance" min="1" max="10" />
-                                                </p>
-                                                
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="row slide-label">
-                                                <div class="input-field col s6">
-                                                    
-                                                <p class="range-field">
-                                                    <label for="feasibility">Feasibility</label>
-                                                    <input type="range" name="feasibility" min="1" max="10"  />
-                                                </p>
-                                                
-                                                </div>
-                                                <div class="input-field col s6">
-                                                    
-                                                <p class="range-field">
-                                                    <label for="impact">Impact</label>
-                                                    <input type="range" name="impact" min="1" max="10" />
-                                                </p>
-                                                </div>
-                                            </div>
-                                
-                                            <div class="row slide-label">
-                                                <div class="input-field col s6">
-                                                    
-                                                <p class="range-field">
-                                                    <label for="sustainability">Sustainability</label>
-                                                    <input type="range" name="sustainability" min="1" max="10" />
-                                                </p>
-                                                
-                                                </div>
-                                                <div class="input-field col s6">
-                                                    
-                                                <p class="range-field">
-                                                    <label for="technology">Technology</label>
-                                                    <input type="range" name="technology" min="1" max="10" />
-                                                </p>
-                                            
-                                                </div>
-                                            </div>
-                                
                                             <div class="row">
                                                 <div class="input-field col s12">
                                                 <textarea name="notes" class="materialize-textarea"></textarea>
@@ -181,7 +184,7 @@
                                             <button class="btn indigo darken-4 z-depth-1 waves-effect waves-light" type="submit">
                                                 Evaluate
                                             </button>
-                                            <a href="#!" class="modal-close waves-effect waves-grey btn-flat" style="background-color: lightgray;">Cancel</a>
+                                            <a href="#!" class="modal-close waves-effect waves-grey btn-flat" style="background-color: lightgray;">Close</a>
                                         </div>
                                     </form>
                                 </div>
@@ -233,7 +236,7 @@
                                                 <div class="col s5">
                                                     <h3>{{evaluation.proposal.proposal_name}}</h3>
                                                 </div>
-                                                <div class="col s2 offset-s4">
+                                                <div class="col s3 offset-s4">
                                                     <h5>Members: {{evaluation.proposal.num_members}}</h5>
                                                 </div>
                                             </div>
@@ -296,7 +299,7 @@
                                                 
                                                 <p class="range-field">
                                                     <label for="novelty">Novelty</label>
-                                                    <input type="range" name="novelty" min="1" max="10" value="{{evaluation.novelty}}"/>
+                                                    <input type="range" name="novelty" min="0" max="10" value="{{evaluation.novelty}}"/>
                                                 </p>
                                                 </div>
                                 
@@ -304,7 +307,7 @@
                                                     
                                                 <p class="range-field">
                                                     <label for="relevance">Relevance</label>
-                                                    <input type="range" name="relevance" min="1" max="10" value="{{evaluation.relevance}}"/>
+                                                    <input type="range" name="relevance" min="0" max="10" value="{{evaluation.relevance}}"/>
                                                 </p>
                                                 
                                                 </div>
@@ -315,7 +318,7 @@
                                                     
                                                 <p class="range-field">
                                                     <label for="feasibility">Feasibility</label>
-                                                    <input type="range" name="feasibility" min="1" max="10"  value="{{evaluation.feasibility}}"/>
+                                                    <input type="range" name="feasibility" min="0" max="10"  value="{{evaluation.feasibility}}"/>
                                                 </p>
                                                 
                                                 </div>
@@ -323,7 +326,7 @@
                                                     
                                                 <p class="range-field">
                                                     <label for="impact">Impact</label>
-                                                    <input type="range" name="impact" min="1" max="10" value="{{evaluation.impact}}"/>
+                                                    <input type="range" name="impact" min="0" max="10" value="{{evaluation.impact}}"/>
                                                 </p>
                                                 </div>
                                             </div>
@@ -333,7 +336,7 @@
                                                     
                                                 <p class="range-field">
                                                     <label for="sustainability">Sustainability</label>
-                                                    <input type="range" name="sustainability" min="1" max="10" value="{{evaluation.sustainability}}"/>
+                                                    <input type="range" name="sustainability" min="0" max="10" value="{{evaluation.sustainability}}"/>
                                                 </p>
                                                 
                                                 </div>
@@ -341,7 +344,7 @@
                                                     
                                                 <p class="range-field">
                                                     <label for="technology">Technology</label>
-                                                    <input type="range" name="technology" min="1" max="10" value="{{evaluation.technologies}}"/>
+                                                    <input type="range" name="technology" min="0" max="10" value="{{evaluation.technologies}}"/>
                                                 </p>
                                             
                                                 </div>

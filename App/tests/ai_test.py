@@ -1,6 +1,6 @@
 import openai
 
-openai.api_key = "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"
+openai.api_key = "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"
 
 def call_openai_api(*args, **kwargs):
     return openai.ChatCompletion.create(*args, **kwargs)

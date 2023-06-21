@@ -1,0 +1,47 @@
+{% extends "lecturerBase.html" %}
+{% block title %}Cap Advisor - Add Rubric{% endblock %}
+{% block page %}Cap Advisor{% endblock %}
+
+{% block menuItems %}
+    <li class="no-padding">
+        <ul>
+            <li style="margin-top: 62px"><a href="/rubric">Rubric</a></li>
+            <li><a href="/submissions">Student Proposals</a></li>
+            <li class="active"><a href="/students">Students</a></li>
+        </ul>
+    </li>
+{% endblock %}
+
+{% block content %}
+<div class="row" style="margin-top: 50px;">
+    <div class="col s12">
+        <h3> <span class="section-title"> Students </span> </h3>
+
+        <div class="card">
+            <div class="divider"></div>
+
+            <div class="card-content" style="min-height: 600px;">
+                <div class="row">
+                    <table class="centered highlight striped">
+                        <thead>
+                        <tr>
+                            <th>UWI ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr></thead>
+                        <tbody>
+                        {% for student in students %}
+                            <tr>
+                                <td>{{student.uwi_id}}</td>
+                                <td>{{student.first_name}} {{student.last_name}}</td>
+                                <td>{{student.email}}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

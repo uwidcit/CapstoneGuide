@@ -1,7 +1,8 @@
 import os
 import openai
+from App.controllers import add_evaluation, get_last_proposal
 
-openai.api_key = "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"
+openai.api_key = "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"
 
 def set_struct(sentence):
     j = 0
@@ -11,12 +12,16 @@ def set_struct(sentence):
             rubric[j] = int(sentence[i + 2])
             j += 1
 
-
             if j >= 6:
                 print(rubric)
+                print("novelty, relevance, feasibility, impact, sustainability, use of technology")
+
+                sentence.replace("/9", "")
+                # (notes, novelty, relevance, feasibility, impact, sustainability, technologies, proposal_id, reviewer)
+                add_evaluation(sentence, rubric[0], rubric[1], rubric[2], rubric[3], rubric[4], rubric[5], get_last_proposal().id,
+                               9999)
                 return sentence
 
-    print(rubric)
     return sentence
 
 #openai.Completion.create(model="ada", prompt=query)

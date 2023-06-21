@@ -66,11 +66,16 @@
                                     <tbody>
                                     {% for evaluation in evaluations %}
                                     {% set id = evaluation.evaluation_id %}
+                                    {% set l_id = evaluation.reviewer_id %}
                                         <tr>
                                             <td><a onclick="viewEvaluation({{id}})" href="#evaluation_modal"><i class="material-icons">input</i></a></td>
                                             <td>{{evaluation.created}}</td>
                                             <td>{{evaluation.proposal.proposal_name}}</td>
-                                            <td>{{evaluation.lecturer.id}} {{evaluation.lecturer.uwi_id}}</td>
+                                            {% if l_id == 9999 %}
+                                                <td>CAP Advisor</td>
+                                            {% else %}
+                                                <td>{{evaluation.lecturer.first_name}} {{evaluation.lecturer.last_name}}</td>
+                                            {% endif %}
                                             <td>{{evaluation.score}}</td>
                                         </tr>
                                     {% endfor %}
@@ -81,10 +86,6 @@
                                             <form>
                                                 
                                                 <div class="modal-content">
-                                                   
-                                                    <div id="comments">
-        
-                                                    </div>
         
                                                     <div id="res">
         
@@ -94,6 +95,10 @@
                                                         <div id="container"></div>
                                                         
                                                     </figure>
+
+                                                    <div id="comments" style="height:fit-content;font-size:large;padding:10px">
+
+                                                    </div>
         
                                                     <div id="failSummary">
         

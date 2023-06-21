@@ -30,8 +30,8 @@ async function renderData(evaluationId){
     commens.innerHTML = `
     <div class="row">
         <div class="input-field col s12">
-        <textarea name="notes" class="materialize-textarea" placeholder="comments" disabled>${comments}</textarea>
-        <label for="notes" class="active" style="font-size: large;">Reviewer's Comments</label>
+        <p name="notes" class="materialize-textarea" disabled>${comments}</p>
+        <label for="notes" class="active" style="font-size:large;">Reviewer's Comments</label>
         </div>
     </div>`;
 
@@ -112,11 +112,11 @@ async function renderData(evaluationId){
     for (i in grades) {
         if(grades[i].score < grades[i].threshold){
         document.querySelector('#failSummary').innerHTML += `
-            <p class="card-title">${grades[i].name} failed: Score is ${grades[i].score}; threshold is ${grades[i].threshold}</p>
+            <p style="font-size:large;">${grades[i].name} failed: Score is ${grades[i].score}; threshold is ${grades[i].threshold}</p>
          `;
         }else{
             document.querySelector('#passSummary').innerHTML += `
-                <p class="card-title">${grades[i].name} passed: Score is ${grades[i].score}; threshold is ${grades[i].threshold}</p>
+                <p style="font-size:large;">${grades[i].name} passed: Score is ${grades[i].score}; threshold is ${grades[i].threshold}</p>
             `;
         }
     }

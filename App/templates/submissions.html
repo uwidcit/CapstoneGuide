@@ -1,13 +1,13 @@
 {% extends "lecturerBase.html" %}
-{% block title %}Cap Advisor - Submissions{% endblock %}
+{% block title %}Cap Advisor - Add Rubric{% endblock %}
 {% block page %}Cap Advisor{% endblock %}
 
-<!--Side nav items-->
 {% block menuItems %}
     <li class="no-padding">
         <ul>
             <li style="margin-top: 62px"><a href="/rubric">Rubric</a></li>
-            <li  class="active"><a href="/submissions">Student Proposals</a></li>
+            <li class="active"><a href="/submissions">Student Proposals</a></li>
+            <li><a href="/students">Students</a></li>
         </ul>
     </li>
 {% endblock %}
@@ -243,6 +243,7 @@
                                     <tbody>
                                     {% for evaluation in evaluations %}
                                     {% set user = evaluation.reviewer_id | int %}
+
                                         <tr>
                                             <td><a class="modal-trigger" href="#evaluation_modal{{evaluation.evaluation_id}}">
                                                 <i class="material-icons blue-text">input</i></a></td>
@@ -250,7 +251,11 @@
                                             <td>{{evaluation.proposal.student.uwi_id}}</td>
                                             <td>{{evaluation.proposal.student.first_name}} {{evaluation.proposal.student.last_name}}</td>
                                             <td>{{evaluation.proposal.proposal_name}}</td>
-                                            <td>{{evaluation.lecturer.first_name}} {{evaluation.lecturer.last_name}}</td>
+                                            {% if user == 9999 %}
+                                                <td>CAP Advisor</td>
+                                            {% else %}
+                                                <td>{{evaluation.lecturer.first_name}} {{evaluation.lecturer.last_name}}</td>
+                                            {% endif %}
                                             <td>{{evaluation.score}}</td>
                                         </tr>
                                             <!--Modal Structure: Grade Proposal-->

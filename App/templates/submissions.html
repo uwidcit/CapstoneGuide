@@ -1,6 +1,5 @@
 {% extends "lecturerBase.html" %}
-{% block title %}Cap Advisor - Add Rubric{% endblock %}
-{% block page %}Cap Advisor{% endblock %}
+{% block title %}Cap Advisor - Submissions{% endblock %}
 
 {% block menuItems %}
     <li class="no-padding">
@@ -85,38 +84,50 @@
                                                         </div>
                                                     </div>
         
-                                                    <h4> <span class="section-title"> Relevance</span> </h4>
+                                                    <h4> <span class="section-title"> Relevance; Pass Grade: {{proposal.rubric.relevance}}</span> </h4>
                                                     <div class="row">
                                                         <div class="col s12">
                                                             <p>Problem Statement: {{proposal.problem_desc}}</p>
                                                         </div>
                                                     </div>
+
+                                                    <div class="row">
+                                                        <div class="col s12">
+                                                            <p>Target Audience/Stakeholders: {{proposal.audience}}</p>
+                                                        </div>
+                                                    </div>
+
                                                     <div class="row slide-label">
                                                         <div class="input-field col s6">
                                                             <p class="range-field">
-                                                                <label for="relevance">Relevance Threshold: {{proposal.rubric.relevance}}</label>
+                                                                <label for="relevance">Relevance</label>
                                                                 <input type="range" name="relevance" min="0" max="10" value="{{proposal.rubric.relevance}}"/>
                                                             </p>    
                                                         </div>
                                                     </div>
         
-                                                    <h4> <span class="section-title">Summary </span> </h4>
+                                                    <h4> <span class="section-title">Summary & Novelty; Pass Grade: {{proposal.rubric.novelty}}</span> </h4>
                                                     <div class="row">
                                                         <div class="col s12">
                                                             <p>Solution Goal: {{proposal.solution_desc}}</p>
                                                         </div>
                                                     </div>
+                                                    <div class="row">
+                                                        <div class="col s12">
+                                                            <p>Innovative Approach: {{proposal.approach}}</p>
+                                                        </div>
+                                                    </div>
                                                     <div class="row slide-label">
                                                         <div class="input-field col s6">
                                                             <p class="range-field">
-                                                                <label for="novelty">Novelty Threshold: {{proposal.rubric.novelty}}</label>
+                                                                <label for="novelty">Novelty</label>
                                                                 <input type="range" name="novelty" min="0" max="10" value="{{proposal.rubric.novelty}}"/>
                                                             </p>
                                                         </div>
                                                     </div>
         
         
-                                                    <h4> <span class="section-title">Feasibility </span> </h4>
+                                                    <h4> <span class="section-title">Feasibility & Technology; Pass Grade: {{proposal.rubric.feasibility}} & {{proposal.rubric.technology}}</span> </h4>
                                                     <div class="row">
                                                         <div class="col s12">
                                                             <p>Requirements: {{proposal.requirements}}</p>
@@ -125,7 +136,7 @@
                                                     <div class="row slide-label">
                                                         <div class="input-field col s6">
                                                             <p class="range-field">
-                                                                <label for="feasibility">Feasibility Threshold: {{proposal.rubric.feasibility}}</label>
+                                                                <label for="feasibility">Feasibility</label>
                                                                 <input type="range" name="feasibility" min="0" max="10"  value="{{proposal.rubric.feasibility}}"/>
                                                             </p>
                                                         </div>
@@ -138,30 +149,34 @@
                                                     <div class="row slide-label">
                                                         <div class="input-field col s6">
                                                             <p class="range-field">
-                                                                <label for="technology">Technology Threshold: {{proposal.rubric.technology}}</label>
+                                                                <label for="technology">Technology</label>
                                                                 <input type="range" name="technology" min="0" max="10" value="{{proposal.rubric.technology}}"/>
                                                             </p>
                                                         </div>
                                                     </div>
         
         
-                                                    <h4> <span class="section-title">Impact</span> </h4>
+                                                    <h4> <span class="section-title">Impact; Pass Grade: {{proposal.rubric.impact}}</span> </h4>
                                                     <div class="row">
                                                         <div class="col s12">
-                                                            <p>Desired Goals: {{proposal.impact}}</p>
+                                                            <p>Desired Goals: {{proposal.goals}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col s12">
+                                                            <p>Beneficiaries: {{proposal.benifit}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="row slide-label">
                                                         <div class="input-field col s6">
                                                             <p class="range-field">
-                                                                <label for="impact">Impact Threshold: {{proposal.rubric.impact}}</label>
+                                                                <label for="impact">Impact</label>
                                                                 <input type="range" name="impact" min="0" max="10" value="{{proposal.rubric.impact}}"/>
                                                             </p>
                                                         </div>
                                                     </div>
         
-        
-                                                    <h4> <span class="section-title">Sustainability</span> </h4>
+                                                    <h4> <span class="section-title">Sustainability; Pass Grade: {{proposal.rubric.sustainability}}</span> </h4>
                                                     <div class="row">
                                                         <div class="col s12">
                                                             <p>Sustainability: {{proposal.sustainability}}</p>
@@ -170,7 +185,7 @@
                                                     <div class="row slide-label">
                                                         <div class="input-field col s6">
                                                             <p class="range-field">
-                                                                <label for="sustainability">Sustainability Threshold: {{proposal.rubric.sustainability}}</label>
+                                                                <label for="sustainability">Sustainability</label>
                                                                 <input type="range" name="sustainability" min="0" max="10" value="{{proposal.rubric.sustainability}}"/>
                                                             </p>
                                                         </div>
@@ -243,7 +258,6 @@
                                     <tbody>
                                     {% for evaluation in evaluations %}
                                     {% set user = evaluation.reviewer_id | int %}
-
                                         <tr>
                                             <td><a class="modal-trigger" href="#evaluation_modal{{evaluation.evaluation_id}}">
                                                 <i class="material-icons blue-text">input</i></a></td>
@@ -252,7 +266,7 @@
                                             <td>{{evaluation.proposal.student.first_name}} {{evaluation.proposal.student.last_name}}</td>
                                             <td>{{evaluation.proposal.proposal_name}}</td>
                                             {% if user == 9999 %}
-                                                <td>CAP Advisor</td>
+                                                <td>Cap Advisor</td>
                                             {% else %}
                                                 <td>{{evaluation.lecturer.first_name}} {{evaluation.lecturer.last_name}}</td>
                                             {% endif %}
@@ -277,15 +291,27 @@
                                                             <p>Problem Statement: {{evaluation.proposal.problem_desc}}</p>
                                                         </div>
                                                     </div>
+
+                                                    <div class="row">
+                                                        <div class="col s12">
+                                                            <p>Target Audience/Stakeholders: {{evaluation.proposal.audience}}</p>
+                                                        </div>
+                                                    </div>
         
-                                                    <h4> <span class="section-title">Summary </span> </h4>
+                                                    <h4> <span class="section-title">Summary & Novelty </span> </h4>
                                                     <div class="row">
                                                         <div class="col s12">
                                                             <p>Solution Goal: {{evaluation.proposal.solution_desc}}</p>
                                                         </div>
                                                     </div>
+
+                                                    <div class="row">
+                                                        <div class="col s12">
+                                                            <p>Innovative Approach: {{evaluation.proposal.approach}}</p>
+                                                        </div>
+                                                    </div>
         
-                                                    <h4> <span class="section-title">Feasibility </span> </h4>
+                                                    <h4> <span class="section-title">Feasibility & Technology</span> </h4>
                                                     <div class="row">
                                                         <div class="col s12">
                                                             <p>Requirements: {{evaluation.proposal.requirements}}</p>
@@ -293,14 +319,20 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col s12">
-                                                            <p>Resources: {{evaluation.proposal.tools}}</p>
+                                                            <p>Available Resources: {{evaluation.proposal.tools}}</p>
                                                         </div>
                                                     </div>
         
                                                     <h4> <span class="section-title">Impact</span> </h4>
                                                     <div class="row">
                                                         <div class="col s12">
-                                                            <p>Desired Goals: {{evaluation.proposal.impact}}</p>
+                                                            <p>Desired Goals: {{evaluation.proposal.goals}}</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col s12">
+                                                            <p>Beneficiaries: {{evaluation.proposal.benifit}}</p>
                                                         </div>
                                                     </div>
         
@@ -328,7 +360,13 @@
                                                         <div class="input-field col s6">
                                                         
                                                         <p class="range-field">
-                                                            <label for="novelty">Novelty</label>
+                                                            <label for="novelty">Novelty
+                                                                {% if evaluation.novelty >= evaluation.proposal.rubric.novelty %}
+                                                                    Passed:
+                                                                {% else %}
+                                                                    Failed: 
+                                                                {%endif%} 
+                                                                {{evaluation.novelty}}</label>
                                                             <input type="range" name="novelty" min="0" max="10" value="{{evaluation.novelty}}"/>
                                                         </p>
                                                         </div>
@@ -336,7 +374,12 @@
                                                         <div class="input-field col s6">
                                                             
                                                         <p class="range-field">
-                                                            <label for="relevance">Relevance</label>
+                                                            <label for="relevance">Relevance
+                                                                {% if evaluation.relevance >= evaluation.proposal.rubric.relevance %}
+                                                                    Passed:
+                                                                {% else %}
+                                                                    Failed: 
+                                                                {% endif %} {{evaluation.relevance}}</label>
                                                             <input type="range" name="relevance" min="0" max="10" value="{{evaluation.relevance}}"/>
                                                         </p>
                                                         
@@ -347,7 +390,13 @@
                                                         <div class="input-field col s6">
                                                             
                                                         <p class="range-field">
-                                                            <label for="feasibility">Feasibility</label>
+                                                            <label for="feasibility">feasibility
+                                                                {% if evaluation.feasibility >= evaluation.proposal.rubric.feasibility %}
+                                                                    Passed:
+                                                                {% else %}
+                                                                    Failed: 
+                                                                {%endif%}
+                                                                {{evaluation.feasibility}}</label>
                                                             <input type="range" name="feasibility" min="0" max="10"  value="{{evaluation.feasibility}}"/>
                                                         </p>
                                                         
@@ -355,7 +404,13 @@
                                                         <div class="input-field col s6">
                                                             
                                                         <p class="range-field">
-                                                            <label for="impact">Impact</label>
+                                                            <label for="impact">Impact
+                                                                {% if evaluation.impact >= evaluation.proposal.rubric.impact %}
+                                                                    Passed:
+                                                                {% else %}
+                                                                    Failed: 
+                                                                {%endif%}
+                                                                 {{evaluation.impact}}</label>
                                                             <input type="range" name="impact" min="0" max="10" value="{{evaluation.impact}}"/>
                                                         </p>
                                                         </div>
@@ -365,7 +420,13 @@
                                                         <div class="input-field col s6">
                                                             
                                                         <p class="range-field">
-                                                            <label for="sustainability">Sustainability</label>
+                                                            <label for="sustainability">Sustainability
+                                                                {% if evaluation.sustainability >= evaluation.proposal.rubric.sustainability %}
+                                                                    Passed:
+                                                                {% else %}
+                                                                    Failed: 
+                                                                {%endif%}
+                                                                 {{evaluation.sustainability}}</label>
                                                             <input type="range" name="sustainability" min="0" max="10" value="{{evaluation.sustainability}}"/>
                                                         </p>
                                                         
@@ -373,7 +434,15 @@
                                                         <div class="input-field col s6">
                                                             
                                                         <p class="range-field">
-                                                            <label for="technology">Technology</label>
+                                                            <label for="technology">Technology
+                                                                {% if evaluation.technologies >= evaluation.proposal.rubric.technology%}
+                                                                    Passed:
+                                                                {% else %}
+                                                                    Failed: 
+                                                                {%endif%}
+                                                                {{evaluation.technologies}}
+                                                                
+                                                            </label>
                                                             <input type="range" name="technology" min="0" max="10" value="{{evaluation.technologies}}"/>
                                                         </p>
                                                     

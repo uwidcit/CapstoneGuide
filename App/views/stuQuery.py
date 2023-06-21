@@ -9,12 +9,3 @@ stuQuery_views = Blueprint('stuQuery_views', __name__, template_folder='../templ
 def get_stuQuery_page():
     return render_template('stuQuery.html')
 
-@stuQuery_views.route('/contacts', methods=['GET'])
-def get_contact_page():
-    lecturers = get_all_lecturers()
-    return render_template('contact.html', lecturers=lecturers)
-
-@stuQuery_views.route('/students', methods=['GET'])
-def get_student_page():
-    students = get_all_students()
-    return render_template('stuContact.html', students=students)

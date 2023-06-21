@@ -1,6 +1,5 @@
 {% extends "lecturerBase.html" %}
-{% block title %}Cap Advisor - Add Rubric{% endblock %}
-{% block page %}Cap Advisor{% endblock %}
+{% block title %}Cap Advisor - Rubrics{% endblock %}
 
 {% block menuItems %}
     <li class="no-padding">
@@ -13,8 +12,13 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row equal-height-grid" style="margin-top: 100px;">
-        <h1 id="message">Your Rubrics</h1>
+    <div class="row equal-height-grid">
+        <div class="row">
+            <div class="col s12">
+                <h2>Rurbics</h2>
+                <p style="font-size: large;">These define the minimum grade each aspect the proposal must pass to be considered viable.</p>        
+            </div>
+        </div>
         <div class="col s12">
             {% for rubric in rubrics %}
                 <div class="card col s12 m5">

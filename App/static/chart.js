@@ -18,8 +18,6 @@ function closeEvaluation(){
     document.querySelector('#passSummary').innerHTML = ''
     document.querySelector('#failSummary').innerHTML = ''
     modal.close();
-    
-  
 }
 
 async function renderData(evaluationId){
@@ -120,7 +118,6 @@ async function renderData(evaluationId){
             `;
         }
     }
-
 
 html = `<div class="row" >
 `;

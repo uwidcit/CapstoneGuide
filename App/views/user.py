@@ -3,10 +3,10 @@ from flask_login import current_user, login_required, login_user
 
 from.index import index_views
 from .proposal import proposal_views
-# from .rubric import rubric_views
+
 from .auth import auth_views
 
-from App.controllers import (create_student, create_lecturer)
+from App.controllers import (create_student, create_lecturer, get_all_lecturers, get_all_students, student_required, lecturer_required)
 
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
 
@@ -40,3 +40,19 @@ def create_user_action():
     
     flash('Your Passwords Do Not Match!')
     return redirect(url_for('auth_views.get_registration_page'))
+
+#show all students
+@student_required
+@user_views.route('/lecturers', methods=['GET'])
+@login_required
+def get_lecturer_page():
+    lecturers = get_all_lecturers()
+    return render_template('lecturerContact.html', lecturers=lecturers)
+
+#show all lecturers
+@lecturer_required
+@user_views.route('/students', methods=['GET'])
+@login_required
+def get_student_page():
+    students = get_all_students()
+    return render_template('studentContact.html', students=students)

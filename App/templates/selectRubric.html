@@ -1,20 +1,24 @@
 {% extends "studentBase.html" %}
 {% block title %}Cap Advisor - Submit Proposal{% endblock %}
-{% block page %}Submit Proposal{% endblock %}
 
 <!--Side Nav items-->
 {% block menuItems %}
     <li class="active" style="margin-top: 62px"><a href="/proposal">Submit New Proposal</a></li>
     <li><a href="/ask-query">Ask a Question</a></li>
     <li><a href="/history">History</a></li>
-    <li><a href="/contacts">Lecturer Contacts</a></li>
+    <li><a href="/lecturers">Lecturers</a></li>
 {% endblock %}
 
 <!--Screen content-->
 
 {% block content %}
-    <div class="row equal-height-grid" style="margin-top: 50px;">
-        <h2>Select a rubric to begin</h2>
+    <div class="row equal-height-grid">
+        <div class="row">
+            <div class="col s12">
+                <h2>Please select a rubric to begin</h2>
+                <p style="font-size: large;">These define the minimum grade each aspect the proposal must pass to be considered viable.</p>        
+            </div>
+        </div>
         <div class="col s12">
             {% for rubric in rubrics %}
                 <div class="card col s12 m5">

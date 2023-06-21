@@ -24,6 +24,7 @@ def login(username, password):
         return student
     return None
 
+
 def initialize():
     db.drop_all()
     db.create_all()

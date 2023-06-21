@@ -13,7 +13,6 @@ from App.controllers import ( create_student, create_lecturer, get_stu_by_userna
 app = create_app()
 migrate = get_migrate(app)
 
-
 # This command creates and initializes the database
 @app.cli.command("init", help="Creates and initializes the database")
 def initialize():
@@ -23,18 +22,21 @@ def initialize():
     steve = create_student('steve', 'stevepass', 'steve@mycavehilluwi.edu', 'Steve', 'Pass', 3333)
     bob = create_lecturer('bob', 'bobspass', 'bob@mycavehilluwi.edu', 'bob', 'smith', 1111)
     cory = create_lecturer('cory', 'corypass', 'cory@mycavehilluwi.edu', 'Cory', 'Jones', 4444)
-    rubric = add_rubric('test project','notes', 3, 5, 6, 6, 6, 1, bob.id)
-    cap_advisor = add_proposal(steve.id, rubric.id, 'Cap Advisor', 'Students can have their proposals evaluated early',
-                'Students can submit capstone proposals to and have feedback',
-                3, 'students must submit proposals based on cirtera', 'flask MVC, python, GPT-3', 'lecturers will evaluate submitted proposals', 'manged by lecturer eventually',
+    rubric = add_rubric('Computer Science Project','for SWEN and COMP students', 3, 5, 6, 6, 6, 1, bob.id)
+    cap_advisor = add_proposal(steve.id, rubric.id, 'Cap Advisor', 'Students do not always undertsand how to design capstone projects', 'SWEN and COMP students',
+                'Students can submit capstone proposals to and have feedback', 'craete a web app which allows them submit proposal according to capstone rubric',
+                3, 'students must submit proposals based on cirtera', 'flask MVC, python, GPT-3', 'students can understand what is required for capstone projects and begine their own',
+                  'SWEN and COMP students','manged by lecturer eventually',
                 'May be revised')
-    flask_test = add_proposal(steve.id, rubric.id, 'Flask Test', 'Students can have their proposals evaluated early',
-                'Students can submit capstone proposals to and have feedback',
-                5, 'students must submit proposals based on cirtera', 'flask MVC, python, GPT-3', 'lecturers will evaluate submitted proposals', 'manged by lecturer eventually',
+    flask_test = add_proposal(steve.id, rubric.id, 'Flask Test', 'Students do not always undertsand how to design capstone projects', 'SWEN and COMP students',
+                'Students can submit capstone proposals to and have feedback', 'craete a web app which allows them submit proposal according to capstone rubric',
+                2, 'students must submit proposals based on cirtera', 'flask MVC, python, GPT-3', 'students can understand what is required for capstone projects and begine their own',
+                  'SWEN and COMP students','manged by lecturer eventually',
                 'May be revised')
-    add_proposal(rob.id, rubric.id, 'Solo', 'Students can have their proposals evaluated early',
-                'Students can submit capstone proposals to and have feedback',
-                1, 'students must submit proposals based on cirtera', 'flask MVC', 'lecturers will evaluate submitted proposals', 'manged by lecturer eventually',
+    add_proposal(rob.id, rubric.id, 'Solo', 'Students do not always undertsand how to design capstone projects', 'SWEN and COMP students',
+                'Students can submit capstone proposals to and have feedback', 'craete a web app which allows them submit proposal according to capstone rubric',
+                5, 'students must submit proposals based on cirtera', 'flask MVC, python, GPT-3', 'students can understand what is required for capstone projects and begine their own',
+                  'SWEN and COMP students','manged by lecturer eventually',
                 'May be revised')
     add_evaluation('notes', 5, 7, 5, 3, 10, 5, cap_advisor.id, cory.id)
     add_evaluation('crash', 10, 10, 1, 3, 10, 10, flask_test.id, bob.id)
@@ -129,10 +131,10 @@ proposal = AppGroup('proposal', help='Proposal object commands')
 @proposal.command("create", help="Creates a dummy proposal")
 @click.argument("student", default=1)
 def create_proposal_command(student):
-    add_proposal(student_id=student, proposal_nm='Cap Advisor', problem_desc='Students can have their proposals evaluated early',
-                  solution_desc='service student can submit capstone proposals to and have feedback',
+    add_proposal(student_id=student, proposal_nm='Cap Advisor', problem_desc='Students can have their proposals evaluated early', audience='SWEN and COMP students',
+                  solution_desc='service student can submit capstone proposals to and have feedback', approach='create a web app that allows stundets to submit proposals to',
                  num_members=3, functionalities='students submit proposals based on cirtera', technologies='flask MVC', 
-                 goals='evaluate proposals from a lecturer', sustain='manged by lecturer eventually',
+                 goals='evaluate proposals from a lecturer', benefit='SWEN and COMP students', sustain='manged by lecturer eventually',
                  notes='May be revised')
     print(f'proposal created!')
 

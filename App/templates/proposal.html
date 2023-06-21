@@ -1,13 +1,12 @@
 {% extends "studentBase.html" %}
 {% block title %}Cap Advisor - Submit Proposal {% endblock %}
-{% block page %}Submit Proposal{% endblock %}
 
 <!--Side Nav items-->
 {% block menuItems %}
     <li class="active" style="margin-top: 62px"><a href="/proposal">Submit New Proposal</a></li>
     <li><a href="/ask-query">Ask a Question</a></li>
     <li><a href="/history">History</a></li>
-    <li><a href="/contacts">Lecturer Contacts</a></li>
+    <li><a href="/contacts">Lecturers</a></li>
 {% endblock %}
 
 <!--Screen content-->
@@ -56,7 +55,17 @@
                     </div>
                 </div>
 
-                <h4> <span class="section-title">Summary </span> </h4>
+                <div class="row">
+                    <div class="input-field col s12 l7" >
+                        <textarea name="audience" class="materialize-textarea" required></textarea>
+                        <label for="audience">Target Audience/Stakeholders
+                            <i class="material-icons tiny right red-text">*</i></label>
+                        <span class="helper-text" data-error="wrong" data-success="right">
+                            Specify the target audience or stakeholders affected by the project.</span>
+                    </div>
+                </div>
+
+                <h4> <span class="section-title">Summary & Novelty</span> </h4>
 
                 <div class="row">
                     <div class="input-field col s12 l7">
@@ -64,31 +73,41 @@
                         <label for="solution">Solution Goal
                             <i class="material-icons tiny right red-text">*</i></label>
                         <span class="helper-text" data-error="wrong" data-success="right">
-                            Summarize the solution which the project provides</span>
+                            Write a brief summary of the solution which the project is meant to provide</span>
                     </div>
                 </div>
 
-                <h4> <span class="section-title">Feasibility </span> </h4>
+                <div class="row">
+                    <div class="input-field col s12 l7">
+                        <textarea name="approach" class="materialize-textarea" required></textarea>
+                        <label for="approach">Innovative approach
+                            <i class="material-icons tiny right red-text">*</i></label>
+                        <span class="helper-text" data-error="wrong" data-success="right">
+                            Describe the unique aspects or innovative elements of the project proposal.</span>
+                    </div>
+                </div>
+
+                <h4> <span class="section-title">Feasibility & Technology</span> </h4>
 
                 <div class="row">
                     <div class="input-field col s12 l7">
-                        <input name="requirements" type="text">
+                        <textarea name="requirements" class="materialize-textarea" required></textarea>
                         <label for="requirements" >Requirements
                             <i class="material-icons tiny right red-text">*</i>
                         </label>
                         <span class="helper-text" data-error="wrong" data-success="right">
-                            What requirements have you identified for the Project?</span>
+                            Provide functional requirements have you identified for the Project</span>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12 l7">
-                        <input name="tools" type="text">
-                        <label for="tools" >Resources
+                        <textarea name="tools" class="materialize-textarea" required></textarea>
+                        <label for="tools" > Available Resources
                             <i class="material-icons tiny right red-text">*</i>
                         </label>
                         <span class="helper-text" data-error="wrong" data-success="right">
-                            Describe the technical/skill resources required to deliver the project.</span>
+                            Describe the technological resources required to develop and deliver the project.</span>
                     </div>
                 </div>
 
@@ -96,12 +115,23 @@
 
                 <div class="row">
                     <div class="input-field col s12 l7">
-                        <input name="goals" type="text">
+                        <textarea name="goals" class="materialize-textarea" required></textarea>
                         <label for="goals" >Desired Goals
                             <i class="material-icons tiny right red-text">*</i>
                         </label>
                         <span class="helper-text" data-error="wrong" data-success="right">
-                            Describe the desired goals for the project.</span>
+                            Specify the desired outcomes or goals of the project.</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12 l7">
+                        <textarea name="benefit" class="materialize-textarea" required></textarea>
+                        <label for="benefit" >Beneficiaries
+                            <i class="material-icons tiny right red-text">*</i>
+                        </label>
+                        <span class="helper-text" data-error="wrong" data-success="right">
+                            Identify the individuals or groups who will benefit from the project.</span>
                     </div>
                 </div>
 
@@ -109,12 +139,12 @@
 
                 <div class="row">
                     <div class="input-field col s12 l7">
-                        <input name="sustain" type="text">
+                        <textarea name="sustain" class="materialize-textarea" required></textarea>
                         <label for="sustain" >Sustainability
                             <i class="material-icons tiny right red-text">*</i>
                         </label>
                         <span class="helper-text" data-error="wrong" data-success="right">
-                            Describe how the project will remian susutainable.</span>
+                            Describe the plan for the project's long-term sustainability beyond the initial implementation phase.</span>
                     </div>
                 </div>
 
@@ -126,7 +156,7 @@
                         <textarea name="additional_info" class="materialize-textarea"></textarea>
                         <label for="additional_info">Additional Info</label>
                         <span class="helper-text" data-error="wrong" data-success="right">
-                            Include any additional info you think may help the evaluation</span>
+                            Include any other relevant information that supports the assessment of the proposal.</span>
                     </div>
                 </div>
 

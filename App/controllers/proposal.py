@@ -37,3 +37,5 @@ def get_user_proposals(student_id):
 
 def get_all_proposals():
     return Proposal.query.all()
+def get_last_proposal():
+    return Proposal.query.order_by(Proposal.id.desc()).first()

@@ -28,7 +28,7 @@ async function renderData(evaluationId){
     commens.innerHTML = `
     <div class="row">
         <div class="input-field col s12">
-        <p name="notes" class="materialize-textarea" disabled>${comments}</p>
+        <p name="notes" style="font-size:large;" class="materialize-textarea" disabled>${comments}</p>
         <label for="notes" class="active" style="font-size:large;">Reviewer's Comments</label>
         </div>
     </div>`;

@@ -27,11 +27,13 @@
                         </tr></thead>
                         <tbody>
                         {% for lecturer in lecturers %}
-                            <tr>
-                                <td>{{lecturer.uwi_id}}</td>
-                                <td>{{lecturer.first_name}} {{lecturer.last_name}}</td>
-                                <td>{{lecturer.email}}</td>
-                            </tr>
+                            {% if lecturer.id != 101 %}
+                                <tr>
+                                    <td>{{lecturer.uwi_id}}</td>
+                                    <td>{{lecturer.first_name}} {{lecturer.last_name}}</td>
+                                    <td>{{lecturer.email}}</td>
+                                </tr>
+                            {% endif %}
                         {% endfor %}
                         </tbody>
                     </table>

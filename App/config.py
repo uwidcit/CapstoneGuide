@@ -12,7 +12,10 @@ def load_config():
         config['SECRET_KEY'] = SECRET_KEY
         delta = JWT_ACCESS_TOKEN_EXPIRES
     else:
-        config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
+        db_path = os.environ.get('SQLALCHEMY_DATABASE_URI')
+        if db_path.startswith("postgres://"):
+            db_path = db_path.replace("postgres://","postgresql://", 1) 
+        config['SQLALCHEMY_DATABASE_URI'] = db_path
         config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
         config['RAWG_TOKEN'] = os.environ.get('RAWG_TOKEN')
         config['DEBUG'] = config['ENV'].upper() != 'PRODUCTION'

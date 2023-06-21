@@ -1,8 +1,8 @@
 import os
 import openai
-from App.controllers import add_evaluation, get_last_proposal
+from App.controllers import add_evaluation, get_last_proposal, get_lecturer
 
-openai.api_key = "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"
+openai.api_key = "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"
 
 
 def set_struct(sentence):
@@ -15,8 +15,7 @@ def set_struct(sentence):
             if j >= 6:
                 break
             
-    add_evaluation(sentence, rubric[0], rubric[1], rubric[2], rubric[3], rubric[4], rubric[5], get_last_proposal().id,
-                               9999)
+    add_evaluation(sentence, rubric[0], rubric[1], rubric[2], rubric[3], rubric[4], rubric[5], get_last_proposal().id,101)
     return sentence
 
 #openai.Completion.create(model="ada", prompt=query)
@@ -35,7 +34,7 @@ def get_ai_evaluation(proposal_nm, problem_desc, audience, solution_desc, approa
     comment = str(response.choices[0].message.content).replace("\n", "")
     print(comment)
     comment = comment.replace("/9", " ")
-    f = open("App/tests/ai_dictionary.jsonl", "a")
-    f.write('{"prompt": "' + proposal_nm + '", "completion": "' + comment)
-    f.close()
+    # f = open("App/tests/ai_dictionary.jsonl", "a")
+    # f.write('{"prompt": "' + proposal_nm + '", "completion": "' + comment)
+    # f.close()
     set_struct(comment)

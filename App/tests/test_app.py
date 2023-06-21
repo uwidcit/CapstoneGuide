@@ -37,7 +37,7 @@ class UserUnitTests(unittest.TestCase):
     def test_hashed_stu_password(self):
         password = "dantepass"
         hashed = generate_password_hash(password, method='sha256')
-        student = Student("danteb", password, "dante.blunt@mycavehill.uwi.edu", "Dante", "Blunt", "400004050")
+        student = Student("danteb", hashed, "dante.blunt@mycavehill.uwi.edu", "Dante", "Blunt", "400004050")
         assert student.password != password
 
     def test_check_stu_password(self):
@@ -48,7 +48,7 @@ class UserUnitTests(unittest.TestCase):
     def test_hashed_lect_password(self):
         password = "alexpass"
         hashed = generate_password_hash(password, method='sha256')
-        lecturer = Lecturer("alexa", "alexapass", "alexander.atwell@mycavehill.uwi.edu", "Alexander", "Atwell", "415001713")
+        lecturer = Lecturer("alexa", hashed, "alexander.atwell@mycavehill.uwi.edu", "Alexander", "Atwell", "415001713")
         assert lecturer.password != password
 
     def test_check_lect_password(self):

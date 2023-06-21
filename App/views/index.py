@@ -13,8 +13,6 @@ def index_page():
 def init():
     db.drop_all()
     db.create_all()
-    # create_lecturer('capadviosr', 'capadvisor', 'capadvisor@temp.com', 'Cap', 'Adivosr', 0)
-    # add_rubric('Default','For practice', 3, 5, 6, 6, 6, 1, 101)
     return jsonify(message='db initialized!')
 
 @index_views.route('/health', methods=['GET'])

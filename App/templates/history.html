@@ -66,11 +66,16 @@
                                     </tr></thead>
                                     <tbody>
                                     {% for evaluation in evaluations %}
+                                    {% set user = evaluation.reviewer_id | int %}
                                         <tr>
                                             <td><a onclick="viewEvaluation('{{evaluation.evaluation_id}}')" href="#evaluation_modal"><i class="material-icons">input</i></a></td>
                                             <td>{{evaluation.created}}</td>
                                             <td>{{evaluation.proposal.proposal_name}}</td>
-                                             <td>{{evaluation.lecturer.first_name}} {{evaluation.lecturer.last_name}}</td>
+                                            {% if user == 101 %}
+                                            <td>{{evaluation.lecturer.first_name}} {{evaluation.lecturer.last_name}}(AI)</td>
+                                            {% else %}
+                                                <td>{{evaluation.lecturer.first_name}} {{evaluation.lecturer.last_name}}</td>
+                                            {% endif %}
                                             <td>{{evaluation.score}}</td>
                                         </tr>
                                     {% endfor %}

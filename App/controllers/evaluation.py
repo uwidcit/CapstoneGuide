@@ -16,7 +16,7 @@ def add_evaluation(notes, novelty, relevance, feasibility, impact, sustainabilit
     return None
 
 def remove_evaluation(proposal_id):
-    evaluation = Evaluation.query.filter_by(id=proposal_id).first()
+    evaluation = Evaluation.query.filter_by(proposal_id=proposal_id).first()
     if evaluation:
         db.session.delete(evaluation)
         res = db.session.commit()
@@ -36,7 +36,7 @@ def get_evaluation(evaluation_id):
     return None
 
 def get_user_evaluations(proposal_id):
-    evaluation = Evaluation.query.filter_by(id=proposal_id).all()
+    evaluation = Evaluation.query.filter_by(proposal_id=proposal_id).all()
     if evaluation:
         return evaluation
     return None

@@ -12,15 +12,16 @@ def login(username, password):
     student = Student.query.filter_by(username=username).first()
     if student and student.check_password(password):
         return student
-
-    # #login with ID    
-    lecturer = Lecturer.query.filter_by(uwi_id=int(username)).first()
-    if lecturer and lecturer.check_password(password):
-        return lecturer
     
-    student = Student.query.filter_by(uwi_id=int(username)).first()
-    if student and student.check_password(password):
-        return student
+    if (isinstance(username, int)):
+        # #login with ID    
+        lecturer = Lecturer.query.filter_by(uwi_id=int(username)).first()
+        if lecturer and lecturer.check_password(password):
+            return lecturer
+        
+        student = Student.query.filter_by(uwi_id=int(username)).first()
+        if student and student.check_password(password):
+            return student
     return None
 
 

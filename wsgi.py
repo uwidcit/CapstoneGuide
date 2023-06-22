@@ -23,25 +23,25 @@ def initialize():
     ai = create_lecturer('capadviosr', 'capadvisor', 'capadvisor@temp.com', 'Cap', 'Adivosr', 9999)
     bob = create_lecturer('bob', 'bobspass', 'bob@mycavehilluwi.edu', 'bob', 'smith', 1111)
     cory = create_lecturer('cory', 'corypass', 'cory@mycavehilluwi.edu', 'Cory', 'Jones', 4444)
-    rubric = add_rubric('Default','For practice', 3, 5, 6, 6, 6, 1, 101)
-    cap_advisor = add_proposal(steve.id, rubric.id, 'Cap Advisor', 'Students do not always undertsand how to design capstone projects', 'SWEN and COMP students',
-                'Students can submit capstone proposals to and have feedback', 'craete a web app which allows them submit proposal according to capstone rubric',
-                3, 'students must submit proposals based on cirtera', 'flask MVC, python, GPT-3', 'students can understand what is required for capstone projects and begine their own',
-                  'SWEN and COMP students','manged by lecturer eventually',
-                'May be revised')
-    flask_test = add_proposal(steve.id, rubric.id, 'Flask Test', 'Students do not always undertsand how to design capstone projects', 'SWEN and COMP students',
-                'Students can submit capstone proposals to and have feedback', 'craete a web app which allows them submit proposal according to capstone rubric',
-                2, 'students must submit proposals based on cirtera', 'flask MVC, python, GPT-3', 'students can understand what is required for capstone projects and begine their own',
-                  'SWEN and COMP students','manged by lecturer eventually',
-                'May be revised')
-    solo = add_proposal(rob.id, rubric.id, 'Solo', 'Students do not always undertsand how to design capstone projects', 'SWEN and COMP students',
-                'Students can submit capstone proposals to and have feedback', 'craete a web app which allows them submit proposal according to capstone rubric',
-                5, 'students must submit proposals based on cirtera', 'flask MVC, python, GPT-3', 'students can understand what is required for capstone projects and begine their own',
-                  'SWEN and COMP students','manged by lecturer eventually',
-                'May be revised')
-    add_evaluation('notes', 5, 7, 5, 3, 10, 5, cap_advisor.id, cory.id)
-    add_evaluation('crash', 10, 10, 1, 3, 10, 10, flask_test.id, bob.id)
-    add_evaluation('crash', 10, 10, 1, 3, 10, 10, solo.id, ai.id)
+    # rubric = add_rubric('Default','For practice', 3, 5, 6, 6, 6, 1, 101)
+    # cap_advisor = add_proposal(steve.id, rubric.id, 'Cap Advisor', 'Students do not always undertsand how to design capstone projects', 'SWEN and COMP students',
+    #             'Students can submit capstone proposals to and have feedback', 'craete a web app which allows them submit proposal according to capstone rubric',
+    #             3, 'students must submit proposals based on cirtera', 'flask MVC, python, GPT-3', 'students can understand what is required for capstone projects and begine their own',
+    #               'SWEN and COMP students','manged by lecturer eventually',
+    #             'May be revised')
+    # flask_test = add_proposal(steve.id, rubric.id, 'Flask Test', 'Students do not always undertsand how to design capstone projects', 'SWEN and COMP students',
+    #             'Students can submit capstone proposals to and have feedback', 'craete a web app which allows them submit proposal according to capstone rubric',
+    #             2, 'students must submit proposals based on cirtera', 'flask MVC, python, GPT-3', 'students can understand what is required for capstone projects and begine their own',
+    #               'SWEN and COMP students','manged by lecturer eventually',
+    #             'May be revised')
+    # solo = add_proposal(rob.id, rubric.id, 'Solo', 'Students do not always undertsand how to design capstone projects', 'SWEN and COMP students',
+    #             'Students can submit capstone proposals to and have feedback', 'craete a web app which allows them submit proposal according to capstone rubric',
+    #             5, 'students must submit proposals based on cirtera', 'flask MVC, python, GPT-3', 'students can understand what is required for capstone projects and begine their own',
+    #               'SWEN and COMP students','manged by lecturer eventually',
+    #             'May be revised')
+    # add_evaluation('notes', 5, 7, 5, 3, 10, 5, cap_advisor.id, cory.id)
+    # add_evaluation('crash', 10, 10, 1, 3, 10, 10, flask_test.id, bob.id)
+    # add_evaluation('crash', 10, 10, 1, 3, 10, 10, solo.id, ai.id)
     print('database intialized')
 
 '''
@@ -56,12 +56,12 @@ lecturer_cli = AppGroup('lecturer', help='Lecturer object commands')
 
 # Then define the command and any parameters and annotate it with the group (@)
 @lecturer_cli.command("create", help="Creates a lecturer")
-@click.argument("username", default="bob")
-@click.argument("password", default="bobspass")
-@click.argument("email", default="bob@mail.com")
-@click.argument("first", default="bob")
-@click.argument("last", default="smith")
-@click.argument("id", default=1111)
+@click.argument("username", default="alexa")
+@click.argument("password", default="alexapass")
+@click.argument("email", default="alexander.atwell@uwi.edu")
+@click.argument("first", default="Alex")
+@click.argument("last", default="Atwell")
+@click.argument("id", default=415001713)
 def create_lecturer_command(username, password, email, id, first, last):
     create_lecturer(username, password, email, first, last, id)
     if get_lect_by_username(username):
@@ -83,11 +83,11 @@ student_cli = AppGroup('student', help='Student object commands')
 
 # Then define the command and any parameters and annotate it with the group (@)
 @student_cli.command("create", help="Creates a student")
-@click.argument("username", default="rob")
-@click.argument("password", default="robspass")
-@click.argument("email", default="rob@mail.com")
-@click.argument("first", default="rob")
-@click.argument("last", default="smith")
+@click.argument("username", default="danteb")
+@click.argument("password", default="dantepass")
+@click.argument("email", default="dante.blunt@uwi.edu")
+@click.argument("first", default="Dante")
+@click.argument("last", default="Blunt")
 @click.argument("id", default=2222)
 def create_student_command(username, password, email,  id, first, last):
     create_student(username, password, email, first, last, id)
@@ -133,12 +133,16 @@ proposal = AppGroup('proposal', help='Proposal object commands')
 @proposal.command("create", help="Creates a dummy proposal")
 @click.argument("student", default=1)
 def create_proposal_command(student):
-    add_proposal(student_id=student, proposal_nm='Cap Advisor', problem_desc='Students can have their proposals evaluated early', audience='SWEN and COMP students',
+    prop = add_proposal(rubric_id=1, student_id=student, proposal_nm='Cap Advisor', problem_desc='Students can have their proposals evaluated early', audience='SWEN and COMP students',
                   solution_desc='service student can submit capstone proposals to and have feedback', approach='create a web app that allows stundets to submit proposals to',
                  num_members=3, functionalities='students submit proposals based on cirtera', technologies='flask MVC', 
                  goals='evaluate proposals from a lecturer', benefit='SWEN and COMP students', sustain='manged by lecturer eventually',
                  notes='May be revised')
     print(f'proposal created!')
+    print(f'Proposal Name ' + prop.proposal_name)
+    print(f'No. of Members ' + str(prop.num_members))
+    print(f'Proposal ID ' + str(prop.id))
+    print(f'Notes ' + prop.notes)
 
 @rubric.command("list", help="Lists all proposals in the database")
 def list_proposal_command():

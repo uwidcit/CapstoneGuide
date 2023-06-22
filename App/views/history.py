@@ -28,5 +28,5 @@ def get_history_page():
 def get_submission_page():
     proposals = get_all_proposals()
     evaluations = get_all_evaluations()
-    return render_template('submissions.html', proposals=proposals ,evaluations=evaluations)
+    return render_template('submissions.html', proposals=proposals, evaluations=evaluations)
 

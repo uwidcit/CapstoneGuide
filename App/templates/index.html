@@ -97,7 +97,7 @@
     
                     <div class="row hide-on-small-only">
                         <div class="col s12 white-text">
-                        <p id="sub-text">"Sign In to Access the portal!"</p>
+                        <p id="sub-text">Sign in to access the portal!</p>
                         </div>
                     </div>
     
@@ -136,5 +136,41 @@
         </footer>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                //Varibales used are declared and intialized
+                var counter = 0;
+                var elem = document.getElementById("sub-text");
+
+                //Arrays to display text based on the current page
+                var text = [ "Learn the required criteria for a Capstone Projcet!", 
+                "Craete a proposal and  have it evaluated!",  "Define the evaluation rubric and Perform your own evaluation!",
+                "Sign in to access the portal!"];
+
+
+                //Interval time to update text
+                setInterval(change, 5000);
+
+                function change() {
+                    /*Function to check which page the user is on and display a greeting message based on the id.
+                    Exception handler to catch the error when the id is not available*/
+                    var list;
+                    try {
+                        if (elem) {
+                            list = text;
+                            elem.innerHTML = list[counter];
+                        }
+                        counter++;
+                        if (counter >= list.length) {
+                            counter = 0;
+                        }
+                    } catch (e) {
+                    //When the error is caught, a message is shwon in the console
+                    console.log('Id not available on this page');
+                    clearTimeout();
+                    }
+                }
+            });
+        </script>
     </body>
 </html>

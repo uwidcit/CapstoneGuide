@@ -14,13 +14,13 @@ def login(username, password):
         return student
 
     # #login with ID    
-    # lecturer = Lecturer.query.filter_by(uwi_id=username).first()
-    # if lecturer and lecturer.check_password(password):
-    #     return lecturer
+    lecturer = Lecturer.query.filter_by(uwi_id=int(username)).first()
+    if lecturer and lecturer.check_password(password):
+        return lecturer
     
-    # student = Student.query.filter_by(uwi_id=username).first()
-    # if student and student.check_password(password):
-    #     return student
+    student = Student.query.filter_by(uwi_id=int(username)).first()
+    if student and student.check_password(password):
+        return student
     return None
 
 

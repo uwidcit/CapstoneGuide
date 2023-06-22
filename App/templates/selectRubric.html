@@ -4,7 +4,6 @@
 <!--Side Nav items-->
 {% block menuItems %}
     <li class="active" style="margin-top: 62px"><a href="/proposal">Submit New Proposal</a></li>
-    <li><a href="/ask-query">Ask a Question</a></li>
     <li><a href="/history">History</a></li>
     <li><a href="/lecturers">Lecturers</a></li>
 {% endblock %}
@@ -21,7 +20,7 @@
         </div>
         <div class="col s12">
             {% for rubric in rubrics %}
-                <div class="card col s12 m5">
+                <div class="card col s12 l5">
                     <div class="card-content">
                         <span class="card-title">{{rubric.name}}</span>
                         <div class="col s6">

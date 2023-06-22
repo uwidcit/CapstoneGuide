@@ -26,7 +26,8 @@ def get_ai_evaluation(proposal_nm, problem_desc, audience, solution_desc, approa
                                       "Also give overall comments"
                                       "In summary grade the proposal on each of the points in the rubric 0-9"
                                       "If you cannot understand, assign a score of 0 to the points in the rubric"},
-        {"role": "user", "content": "Proposal Name: " + proposal_nm + "\nProblem Description: " + problem_desc + audience + 
+        {"role": "user", "content": "Proposal Name: " + proposal_nm + "\nProblem Description: " + problem_desc + 
+                                    "\nProblem Description: " + audience + 
                                     "\nSolution Description: " + solution_desc + approach + "\nNumber of Members: " + num_members
                                     + "\nRequirements: "+ functionalities + "\nTechnical Skills: "+ technologies +
                                     "\nGoals: "+ goals + benifit + "\nSustainability: "+ sustain + "\nAdditional Information: "+ notes}])

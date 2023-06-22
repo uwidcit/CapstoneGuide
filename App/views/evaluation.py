@@ -8,9 +8,10 @@ from.history import history_views
 evaluation_views = Blueprint('evaluation_views', __name__, template_folder='../templates')
 
 # landing page to store evaluation info
-@student_required
+
 @evaluation_views.route('/get-evaluation/<evaluationId>', methods=['GET'])
 @login_required
+@student_required
 def get_evaluation_endpoint(evaluationId):
     eval = get_evaluation(evaluationId)
     if eval:
@@ -65,9 +66,10 @@ def get_evaluation_endpoint(evaluationId):
     
 
 # displays submissions and evaluations to lecturer
-@lecturer_required
+
 @evaluation_views.route('/man-evaluation', methods=['POST'])
 @login_required
+@lecturer_required
 def lect__evaluate():
     data = request.form
     add_evaluation(data['notes'], data['novelty'], data['relevance'], data['feasibility'], data['impact'],

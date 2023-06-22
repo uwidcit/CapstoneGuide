@@ -68,6 +68,9 @@
        [type]:focus + label{
          color: #1a237e !important;
        }
+       img{
+            height: 400px;
+       }
 
       /* form label underline focus color */
        [type]:focus{
@@ -84,6 +87,12 @@
                bottom: 0;
                left: 0;
                width: 100%;
+            }
+        }
+
+        @media screen and (max-width : 1300px) {
+            div img{
+                height: 300px;
             }
         }
     </style>
@@ -103,7 +112,9 @@
         <div class="container" style="margin-top: 100px;">
             <div class="row">
                 <!--left image should go here-->
-                <div class="col hide-on-med-and-down l5" style="background-color:blue; height:500px;"></div>
+                <div class="col hide-on-med-and-down m5">
+                    <img src="static/images/logo-1.png" alt="Cap Advisor logo">
+                </div>
                 <!--tab headers-->
                 <div class="col s12 l6 offset-l1">
                     <ul class="tabs tabs-fixed-width">

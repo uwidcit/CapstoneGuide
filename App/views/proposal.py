@@ -7,25 +7,29 @@ from .history import history_views
 proposal_views = Blueprint('proposal_views', __name__, template_folder='../templates')
 
 # shows rubrics to select
-@student_required
+
 @proposal_views.route('/proposal', methods=['GET'])
 @login_required
+@student_required
 def get_proposal_page():
+    print(current_user)
     rubrics = get_all_rubrics()
     return render_template('selectRubric.html', rubrics=rubrics)
 
 # displays proposal form
-@student_required
+
 @proposal_views.route('/select-rubric/<int:rubricId>', methods=['GET'])
 @login_required
+@student_required
 def submit_proposal_page(rubricId):
     flash(get_rubric(rubricId).name + ' Rubric Selected!')
     return render_template('proposal.html', rubricId=rubricId)
 
 # saves the proposal to the DB and 
-@student_required
+
 @proposal_views.route('/select-rubric/<int:rubricId>', methods=['POST'])
 @login_required
+@student_required
 def submit_proposal_action(rubricId):
     data = request.form
     add_proposal(current_user.id, rubricId, data['name'], data['problem'], data['audience'], data['solution'], data['approach'], data['group_num'], 
@@ -38,9 +42,9 @@ def submit_proposal_action(rubricId):
     return redirect(url_for('proposal_views.get_proposal_page'))
 
 # removes a proposal from the DB
-@student_required
 @proposal_views.route('/delete-proposal/<int:proposalID>', methods=['GET'])
 @login_required
+@student_required
 def delete_proposal_action(proposalID):
     remove_evaluation(proposalID)
     remove_proposal(current_user.id, proposalID)

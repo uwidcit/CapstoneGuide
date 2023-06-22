@@ -42,17 +42,19 @@ def create_user_action():
     return redirect(url_for('auth_views.get_registration_page'))
 
 #show all students
-@student_required
+
 @user_views.route('/lecturers', methods=['GET'])
 @login_required
+@student_required
 def get_lecturer_page():
     lecturers = get_all_lecturers()
     return render_template('lecturerContact.html', lecturers=lecturers)
 
 #show all lecturers
-@lecturer_required
+
 @user_views.route('/students', methods=['GET'])
 @login_required
+@lecturer_required
 def get_student_page():
     students = get_all_students()
     return render_template('studentContact.html', students=students)

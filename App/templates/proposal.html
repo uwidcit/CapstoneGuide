@@ -4,7 +4,6 @@
 <!--Side Nav items-->
 {% block menuItems %}
     <li class="active" style="margin-top: 62px"><a href="/proposal">Submit New Proposal</a></li>
-    <li><a href="/ask-query">Ask a Question</a></li>
     <li><a href="/history">History</a></li>
     <li><a href="/contacts">Lecturers</a></li>
 {% endblock %}
@@ -57,9 +56,8 @@
 
                 <div class="row">
                     <div class="input-field col s12 l7" >
-                        <textarea name="audience" class="materialize-textarea" required></textarea>
-                        <label for="audience">Target Audience/Stakeholders
-                            <i class="material-icons tiny right red-text">*</i></label>
+                        <textarea name="audience" class="materialize-textarea"></textarea>
+                        <label for="audience">Target Audience/Stakeholders</i></label>
                         <span class="helper-text" data-error="wrong" data-success="right">
                             Specify the target audience or stakeholders affected by the project.</span>
                     </div>
@@ -126,9 +124,8 @@
 
                 <div class="row">
                     <div class="input-field col s12 l7">
-                        <textarea name="benefit" class="materialize-textarea" required></textarea>
-                        <label for="benefit" >Beneficiaries
-                            <i class="material-icons tiny right red-text">*</i>
+                        <textarea name="benefit" class="materialize-textarea"></textarea>
+                        <label for="benefit" >Beneficiaries</i>
                         </label>
                         <span class="helper-text" data-error="wrong" data-success="right">
                             Identify the individuals or groups who will benefit from the project.</span>

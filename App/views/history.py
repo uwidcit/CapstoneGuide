@@ -7,9 +7,10 @@ from.index import index_views
 history_views = Blueprint('history_views', __name__, template_folder='../templates')
 
 # displays evaluations and submissions to student
-@student_required
+
 @history_views.route('/history', methods=['GET'])
 @login_required
+@student_required
 def get_history_page():
     proposals = get_user_proposals(current_user.id)
     evaluations = get_all_evaluations()
@@ -20,9 +21,10 @@ def get_history_page():
     return render_template('history.html', proposals=proposals, evaluations=evals)
 
 # gets submission page for lecturer
-@lecturer_required
+
 @history_views.route('/submissions', methods=['GET'])
 @login_required
+@lecturer_required
 def get_submission_page():
     proposals = get_all_proposals()
     evaluations = get_all_evaluations()

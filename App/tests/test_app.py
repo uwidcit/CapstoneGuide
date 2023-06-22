@@ -5,14 +5,10 @@ from App.main import create_app
 from App.database import db, create_db
 from App.models import User, Student, Lecturer
 from App.controllers import (
-    create_user,
     get_all_users_json,
     login,
-    get_user,
-    get_user_by_username,
-    update_user,
     create_lecturer,
-    create_student
+    create_student, add_proposal, add_rubric, add_evaluation
 )
 
 
@@ -22,7 +18,6 @@ LOGGER = logging.getLogger(__name__)
    Unit Tests
 '''
 class UserUnitTests(unittest.TestCase):
-
     #User creation
     def test_new_student(self):
         student = Student("danteb", "dantepass", "dante.blunt@mycavehill.uwi.edu", "Dante", "Blunt", "400004050")
@@ -32,7 +27,7 @@ class UserUnitTests(unittest.TestCase):
         lecturer = Lecturer("alexa", "alexapass", "alexander.atwell@mycavehill.uwi.edu", "Alexander", "Atwell", "415001713")
         assert lecturer.username == "alexa"
 
-    # pure function no side effects or integrations called
+    # password checks
     
     def test_hashed_stu_password(self):
         password = "dantepass"
@@ -55,6 +50,31 @@ class UserUnitTests(unittest.TestCase):
         password = "alexapass"
         lecturer = Lecturer("alexa", password, "alexander.atwell@mycavehill.uwi.edu", "Alexander", "Atwell", "415001713")
         assert lecturer.check_password(password)
+
+    # new rubric
+    def test_new_rubric(self):
+        rubric = add_rubric("Computer Science Project",'For SWEN and COMP students', 3, 5, 6, 6, 6, 1, 101)
+        assert rubric.name == "Computer Science Project"
+        assert rubric.novelty == 3
+    
+    # new proposal
+    def test_new_proposal(self):
+        proposal = add_proposal(1, 1, 'Cap Advisor', 'Students do not always undertsand how to design capstone projects', 'SWEN and COMP students',
+                'Students can submit capstone proposals to and have feedback', 'craete a web app which allows them submit proposal according to capstone rubric',
+                3, 'students must submit proposals based on cirtera', 'flask MVC, python, GPT-3', 
+                'students can understand what is required for capstone projects and begine their own',
+                  'SWEN and COMP students','manged by lecturer eventually',
+                'May be revised')
+        assert proposal.name == "Cap Advisor"
+        assert proposal.num_members == 3
+        assert proposal.stduent_id == 1
+        assert proposal.notes == "May be revised"
+    
+    # new evaluation 
+    def test_new_evaluation(self):
+        evaluation= add_evaluation("Notes", 5, 7, 5, 3, 10, 5, 1, 101)
+        assert evaluation.novelty == 5
+        assert evaluation.score == 6
     
 
 '''
@@ -86,12 +106,5 @@ class UsersIntegrationTests(unittest.TestCase):
         lecturer = create_lecturer("alexa", "alexapass", "alexander.atwell@mycavehill.uwi.edu", "Alexander", "Atwell", "415001713")
         assert lecturer.username == "alexa"
 
-    # def test_get_all_users_json(self):
-    #     users_json = get_all_users_json()
-    #     self.assertListEqual([{"id":1, "username":"bob"}, {"id":2, "username":"rick"}], users_json)
 
-    # Tests data changes in the database
-    # def test_update_user(self):
-    #     update_user(1, "ronnie")
-    #     user = get_user(1)
-    #     assert user.username == "ronnie"
+  

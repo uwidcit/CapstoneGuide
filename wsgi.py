@@ -20,7 +20,7 @@ def initialize():
     db.create_all()
     rob = create_student('rob', 'robspass', 'rob@mycavehilluwi.edu', 'Rob', 'Renolds', 2222)
     steve = create_student('steve', 'stevepass', 'steve@mycavehilluwi.edu', 'Steve', 'Pass', 3333)
-    create_lecturer('capadviosr', 'capadvisor', 'capadvisor@temp.com', 'Cap', 'Adivosr', 9999)
+    ai = create_lecturer('capadviosr', 'capadvisor', 'capadvisor@temp.com', 'Cap', 'Adivosr', 9999)
     bob = create_lecturer('bob', 'bobspass', 'bob@mycavehilluwi.edu', 'bob', 'smith', 1111)
     cory = create_lecturer('cory', 'corypass', 'cory@mycavehilluwi.edu', 'Cory', 'Jones', 4444)
     rubric = add_rubric('Default','For practice', 3, 5, 6, 6, 6, 1, 101)
@@ -34,13 +34,14 @@ def initialize():
                 2, 'students must submit proposals based on cirtera', 'flask MVC, python, GPT-3', 'students can understand what is required for capstone projects and begine their own',
                   'SWEN and COMP students','manged by lecturer eventually',
                 'May be revised')
-    add_proposal(rob.id, rubric.id, 'Solo', 'Students do not always undertsand how to design capstone projects', 'SWEN and COMP students',
+    solo = add_proposal(rob.id, rubric.id, 'Solo', 'Students do not always undertsand how to design capstone projects', 'SWEN and COMP students',
                 'Students can submit capstone proposals to and have feedback', 'craete a web app which allows them submit proposal according to capstone rubric',
                 5, 'students must submit proposals based on cirtera', 'flask MVC, python, GPT-3', 'students can understand what is required for capstone projects and begine their own',
                   'SWEN and COMP students','manged by lecturer eventually',
                 'May be revised')
     add_evaluation('notes', 5, 7, 5, 3, 10, 5, cap_advisor.id, cory.id)
     add_evaluation('crash', 10, 10, 1, 3, 10, 10, flask_test.id, bob.id)
+    add_evaluation('crash', 10, 10, 1, 3, 10, 10, solo.id, ai.id)
     print('database intialized')
 
 '''

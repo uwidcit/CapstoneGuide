@@ -9,7 +9,8 @@ def add_evaluation(notes, novelty, relevance, feasibility, impact, sustainabilit
         evaluation = Evaluation(comments=notes, novelty=novelty, relevance=relevance, feasibility=feasibility, impact=impact, sustainability=sustainability,
                                  technologies=technologies, proposal_id=proposal_id, reviewer_id=reviewer)
         proposal.evaluations.append(evaluation)
-        proposal.status = 1
+        if(reviewer != 101):
+            proposal.status = 1
         db.session.commit()
         return evaluation
     return None

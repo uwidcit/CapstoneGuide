@@ -2,7 +2,7 @@ import os
 import openai
 from App.controllers import add_evaluation, get_last_proposal, get_lecturer
 
-openai.api_key = os.environ.get('SECRET_KEY')
+openai.api_key = os.environ.get('GPT_KEY')
 
 
 def set_struct(sentence):
@@ -33,7 +33,6 @@ def get_ai_evaluation(proposal_nm, problem_desc, audience, solution_desc, approa
                                     "\nGoals: "+ goals + benifit + "\nSustainability: "+ sustain + "\nAdditional Information: "+ notes}])
     
     comment = str(response.choices[0].message.content).replace("\n", "")
-    print(comment)
     comment = comment.replace("/9", " ")
     # f = open("App/tests/ai_dictionary.jsonl", "a")
     # f.write('{"prompt": "' + proposal_nm + '", "completion": "' + comment)

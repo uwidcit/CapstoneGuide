@@ -9,17 +9,14 @@ proposal_views = Blueprint('proposal_views', __name__, template_folder='../templ
 # shows rubrics to select
 
 @proposal_views.route('/proposal', methods=['GET'])
-@login_required
 @student_required
 def get_proposal_page():
-    print(current_user)
     rubrics = get_all_rubrics()
     return render_template('selectRubric.html', rubrics=rubrics)
 
 # displays proposal form
 
 @proposal_views.route('/select-rubric/<int:rubricId>', methods=['GET'])
-@login_required
 @student_required
 def submit_proposal_page(rubricId):
     flash(get_rubric(rubricId).name + ' Rubric Selected!')
@@ -28,7 +25,6 @@ def submit_proposal_page(rubricId):
 # saves the proposal to the DB and 
 
 @proposal_views.route('/select-rubric/<int:rubricId>', methods=['POST'])
-@login_required
 @student_required
 def submit_proposal_action(rubricId):
     data = request.form
@@ -43,7 +39,6 @@ def submit_proposal_action(rubricId):
 
 # removes a proposal from the DB
 @proposal_views.route('/delete-proposal/<int:proposalID>', methods=['GET'])
-@login_required
 @student_required
 def delete_proposal_action(proposalID):
     remove_evaluation(proposalID)

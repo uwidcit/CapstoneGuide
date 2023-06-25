@@ -9,18 +9,15 @@ rubric_views = Blueprint('rubric_views', __name__, template_folder='../templates
 
 # gets rubric page
 @rubric_views.route('/rubric', methods=['GET'])
-@login_required
 @lecturer_required
 def rubric_page():
     # check if authed
-    print(current_user.is_authenticated)
     rubrics = get_user_rubrics(current_user.id)
     return render_template('rubric.html', rubrics=rubrics)
 
 # adds rubric to DB
 
 @rubric_views.route('/rubric', methods=['POST'])
-@login_required
 @lecturer_required
 def create_rubric_action():
     data = request.form
@@ -30,7 +27,6 @@ def create_rubric_action():
 
 # removes rubric from DB
 @rubric_views.route('/delete-rubric/<int:rubricId>', methods=['GET'])
-@login_required
 @lecturer_required
 def delete_rubric_action(rubricId):
     if(get_proposal_by_rubric(rubricId) == None):

@@ -9,7 +9,7 @@ def load_config():
     if config['ENV'] == "DEVELOPMENT":
         from .default_config import JWT_ACCESS_TOKEN_EXPIRES, SQLALCHEMY_DATABASE_URI, SECRET_KEY
         config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
-        config['SECRET_KEY'] = SECRET_KEY
+        config['SECRET_KEY'] = os.urandom(24)
         delta = JWT_ACCESS_TOKEN_EXPIRES
     else:
         db_path = os.environ.get('SQLALCHEMY_DATABASE_URI')

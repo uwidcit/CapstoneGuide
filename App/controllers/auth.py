@@ -49,13 +49,16 @@ def lecturer_required(func):
 def setup_flask_login(app):
     login_manager = LoginManager()
     login_manager.init_app(app)
+    login_manager.session_protection = "strong"
     
     @login_manager.user_loader
     def load_user(user_id):
         student =  Student.query.get(user_id)
         if student:
             return student
-        return Lecturer.query.get(user_id)
+        lecturer = Lecturer.query.get(user_id)
+        if lecturer:
+            return lecturer
     
     return login_manager
 

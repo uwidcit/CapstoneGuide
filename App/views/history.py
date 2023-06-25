@@ -9,7 +9,6 @@ history_views = Blueprint('history_views', __name__, template_folder='../templat
 # displays evaluations and submissions to student
 
 @history_views.route('/history', methods=['GET'])
-@login_required
 @student_required
 def get_history_page():
     proposals = get_user_proposals(current_user.id)
@@ -23,7 +22,6 @@ def get_history_page():
 # gets submission page for lecturer
 
 @history_views.route('/submissions', methods=['GET'])
-@login_required
 @lecturer_required
 def get_submission_page():
     proposals = get_all_proposals()

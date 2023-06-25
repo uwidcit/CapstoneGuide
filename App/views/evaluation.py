@@ -10,7 +10,6 @@ evaluation_views = Blueprint('evaluation_views', __name__, template_folder='../t
 # landing page to store evaluation info
 
 @evaluation_views.route('/get-evaluation/<evaluationId>', methods=['GET'])
-@login_required
 @student_required
 def get_evaluation_endpoint(evaluationId):
     eval = get_evaluation(evaluationId)
@@ -68,7 +67,6 @@ def get_evaluation_endpoint(evaluationId):
 # displays submissions and evaluations to lecturer
 
 @evaluation_views.route('/man-evaluation', methods=['POST'])
-@login_required
 @lecturer_required
 def lect__evaluate():
     data = request.form

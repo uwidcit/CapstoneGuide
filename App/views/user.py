@@ -44,7 +44,6 @@ def create_user_action():
 #show all students
 
 @user_views.route('/lecturers', methods=['GET'])
-@login_required
 @student_required
 def get_lecturer_page():
     lecturers = get_all_lecturers()
@@ -53,7 +52,6 @@ def get_lecturer_page():
 #show all lecturers
 
 @user_views.route('/students', methods=['GET'])
-@login_required
 @lecturer_required
 def get_student_page():
     students = get_all_students()

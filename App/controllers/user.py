@@ -24,7 +24,7 @@ def create_student(username, password, email, first_name, last_name, uwi_id):
     except SQLAlchemyError as e:
         print(f"Database error occurred: {str(e)}")
         return None
-
+    
 
 def get_lecturer(id):
     return Lecturer.query.get(id)

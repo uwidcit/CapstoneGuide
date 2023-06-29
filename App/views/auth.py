@@ -30,11 +30,13 @@ def login_action():
     user = login(data['username'], data['password'])
     if user:
         if type(user) ==  Student:
-            login_user(user)
-            return redirect(url_for('proposal_views.get_proposal_page'))
+            login_user(user, remember=False, duration=None, force=False, fresh=True)
+            if user.is_authenticated:
+                return redirect(url_for('proposal_views.get_proposal_page'))
         elif type(user) ==  Lecturer:
-            login_user(user)
-            return redirect(url_for('rubric_views.rubric_page'))
+            login_user(user, remember=False, duration=None, force=False, fresh=True)
+            if user.is_authenticated:
+                return redirect(url_for('rubric_views.rubric_page'))
     flash('Incorrect username or password given')
     return redirect(url_for('auth_views.get_registration_page'))
 

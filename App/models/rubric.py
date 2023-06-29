@@ -14,7 +14,7 @@ class Rubric(db.Model):
     proposals = db.relationship('Proposal', backref=db.backref('rubric', lazy='joined'))
 
     def __init__(self, name, notes, novelty, relevance, feasibility, impact, sustainability, technology, lecturer_id):
-        self.name = name.capitalize() 
+        self.name = name.title() 
         self.notes = notes
         self.novelty = novelty
         self.relevance = relevance

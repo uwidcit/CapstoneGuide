@@ -13,15 +13,18 @@ def login(username, password):
     if student and student.check_password(password):
         return student
     
-    if (isinstance(username, int)):
-        # #login with ID    
-        lecturer = Lecturer.query.filter_by(uwi_id=int(username)).first()
-        if lecturer and lecturer.check_password(password):
-            return lecturer
-        
-        student = Student.query.filter_by(uwi_id=int(username)).first()
-        if student and student.check_password(password):
-            return student
+    try:
+        if (isinstance(int(username), int)):
+            # #login with ID    
+            lecturer = Lecturer.query.filter_by(uwi_id=int(username)).first()
+            if lecturer and lecturer.check_password(password):
+                return lecturer
+            
+            student = Student.query.filter_by(uwi_id=int(username)).first()
+            if student and student.check_password(password):
+                return student
+    except:
+        print("An exception occured")
     return None
 
 
@@ -49,14 +52,14 @@ def lecturer_required(func):
 def setup_flask_login(app):
     login_manager = LoginManager()
     login_manager.init_app(app)
-    login_manager.session_protection = "strong"
+    # login_manager.session_protection = "strong"
     
     @login_manager.user_loader
     def load_user(user_id):
-        student =  Student.query.get(user_id)
+        student =  Student.query.get(int(user_id))
         if student:
             return student
-        lecturer = Lecturer.query.get(user_id)
+        lecturer = Lecturer.query.get(int(user_id))
         if lecturer:
             return lecturer
     

@@ -3,6 +3,7 @@ import openai
 from App.controllers import add_evaluation, get_last_proposal, get_lecturer
 
 openai.api_key = str(os.getenv('GPT_KEY'))
+# "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"
 
 
 def set_struct(sentence):

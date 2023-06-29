@@ -105,7 +105,7 @@ async function renderData(evaluationId){
         }
     
     });
-
+    
     let grades = [novelty, relevance, feasibility, technologies, impact, sustainability];
     for (i in grades) {
         if(grades[i].score < grades[i].threshold){

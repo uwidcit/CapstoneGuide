@@ -16,13 +16,13 @@ migrate = get_migrate(app)
 # This command creates and initializes the database
 @app.cli.command("init", help="Creates and initializes the database")
 def initialize():
-    db.drop_all()
-    db.create_all()
-    rob = create_student('rob', 'robspass', 'rob@mycavehilluwi.edu', 'Rob', 'Renolds', 2222)
-    steve = create_student('steve', 'stevepass', 'steve@mycavehilluwi.edu', 'Steve', 'Pass', 3333)
-    ai = create_lecturer('capadviosr', 'capadvisor', 'capadvisor@temp.com', 'Cap', 'Adivosr', 9999)
-    bob = create_lecturer('bob', 'bobspass', 'bob@mycavehilluwi.edu', 'bob', 'smith', 1111)
-    cory = create_lecturer('cory', 'corypass', 'cory@mycavehilluwi.edu', 'Cory', 'Jones', 4444)
+    # db.drop_all()
+    # db.create_all()
+    # # rob = create_student('rob', 'robspass', 'rob@mycavehilluwi.edu', 'Rob', 'Renolds', 2222)
+    # # steve = create_student('steve', 'stevepass', 'steve@mycavehilluwi.edu', 'Steve', 'Pass', 3333)
+    # ai = create_lecturer('capadviosr', 'capadvisor', 'capadvisor@temp.com', 'Cap', 'Adivosr(AI)', 9999)
+    # bob = create_lecturer('bob', 'bobspass', 'bob@mycavehilluwi.edu', 'bob', 'smith', 1111)
+    # # cory = create_lecturer('cory', 'corypass', 'cory@mycavehilluwi.edu', 'Cory', 'Jones', 4444)
     # rubric = add_rubric('Default','For practice', 3, 5, 6, 6, 6, 1, 101)
     # cap_advisor = add_proposal(steve.id, rubric.id, 'Cap Advisor', 'Students do not always undertsand how to design capstone projects', 'SWEN and COMP students',
     #             'Students can submit capstone proposals to and have feedback', 'craete a web app which allows them submit proposal according to capstone rubric',

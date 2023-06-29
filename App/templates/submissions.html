@@ -267,11 +267,7 @@
                                             <td>{{evaluation.proposal.student.uwi_id}}</td>
                                             <td>{{evaluation.proposal.student.first_name}} {{evaluation.proposal.student.last_name}}</td>
                                             <td>{{evaluation.proposal.proposal_name}}</td>
-                                            {% if user == 101 %}
-                                            <td>{{evaluation.lecturer.first_name}} {{evaluation.lecturer.last_name}}(AI)</td>
-                                            {% else %}
-                                                <td>{{evaluation.lecturer.first_name}} {{evaluation.lecturer.last_name}}</td>
-                                            {% endif %}
+                                            <td>{{evaluation.lecturer.first_name}} {{evaluation.lecturer.last_name}}</td>
                                             <td>{{evaluation.score}}</td>
                                         </tr>
                                             <!--Modal Structure: Grade Proposal-->

@@ -37,6 +37,6 @@ envVarGroups:
     value: main.py
     
 databases:
-- name: cap-advisor-db
+- name: flask-postgres-api-db
   plan: free
-  databaseName: cap-advisor-db
+  databaseName: mydb

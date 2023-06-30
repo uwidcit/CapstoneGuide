@@ -65,7 +65,6 @@ db.sqlite3
 db.sqlite3-journal
 
 # Flask stuff:
-instance/
 .webassets-cache
 
 # Scrapy stuff:
@@ -77,6 +76,7 @@ docs/_build/
 # PyBuilder
 .pybuilder/
 target/
+custom_config.py
 
 # Jupyter Notebook
 .ipynb_checkpoints

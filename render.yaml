@@ -3,7 +3,7 @@ services:
 - type: web
   name: flask-postgres-api
   env: python
-  repo: https://github.com/Floodtech/CapstoneGuide.git
+  repo: https://github.com/uwidcit/flaskmvc.git
   plan: free
   branch: main
   healthCheckPath: /healthcheck
@@ -34,8 +34,9 @@ envVarGroups:
   - key: ENV
     value: production
   - key: FLASK_APP
-    value: main.py
+    value: wsgi.py
     
+
 databases:
 - name: flask-postgres-api-db
   plan: free

@@ -40,8 +40,5 @@ def create_app(config_overrides={}):
     init_db(app)
     setup_flask_login(app)
     app.app_context().push()
-    
-    if __name__ == '__main__':
-       app.run(host='--bind 0.0.0.0:80')
     return app
 

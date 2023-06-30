@@ -10,7 +10,9 @@ def load_config():
         from .default_config import JWT_ACCESS_TOKEN_EXPIRES, SQLALCHEMY_DATABASE_URI, SECRET_KEY
         config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
         config['SECRET_KEY'] = SECRET_KEY
+        # config['GPT_KEY'] = GPT_KEY
         delta = JWT_ACCESS_TOKEN_EXPIRES
+        # config["SESSION_PERMANENT"] = False
     else:
         db_path = os.environ.get('SQLALCHEMY_DATABASE_URI')
         if db_path.startswith("postgres://"):
@@ -29,6 +31,7 @@ def load_config():
     config['PREFERRED_URL_SCHEME'] = 'https'
     config['UPLOADED_PHOTOS_DEST'] = "App/uploads"
     config["JWT_TOKEN_LOCATION"] = ["headers"]
+    # config["SESSION_PERMANENT"] = False
     return config
 
 config = load_config()

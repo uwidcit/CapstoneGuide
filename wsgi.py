@@ -10,7 +10,6 @@ from App.controllers import ( create_student, create_lecturer, get_stu_by_userna
                              add_evaluation, get_user_evaluation,  get_all_evaluations)
 # This commands file allow you to create convenient CLI commands for testing controllers
 
-
 app = create_app()
 migrate = get_migrate(app)
 

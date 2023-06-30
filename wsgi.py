@@ -13,6 +13,10 @@ from App.controllers import ( create_student, create_lecturer, get_stu_by_userna
 app = create_app()
 migrate = get_migrate(app)
 
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
+
+
 # This command creates and initializes the database
 @app.cli.command("init", help="Creates and initializes the database")
 def initialize():

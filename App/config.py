@@ -9,7 +9,7 @@ def load_config():
     if config['ENV'] == "DEVELOPMENT":
         from .default_config import JWT_ACCESS_TOKEN_EXPIRES, SQLALCHEMY_DATABASE_URI, SECRET_KEY
         config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
-        config['SECRET_KEY'] = os.urandom(24)
+        config['SECRET_KEY'] = SECRET_KEY
         # config['GPT_KEY'] = GPT_KEY
         delta = JWT_ACCESS_TOKEN_EXPIRES
         # config["SESSION_PERMANENT"] = False

@@ -7,10 +7,13 @@ def load_config():
     config = {'ENV': os.environ.get('ENV', 'DEVELOPMENT')}
     delta = 7
     if config['ENV'] == "DEVELOPMENT":
-        from .default_config import JWT_ACCESS_TOKEN_EXPIRES, SQLALCHEMY_DATABASE_URI, SECRET_KEY
+        try:
+            from .custom_config import JWT_ACCESS_TOKEN_EXPIRES, SQLALCHEMY_DATABASE_URI, SECRET_KEY, GPT_KEY
+        except ImportError:
+            from .default_config import JWT_ACCESS_TOKEN_EXPIRES, SQLALCHEMY_DATABASE_URI, SECRET_KEY, GPT_KEY
         config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
         config['SECRET_KEY'] = SECRET_KEY
-        # config['GPT_KEY'] = GPT_KEY
+        config['GPT_KEY'] = GPT_KEY
         delta = JWT_ACCESS_TOKEN_EXPIRES
         # config["SESSION_PERMANENT"] = False
     else:

@@ -20,7 +20,6 @@ $ pip install -r requirements.txt
 
 # Configuration Management
 
-
 Configuration information such as the database url/port, credentials, API keys etc are to be supplied to the application. However, it is bad practice to stage production information in publicly visible repositories.
 Instead, all config is provided by a config file or via [environment variables](https://linuxize.com/post/how-to-set-and-list-environment-variables-in-linux/).
 
@@ -45,11 +44,26 @@ def load_config():
     config = {'ENV': os.environ.get('ENV', 'DEVELOPMENT')}
     delta = 7
     if config['ENV'] == "DEVELOPMENT":
-        from .default_config import JWT_ACCESS_TOKEN_EXPIRES, SQLALCHEMY_DATABASE_URI, SECRET_KEY
+        try:
+            from .custom_config import JWT_ACCESS_TOKEN_EXPIRES, SQLALCHEMY_DATABASE_URI, SECRET_KEY, GPT_KEY
+        except ImportError:
+            from .default_config import JWT_ACCESS_TOKEN_EXPIRES, SQLALCHEMY_DATABASE_URI, SECRET_KEY, GPT_KEY
         config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
         config['SECRET_KEY'] = SECRET_KEY
-        delta = JWT_ACCESS_TOKEN_EXPIRES
+        config['GPT_KEY'] = GPT_KEY
 ...
+```
+If you need to add addtional configuration config.py should be updated accordingly to look out for them in the environment and the custom_config.py file.
+
+If you have sensitive config that you don't want stored in the repo you can make a custom_config.py *Do not put production config in default_config.py* file containig the config, this will be automatically detected and used when running the repo over default_config.py and it is set to be gitignored.
+
+custom_config.py
+```python
+SQLALCHEMY_DATABASE_URI = "<prod/staging database string>"
+SECRET_KEY = "<real secret>"
+GPT_KEY="<real gpt key>"
+JWT_ACCESS_TOKEN_EXPIRES = 7
+ENV = "DEVELOPMENT"
 ```
 
 ## In Production
@@ -96,7 +110,7 @@ $ flask run
 
 _For production using gunicorn (what heroku executes):_
 ```bash
-$ gunicorn wsgi:app
+$ gunicorn -c gunicorn_config.py wsgi:app
 ```
 
 # Deploying

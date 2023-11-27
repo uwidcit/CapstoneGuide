@@ -30,10 +30,15 @@
             align-content:center;
             min-height: 548px;
         }
+
+        .full-modal{
+            max-height: 80vh;
+            height: 80vh;
+        }
     </style>
     
     <!--Tabs Setup-->
-    <div class="row" style="margin-top: 100px;">
+    <div class="row" style="margin-top: 20px;">
         <div class="col s12">
 
             <!--Tab headers-->
@@ -271,7 +276,7 @@
                                             <td>{{evaluation.score}}</td>
                                         </tr>
                                             <!--Modal Structure: Grade Proposal-->
-                                        <div id="evaluation_modal{{evaluation.evaluation_id}}" class="modal modal-fixed-footer">
+                                        <div id="evaluation_modal{{evaluation.evaluation_id}}"  class="modal modal-fixed-footer full-modal">
                                             <form method="POST" action="/man-evaluation"> 
                                                 <div class="modal-content">
                                                     <div class="row">
